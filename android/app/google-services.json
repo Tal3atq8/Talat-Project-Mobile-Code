@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "335591651714",
+    "project_id": "talatmobileapp",
+    "storage_bucket": "talatmobileapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335591651714:android:1edbbc29a214ac648b379b",
+        "android_client_info": {
+          "package_name": "com.app.talat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "335591651714-e354klpmngag8f7b5rmlvphpu5rtsja9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwMRXRC4LkpW_QtU63T8U0Cxbx2h45jN0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "335591651714-e354klpmngag8f7b5rmlvphpu5rtsja9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "335591651714-6leqmlinh0d3bqdqdcb1v0grrj84udip.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vrinsoft.GeneralApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
