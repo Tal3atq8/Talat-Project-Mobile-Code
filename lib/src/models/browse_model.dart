@@ -1,12 +1,11 @@
 class BrowseModel {
-  const BrowseModel(
-      {this.id,this.image,this.title});
-
+  const BrowseModel({this.id, this.image, this.title});
 
   final int? id;
   final String? image;
   final String? title;
 }
+
 class BrowseActivityListModel {
   String? code;
   String? message;
@@ -17,8 +16,7 @@ class BrowseActivityListModel {
   BrowseActivityListModel.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     message = json['message'];
-    result =
-    json['result'] != null ? Result.fromJson(json['result']) : null;
+    result = json['result'] != null ? Result.fromJson(json['result']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -49,18 +47,18 @@ class Result {
 
   Result(
       {this.currentPage,
-        this.data,
-        this.firstPageUrl,
-        this.from,
-        this.lastPage,
-        this.lastPageUrl,
-        this.links,
-        this.nextPageUrl,
-        this.path,
-        this.perPage,
-        this.prevPageUrl,
-        this.to,
-        this.total});
+      this.data,
+      this.firstPageUrl,
+      this.from,
+      this.lastPage,
+      this.lastPageUrl,
+      this.links,
+      this.nextPageUrl,
+      this.path,
+      this.perPage,
+      this.prevPageUrl,
+      this.to,
+      this.total});
 
   Result.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];

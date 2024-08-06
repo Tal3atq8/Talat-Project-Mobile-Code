@@ -2,25 +2,23 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/root/internacionalization.dart';
 import 'package:talat/src/theme/color_constants.dart';
 import 'package:talat/src/theme/constant_strings.dart';
 import 'package:talat/src/utils/enums/enum.dart';
+
 class AlertWidget extends StatefulWidget {
   final String? title;
   final String? message;
   final List<String>? buttonOption;
   final AlertWidgetButtonActionCallback? onCompletion;
 
-  AlertWidget(
-      {this.title, this.message, this.buttonOption, this.onCompletion});
+  AlertWidget({this.title, this.message, this.buttonOption, this.onCompletion});
 
   @override
   _AlertWidgetState createState() => _AlertWidgetState();
 }
 
 class _AlertWidgetState extends State<AlertWidget> {
-
   Widget? get titleWidget {
     String mainTitle = this.widget.title ?? '';
     if (mainTitle.length == 0) {
@@ -73,9 +71,9 @@ class _AlertWidgetState extends State<AlertWidget> {
       return (Platform.isIOS)
           ? messageW
           : Padding(
-        child: messageW,
-        padding: EdgeInsets.only(top: 10.0),
-      );
+              child: messageW,
+              padding: EdgeInsets.only(top: 10.0),
+            );
     }
     return null;
   }
@@ -106,7 +104,6 @@ class _AlertWidgetState extends State<AlertWidget> {
               fontWeight: FontWeight.w600,
               fontSize: 13,
               color: ColorConstant.blackColor,
-
             ),
           ),
           onPressed: () => this.onButtonPressed(str),
@@ -143,7 +140,7 @@ class _AlertWidgetState extends State<AlertWidget> {
     Navigator.of(context).pop();
 
     // Provide callback
-    if (this.widget.onCompletion != null) {
+    if (widget.onCompletion != null) {
       widget.onCompletion!(index);
     }
   }

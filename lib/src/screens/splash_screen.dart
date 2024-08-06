@@ -95,10 +95,8 @@ class _SplashPageState extends State<SplashScreen> {
   }
 
   void checkForUserLogin() async {
-    token = await SharedPref.getString(PreferenceConstants.token) ?? "";
+    token = await SharedPref.getString(PreferenceConstants.token);
     userGuideCompleted = await SharedPref.getString(PreferenceConstants.userGuideCompleted);
-    // networkManager.GetConnectionType();
-    SharedPreferences prefs = await SharedPreferences.getInstance();
 
     if ((userGuideCompleted != null && userGuideCompleted == "1") || (token != null && token != "")) {
       if (backgroundMessage != null) {
@@ -113,7 +111,7 @@ class _SplashPageState extends State<SplashScreen> {
                   bookingID.value = backgroundMessage?.data['booking_id'].toString() ?? '';
                   Get.find<BookingDetailController>().bookingDetail();
                   Get.offAllNamed(AppRouteNameConstant.confirmBookingScreen, arguments: bookingID.value);
-                }else{
+                } else {
                   Timer(const Duration(seconds: 3), () {
                     Get.offAllNamed(AppRouteNameConstant.tabScreen);
                   });

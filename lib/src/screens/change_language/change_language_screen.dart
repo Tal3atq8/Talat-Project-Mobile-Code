@@ -31,16 +31,14 @@ class ChangeLanguage extends GetWidget<ChangeLanguageController> {
                 controller.isEnglishselected.value = true;
                 var locale = const Locale('en', 'US');
 
-                await SharedPref.setString(
-                    PreferenceConstants.laguagecode, '1');
+                await SharedPref.setString(PreferenceConstants.laguagecode, '1');
                 Get.find<DashboardController>().update();
                 Get.find<DashboardController>().onInit();
                 language = "1";
                 Get.updateLocale(locale);
               },
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -55,16 +53,14 @@ class ChangeLanguage extends GetWidget<ChangeLanguageController> {
                         var locale = const Locale('en', 'US');
                         // SharedPref.removeSharedPref(
                         //     PreferenceConstants.laguagecode);
-                        await SharedPref.setString(
-                            PreferenceConstants.laguagecode, '1');
+                        await SharedPref.setString(PreferenceConstants.laguagecode, '1');
                         Get.find<DashboardController>().update();
                         Get.find<DashboardController>().onInit();
                         language = "1";
                         controller.update();
                         // globals.language = describeEnum(SelectLanguage.en);
                         Get.updateLocale(locale);
-                        print(SharedPref.getString(
-                            PreferenceConstants.laguagecode));
+                        debugPrint('${SharedPref.getString(PreferenceConstants.laguagecode)}');
                       },
                       activeColor: ColorConstant.appThemeColor,
                     ),
@@ -72,8 +68,7 @@ class ChangeLanguage extends GetWidget<ChangeLanguageController> {
                 ),
               ),
             ),
-            Divider(
-                thickness: 1, height: 1, color: ColorConstant.lightGrayColor),
+            Divider(thickness: 1, height: 1, color: ColorConstant.lightGrayColor),
             InkWell(
               onTap: () async {
                 controller.setOrderType("2");
@@ -81,19 +76,17 @@ class ChangeLanguage extends GetWidget<ChangeLanguageController> {
                 var locale = const Locale('ar', 'AR');
                 // SharedPref.removeSharedPref(
                 //     PreferenceConstants.laguagecode);
-                await SharedPref.setString(
-                    PreferenceConstants.laguagecode, '2');
+                await SharedPref.setString(PreferenceConstants.laguagecode, '2');
                 Get.find<DashboardController>().update();
                 Get.find<DashboardController>().onInit();
                 language = "2";
                 // globals.language = describeEnum(SelectLanguage.ar);
-                print(SharedPref.getString(PreferenceConstants.laguagecode));
+                debugPrint('${SharedPref.getString(PreferenceConstants.laguagecode)}');
                 controller.update();
                 Get.updateLocale(locale);
               },
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -105,8 +98,7 @@ class ChangeLanguage extends GetWidget<ChangeLanguageController> {
                         controller.setOrderType(value!);
                         controller.isEnglishselected.value = true;
                         var locale = const Locale('ar', 'AR');
-                        await SharedPref.setString(
-                            PreferenceConstants.laguagecode, '2');
+                        await SharedPref.setString(PreferenceConstants.laguagecode, '2');
                         Get.find<DashboardController>().update();
                         Get.find<DashboardController>().onInit();
                         language = "2";

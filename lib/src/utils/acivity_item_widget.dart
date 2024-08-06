@@ -51,10 +51,7 @@ class ActivityItemWidget extends StatelessWidget {
           shadowColor: Colors.black.withOpacity(0.3),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           child: Container(
-            width: (fullWidth != null && fullWidth!)
-                ? Get.width * .9
-                : Get.width * .8,
-            // height: 160,
+            width: (fullWidth != null && fullWidth!) ? Get.width * .9 : Get.width * .8,
             clipBehavior: Clip.antiAliasWithSaveLayer,
             decoration: BoxDecoration(
               color: Colors.white,
@@ -78,13 +75,9 @@ class ActivityItemWidget extends StatelessWidget {
                         fit: BoxFit.fill,
                         fadeOutDuration: const Duration(seconds: 0),
                         fadeInDuration: const Duration(seconds: 0),
-                        // width: 360,
                         errorWidget: (context, url, error) {
                           return const PlaceholderImage();
                         },
-                        // errorWidget: (context, url, error) {
-                        //   return Image.asset(ImageConstant.nightCampingImage);
-                        // },
                         placeholder: (context, url) {
                           return const PlaceholderImage();
                         },
@@ -92,22 +85,15 @@ class ActivityItemWidget extends StatelessWidget {
                     ),
                     if (isIconDisplay)
                       Align(
-                        alignment: language == '1'
-                            ? Alignment.topRight
-                            : Alignment.topLeft,
+                        alignment: language == '1' ? Alignment.topRight : Alignment.topLeft,
                         child: Obx(() {
                           return Padding(
                               padding: const EdgeInsets.only(top: 8.0),
-                              child: ((favShowLoader != null &&
-                                          favShowLoader!.value) &&
-                                      ((isSelectedIndex != null) &&
-                                          isCurrentIndex ==
-                                              (isSelectedIndex!.value)))
+                              child: ((favShowLoader != null && favShowLoader!.value) &&
+                                      ((isSelectedIndex != null) && isCurrentIndex == (isSelectedIndex!.value)))
                                   ? Padding(
                                       padding: EdgeInsets.only(
-                                          right: language == '1' ? 16 : 0,
-                                          left: language == '2' ? 16 : 0,
-                                          top: 14),
+                                          right: language == '1' ? 16 : 0, left: language == '2' ? 16 : 0, top: 14),
                                       child: SizedBox(
                                         height: 20,
                                         width: 20,
@@ -120,48 +106,28 @@ class ActivityItemWidget extends StatelessWidget {
                                   : GestureDetector(
                                       onTap: onFavIconTap != null
                                           ? () {
-                                              Fluttertoast.cancel().then(
-                                                  (value) => onFavIconTap!());
+                                              Fluttertoast.cancel().then((value) => onFavIconTap!());
                                             }
                                           : null,
                                       child: Container(
                                         padding: EdgeInsets.only(
-                                            top: 8,
-                                            left: language == '2' ? 16 : 0,
-                                            right: language == '1' ? 16 : 0),
+                                            top: 8, left: language == '2' ? 16 : 0, right: language == '1' ? 16 : 0),
                                         color: Colors.transparent,
                                         child: Container(
                                           height: 30,
                                           width: 30,
                                           decoration: BoxDecoration(
-                                            color:
-                                                ColorConstant.grayBorderColor,
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(4.0)),
+                                            color: ColorConstant.grayBorderColor,
+                                            borderRadius: const BorderRadius.all(Radius.circular(4.0)),
                                           ),
                                           child: Icon(
                                             Icons.favorite,
-                                            color: isNotFav
-                                                ? ColorConstant.whiteColor
-                                                : ColorConstant.appThemeColor,
+                                            color: isNotFav ? ColorConstant.whiteColor : ColorConstant.appThemeColor,
                                             size: 22,
                                           ),
                                         ),
                                       ),
-                                    )
-                              // : IconButton(
-                              //     onPressed: onFavIconTap != null
-                              //         ? () => onFavIconTap!()
-                              //         : null,
-                              //     icon: Icon(
-                              //       Icons.favorite,
-                              //       color: isNotFav
-                              //           ? ColorConstant.whiteColor
-                              //           : ColorConstant.appThemeColor,
-                              //     ),
-                              //   ),
-                              );
+                                    ));
                         }),
                       )
                   ]),
@@ -173,8 +139,7 @@ class ActivityItemWidget extends StatelessWidget {
                     child: ListTile(
                       contentPadding: EdgeInsets.zero,
                       leading: Padding(
-                        padding: EdgeInsets.only(
-                            left: 16, right: language == "1" ? 0 : 16),
+                        padding: EdgeInsets.only(left: 16, right: language == "1" ? 0 : 16),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: CachedNetworkImage(
@@ -195,33 +160,17 @@ class ActivityItemWidget extends StatelessWidget {
                         serviceProviderName.toString() ?? '',
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
-                        style: TextStyle(
-                            color: ColorConstant.blackColor,
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal),
+                        style: TextStyle(color: ColorConstant.blackColor, fontSize: 14, fontWeight: FontWeight.normal),
                       ),
-                      // subtitle: Text(
-                      //   serviceProviderAddress
-                      //           .toString() ??
-                      //       "",
-                      //   overflow: TextOverflow.ellipsis,
-                      //   maxLines: 1,
-                      //   style: TextStyle(
-                      //       color: ColorConstant.blackColor,
-                      //       fontSize: 12.sp,
-                      //       fontWeight: FontWeight.normal),
-                      // ),
                       subtitle: RichText(
                         textAlign: TextAlign.start,
                         text: TextSpan(
                           children: [
                             TextSpan(
                                 text: serviceProviderAddress,
-                                style: txtStyleNormalGray12(
-                                    color: ColorConstant.blackColor)),
+                                style: txtStyleNormalGray12(color: ColorConstant.blackColor)),
                             TextSpan(
-                              text: (serviceProviderDistance != null &&
-                                      serviceProviderDistance!.isNotEmpty)
+                              text: (serviceProviderDistance != null && serviceProviderDistance!.isNotEmpty)
                                   ? "\n$serviceProviderDistance ${toLabelValue("away")}"
                                   : '',
                               style: txtStyleNormalGray12(),

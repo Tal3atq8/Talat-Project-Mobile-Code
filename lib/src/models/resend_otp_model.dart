@@ -34,8 +34,7 @@ class Result {
   String? token;
   String? userType;
 
-  Result(
-      {this.otp, this.otpExpireTime, this.userId, this.token, this.userType});
+  Result({this.otp, this.otpExpireTime, this.userId, this.token, this.userType});
 
   Result.fromJson(Map<String, dynamic> json) {
     otp = json['otp'];

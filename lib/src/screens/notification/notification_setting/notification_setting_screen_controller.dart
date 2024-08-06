@@ -13,8 +13,7 @@ import '../../../app_routes/app_routes.dart';
 import '../../../utils/global_constants.dart';
 
 class NotificationSettingController extends GetxController {
-  RxList<NotificationSettingModel> notificationSettingItems =
-      RxList<NotificationSettingModel>();
+  RxList<NotificationSettingModel> notificationSettingItems = RxList<NotificationSettingModel>();
   String? token;
   RxBool notificationEnabled = false.obs;
 
@@ -27,10 +26,7 @@ class NotificationSettingController extends GetxController {
 
   getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    notificationEnabled.value =
-        prefs.getString(PreferenceConstants.notification_setting_status) == "1"
-            ? true
-            : false;
+    notificationEnabled.value = prefs.getString(PreferenceConstants.notification_setting_status) == "1" ? true : false;
   }
 
   void getNotificationSettingList() async {
@@ -49,27 +45,22 @@ class NotificationSettingController extends GetxController {
       }).then((response) async {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         if (response.data['code'].toString() == "200") {
-          await prefs.setString(PreferenceConstants.notification_setting_status,
-              notificationEnabled.value ? "1" : "0");
-          print(
-              "======>${prefs.getString(PreferenceConstants.notification_setting_status)}");
+          await prefs.setString(PreferenceConstants.notification_setting_status, notificationEnabled.value ? "1" : "0");
+          debugPrint("======>${prefs.getString(PreferenceConstants.notification_setting_status)}");
           // update();
         } else if (response.data["code"] == "-7") {
           // Get.back();
           CommonWidgets().showToastMessage('user_login_other_device');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
           Get.offAllNamed(AppRouteNameConstant.tabScreen);
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
-        } else if (response.data["code"] == "-1" &&
-            response.data["message"] == "inactive_account") {
+        } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
           CommonWidgets().showToastMessage('inactive_account');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -77,11 +68,9 @@ class NotificationSettingController extends GetxController {
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
           // showLoader(false);
-        } else if (response.data["code"] == "-4" &&
-            response.data["message"] == "delete_account") {
+        } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
           CommonWidgets().showToastMessage(response.data["message"]);
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -90,7 +79,7 @@ class NotificationSettingController extends GetxController {
           update();
         }
       }).catchError((error) {
-        print(error.toString());
+        debugPrint(error.toString());
       });
     } on DioError catch (e) {
       debugPrint("authenticateUser-error dio error >>>> ${e.toString()}");

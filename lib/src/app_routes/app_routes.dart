@@ -33,11 +33,8 @@ class AppRouteNameConstant {
   static String paymentLinkScreen = "/payment-screen";
   static String paymentFailScreen = "/payment-fail-screen";
   static String extraActivityScreen = "/extra-activity-screen";
-  static String seeAllBrowseActivitiesScreen =
-      "/see-all-browse-activities-screen";
-  static String seeAllPopularActivitiesScreen =
-      "/see-all-popular-activities-screen";
-  static String serviceProviderActivityListScreen =
-      "/service-provider-activity-list-screen";
+  static String seeAllBrowseActivitiesScreen = "/see-all-browse-activities-screen";
+  static String seeAllPopularActivitiesScreen = "/see-all-popular-activities-screen";
+  static String serviceProviderActivityListScreen = "/service-provider-activity-list-screen";
   static String splashScreen = "/splash_screen";
 }

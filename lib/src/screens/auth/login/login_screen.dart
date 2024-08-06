@@ -90,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     readOnly: controller.isMobileRead.value,
                     onChanged: (value) {
                       if (value.isNotEmpty) {
-                        print(value);
+                        debugPrint(value);
                         controller.isEmailRead(true) && controller.isPasswordRead(true);
                       } else {
                         controller.isEmailRead(false) && controller.isPasswordRead(false);
@@ -164,7 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       } else {
                         controller.isMobileRead.value = false;
                       }
-                      print(controller.isMobileRead.value);
+                      debugPrint('${controller.isMobileRead.value}');
                     },
                     inputFormatters: const [],
                     errorStyle: TextStyle(color: ColorConstant.whiteColor),

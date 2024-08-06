@@ -24,40 +24,28 @@ class ServiceProviderList extends StatelessWidget {
         preferredSize: const Size.fromHeight(58),
         child: Obx(() {
           return CustomAppbarNoSearchBar(
-              title: serviceProviderController.serviceProviderListResult.value
-                      .result?.category?.categoryName ??
-                  "");
+              title: serviceProviderController.serviceProviderListResult.value.result?.category?.categoryName ?? "");
         }),
       ),
       body: Obx(() => serviceProviderController.showLoader.value
           ? const Center(child: CommonLoading())
-          : (serviceProviderController.serviceProviderListResult.value.result
-                          ?.provider?.data !=
-                      null &&
-                  serviceProviderController.serviceProviderListResult.value
-                      .result!.provider!.data!.isNotEmpty)
+          : (serviceProviderController.serviceProviderListResult.value.result?.provider?.data != null &&
+                  serviceProviderController.serviceProviderListResult.value.result!.provider!.data!.isNotEmpty)
               ? ListView.builder(
                   padding: const EdgeInsets.all(16),
-                  itemCount: serviceProviderController.serviceProviderListResult
-                          .value.result?.provider?.data?.length ??
-                      0,
+                  itemCount:
+                      serviceProviderController.serviceProviderListResult.value.result?.provider?.data?.length ?? 0,
                   itemBuilder: (context, index) {
-                    var providerList = serviceProviderController
-                        .serviceProviderListResult
-                        .value
-                        .result
-                        ?.provider
-                        ?.data?[index];
+                    var providerList =
+                        serviceProviderController.serviceProviderListResult.value.result?.provider?.data?[index];
                     return GestureDetector(
                       onTap: () {
-                        providerID.value =
-                            providerList?.serviceProviderId.toString() ?? '';
+                        providerID.value = providerList?.serviceProviderId.toString() ?? '';
 
                         // providerID.value =
                         //     popularListData?.providerId ?? '';
                         ActivityDetailBinding().dependencies();
-                        Get.find<ActivityDetailController>()
-                            .selectCategoryIndex = 0.obs;
+                        Get.find<ActivityDetailController>().selectCategoryIndex = 0.obs;
                         Get.find<ActivityDetailController>().myTabs = [];
 
                         // Get.find<ActivityDetailController>()
@@ -77,19 +65,14 @@ class ServiceProviderList extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             ClipRRect(
-                              borderRadius: const BorderRadius.only(
-                                  topRight: Radius.circular(8),
-                                  topLeft: Radius.circular(8)),
+                              borderRadius:
+                                  const BorderRadius.only(topRight: Radius.circular(8), topLeft: Radius.circular(8)),
                               child: CachedNetworkImage(
                                 height: Get.height * 0.19,
                                 width: Get.width,
                                 fit: BoxFit.cover,
                                 imageUrl: serviceProviderController
-                                        .serviceProviderListResult
-                                        .value
-                                        .result
-                                        ?.category
-                                        ?.categoryImage ??
+                                        .serviceProviderListResult.value.result?.category?.categoryImage ??
                                     "",
                                 errorWidget: (context, url, error) {
                                   return const PlaceholderImage();
@@ -103,13 +86,11 @@ class ServiceProviderList extends StatelessWidget {
                               ),
                             ),
                             ListTile(
-                              contentPadding: const EdgeInsets.only(
-                                  top: 10, left: 16, bottom: 18),
+                              contentPadding: const EdgeInsets.only(top: 10, left: 16, bottom: 18),
                               leading: ClipRRect(
                                 borderRadius: BorderRadius.circular(11),
                                 child: CachedNetworkImage(
-                                  imageUrl:
-                                      providerList?.serviceProviderImage ?? "",
+                                  imageUrl: providerList?.serviceProviderImage ?? "",
                                   height: 46,
                                   width: 46,
                                   fit: BoxFit.cover,
@@ -124,21 +105,17 @@ class ServiceProviderList extends StatelessWidget {
                                   },
                                 ),
                               ),
-                              title:
-                                  Text(providerList?.serviceProviderName ?? ""),
+                              title: Text(providerList?.serviceProviderName ?? ""),
                               subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   SizedBox(
                                       width: Get.width * 0.6,
                                       child: Text(
-                                        providerList?.serviceProviderAddress ??
-                                            "",
+                                        providerList?.serviceProviderAddress ?? "",
                                         overflow: TextOverflow.ellipsis,
                                       )),
-                                  Text(
-                                      "${providerList?.serviceProviderDistance} away" ??
-                                          ""),
+                                  Text("${providerList?.serviceProviderDistance} away" ?? ""),
                                 ],
                               ),
                             )

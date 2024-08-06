@@ -25,20 +25,18 @@ class ButtonWidget extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ButtonStyle(
-        backgroundColor: MaterialStatePropertyAll(btnColor),
-        overlayColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) {
-            if (states.contains(MaterialState.pressed)) {
-              return ColorConstant.appThemeColor
-                  .withOpacity(0.1); //<-- SEE HERE
+        backgroundColor: WidgetStatePropertyAll(btnColor),
+        overlayColor: WidgetStateProperty.resolveWith<Color?>(
+          (Set<WidgetState> states) {
+            if (states.contains(WidgetState.pressed)) {
+              return ColorConstant.appThemeColor.withOpacity(0.1); //<-- SEE HERE
             }
             return null; // Defer to the widget's default.
           },
         ),
-        elevation: const MaterialStatePropertyAll(0),
+        elevation: const WidgetStatePropertyAll(0),
         // disabledBackgroundColor: btnColorRed.withOpacity(0.4),
-        shape: MaterialStatePropertyAll(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+        shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
       ),
       child: Text(
         title,

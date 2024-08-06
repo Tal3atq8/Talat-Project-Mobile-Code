@@ -35,9 +35,8 @@ class Result {
   Result.fromJson(Map<String, dynamic> json) {
     bookingId = json['booking_id'];
     noOfPersons = json['no_of_persons'];
-    serviceProviderInfo = json['service_providerInfo'] != null
-        ? ServiceProviderInfo.fromJson(json['service_providerInfo'])
-        : null;
+    serviceProviderInfo =
+        json['service_providerInfo'] != null ? ServiceProviderInfo.fromJson(json['service_providerInfo']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -58,10 +57,7 @@ class ServiceProviderInfo {
   String? serviceProviderImage;
 
   ServiceProviderInfo(
-      {this.serviceProviderId,
-      this.serviceProviderName,
-      this.serviceProviderAdress,
-      this.serviceProviderImage});
+      {this.serviceProviderId, this.serviceProviderName, this.serviceProviderAdress, this.serviceProviderImage});
 
   ServiceProviderInfo.fromJson(Map<String, dynamic> json) {
     serviceProviderId = json['service_provider_id'];

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:talat/src/utils/utility.dart';
 
 class NotificationObject {
   Map<String, dynamic>? pendingNotification;

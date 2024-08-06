@@ -78,16 +78,13 @@ appRoutes() => [
         page: () => const SplashScreen(),
         binding: NetworkBinding(),
       ),
-      GetPage(
-          name: AppRouteNameConstant.tabScreen,
-          page: () => TabBar(),
-          bindings: [
-            TabbarBinding(),
-            DashboardBinding(),
-            NetworkBinding()
-            // FavoriteListBinding(),
-            // NotificationBinding()
-          ]),
+      GetPage(name: AppRouteNameConstant.tabScreen, page: () => TabBar(), bindings: [
+        TabbarBinding(),
+        DashboardBinding(),
+        NetworkBinding()
+        // FavoriteListBinding(),
+        // NotificationBinding()
+      ]),
       GetPage(
         name: AppRouteNameConstant.networkScreen,
         page: () => NoNetworkConnectivity(),

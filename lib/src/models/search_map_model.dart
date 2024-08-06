@@ -51,8 +51,8 @@ class MapResult {
       this.longitude,
       this.distance,
       this.providerId,
-        this.activity_name,
-        this.main_image,
+      this.activity_name,
+      this.main_image,
       this.providerName,
       this.serviceProviderImage,
       this.isFav});

@@ -27,7 +27,7 @@ class GetXNetworkManager extends GetxController {
     labelAPi();
     TalatService().generalSettings().then((response) {
       generalSetting = GeneralSettingModel.fromJson(response.data);
-      print(generalSetting);
+      debugPrint('$generalSetting');
     });
   }
 

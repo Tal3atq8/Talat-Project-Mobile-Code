@@ -103,22 +103,15 @@ class RegistrationController extends GetxController {
 
             //   password=userDetail.user.pa;
             //    isRegister=response.data['result'][0]['is_register'];
-            var isUseerName = userDetail.user?.name;
-            password = await SharedPref.setString(
-                PreferenceConstants.savePassword, passwordController.text);
-            await SharedPref.setString(
-                PreferenceConstants.email, userDetail.user?.email);
-            await SharedPref.setString(
-                PreferenceConstants.name, userDetail.user?.name);
+            password = await SharedPref.setString(PreferenceConstants.savePassword, passwordController.text);
+            await SharedPref.setString(PreferenceConstants.email, userDetail.user?.email);
+            await SharedPref.setString(PreferenceConstants.name, userDetail.user?.name);
 
-            await SharedPref.setString(
-                PreferenceConstants.genderKey, userDetail.user?.gender);
-            await SharedPref.setString(
-                PreferenceConstants.dobKey, userDetail.user?.dateOfBirth);
+            await SharedPref.setString(PreferenceConstants.genderKey, userDetail.user?.gender);
+            await SharedPref.setString(PreferenceConstants.dobKey, userDetail.user?.dateOfBirth);
             showLoader.value = false;
 
-            CommonWidgets().showToastMessage(
-                ConstantsLabelKeys.user_registered_successfully);
+            CommonWidgets().showToastMessage(ConstantsLabelKeys.user_registered_successfully);
             Get.offAllNamed(AppRouteNameConstant.tabScreen);
           } else if (response.data["code"] == "-1") {
             showLoader.value = false;
@@ -127,43 +120,34 @@ class RegistrationController extends GetxController {
             CommonWidgets().showToastMessage("email_already_register");
           } else if (response.data["code"] == "-7") {
             CommonWidgets().showToastMessage('user_login_other_device');
-            language =
-                await SharedPref.getString(PreferenceConstants.laguagecode);
+            language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
             await SharedPref.clearSharedPref();
-            await SharedPref.setString(
-                PreferenceConstants.laguagecode, language);
+            await SharedPref.setString(PreferenceConstants.laguagecode, language);
             Get.offAllNamed(AppRouteNameConstant.tabScreen);
             update();
-          } else if (response.data["code"] == "-1" &&
-              response.data["message"] == "inactive_account") {
+          } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
             CommonWidgets().showToastMessage('inactive_account');
-            language =
-                await SharedPref.getString(PreferenceConstants.laguagecode);
+            language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
             await SharedPref.clearSharedPref();
-            await SharedPref.setString(
-                PreferenceConstants.laguagecode, language);
+            await SharedPref.setString(PreferenceConstants.laguagecode, language);
             Get.offAllNamed(AppRouteNameConstant.tabScreen);
             update();
             showLoader(false);
-          } else if (response.data["code"] == "-4" &&
-              response.data["message"] == "delete_account") {
+          } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
             showLoader.value = false;
             CommonWidgets().showToastMessage(response.data["message"]);
-            language =
-                await SharedPref.getString(PreferenceConstants.laguagecode);
+            language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
             await SharedPref.clearSharedPref();
-            await SharedPref.setString(
-                PreferenceConstants.laguagecode, language);
+            await SharedPref.setString(PreferenceConstants.laguagecode, language);
             Get.offAllNamed(AppRouteNameConstant.tabScreen);
             update();
           }
         }).catchError((error) {
           debugPrint(error.toString());
-          CommonWidgets()
-              .customSnackBar('Talat', 'User Not Register Successfully');
+          CommonWidgets().customSnackBar('Talat', 'User Not Register Successfully');
 
           showLoader.value = false;
           // Get.back();

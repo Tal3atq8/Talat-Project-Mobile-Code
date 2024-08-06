@@ -2,8 +2,7 @@ class PreferenceConstants {
   static const String isGuestUser = "IS_GUEST_USER";
   static const String islogin = "IS_LOGIN";
   static const String token = "TOKEN";
-  static const String notification_setting_status =
-      "NOTIFICATION_SETTING_STATUS";
+  static const String notification_setting_status = "NOTIFICATION_SETTING_STATUS";
   static const String userId = "userId";
   static const String userType = "userType";
   static const String FCM_TOKEN = "FCM_TOKEN";

@@ -47,22 +47,15 @@ class Registration extends StatelessWidget {
                     children: [
                       const SizedBox(height: 40),
                       Text(toLabelValue(ConstantStrings.identityText),
-                          style: TextStyle(
-                              color: ColorConstant.whiteColor,
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold)),
+                          style: TextStyle(color: ColorConstant.whiteColor, fontSize: 24, fontWeight: FontWeight.bold)),
                       const SizedBox(
                         height: 10,
                       ),
                       SizedBox(
                         width: Get.width * 0.7,
-                        child: Text(
-                            toLabelValue(
-                                ConstantStrings.registrationSubTitleText),
-                            style: TextStyle(
-                                color: ColorConstant.whiteColor,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w300)),
+                        child: Text(toLabelValue(ConstantStrings.registrationSubTitleText),
+                            style:
+                                TextStyle(color: ColorConstant.whiteColor, fontSize: 12, fontWeight: FontWeight.w300)),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16),
@@ -71,12 +64,10 @@ class Registration extends StatelessWidget {
                           inputFormatters: [
                             NoLeadingSpaceFormatter(),
                             FilteringTextInputFormatter.deny('  '),
-                            FilteringTextInputFormatter.allow(
-                                RegExp("[a-zA-Z ]")),
+                            FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
                             LengthLimitingTextInputFormatter(30)
                           ],
-                          errorStyle:
-                              TextStyle(color: ColorConstant.whiteColor),
+                          errorStyle: TextStyle(color: ColorConstant.whiteColor),
                           width: double.infinity,
                           hintText: toLabelValue(ConstantStrings.fullNameText),
                           textInputType: TextInputType.text,
@@ -84,8 +75,7 @@ class Registration extends StatelessWidget {
                             top: 10,
                           ),
                           onChanged: (value) {
-                            controller.registrationFormKey.currentState!
-                                .validate();
+                            controller.registrationFormKey.currentState!.validate();
                           },
                         ),
                       ),
@@ -99,25 +89,21 @@ class Registration extends StatelessWidget {
                           top: 10,
                         ),
                         onChanged: (value) {
-                          controller.registrationFormKey.currentState!
-                              .validate();
+                          controller.registrationFormKey.currentState!.validate();
                         },
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         child: CustomTextFormField(
                           inputFormatters: [
-                            FilteringTextInputFormatter.allow(
-                                RegExp("[a-zA-Z0-9@.]")),
+                            FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9@.]")),
                           ],
                           suffix: InkWell(
                             onTap: () {
-                              controller.isShowPassword.value =
-                                  !controller.isShowPassword.value;
+                              controller.isShowPassword.value = !controller.isShowPassword.value;
                             },
                             child: Container(
-                                margin: getMargin(
-                                    left: 12, top: 12, right: 20, bottom: 12),
+                                margin: getMargin(left: 12, top: 12, right: 20, bottom: 12),
                                 child: Icon(
                                   controller.isShowPassword.value
                                       ? Icons.visibility_outlined
@@ -128,13 +114,11 @@ class Registration extends StatelessWidget {
                           isObscureText: !controller.isShowPassword.value,
                           controller: controller.passwordController,
                           maxLength: 8,
-                          errorStyle:
-                              TextStyle(color: ColorConstant.whiteColor),
+                          errorStyle: TextStyle(color: ColorConstant.whiteColor),
                           width: double.infinity,
                           hintText: toLabelValue(ConstantStrings.passwordText),
                           onChanged: (value) {
-                            controller.registrationFormKey.currentState!
-                                .validate();
+                            controller.registrationFormKey.currentState!.validate();
                           },
                           textInputType: TextInputType.visiblePassword,
                           margin: getMargin(
@@ -148,14 +132,12 @@ class Registration extends StatelessWidget {
                           _showDatePicker(context);
                         },
                         inputFormatters: [
-                          FilteringTextInputFormatter.allow(
-                              RegExp("[a-zA-Z0-9@.]")),
+                          FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9@.]")),
                         ],
                         controller: controller.showDobController,
                         textInputType: TextInputType.none,
                         onChanged: (value) {
-                          controller.registrationFormKey.currentState!
-                              .validate();
+                          controller.registrationFormKey.currentState!.validate();
                         },
                         errorStyle: TextStyle(color: ColorConstant.whiteColor),
                         suffix: Padding(
@@ -176,8 +158,7 @@ class Registration extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                            left: 18.0, top: 40, right: 18),
+                        padding: const EdgeInsets.only(left: 18.0, top: 40, right: 18),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -194,16 +175,14 @@ class Registration extends StatelessWidget {
                                           width: 50,
                                         )
                                       : Image.asset(
-                                          ImageConstant
-                                              .maleSignupUnselectedImage,
+                                          ImageConstant.maleSignupUnselectedImage,
                                           height: 50,
                                           width: 50,
                                         ),
                                   const SizedBox(height: 10),
                                   Text(toLabelValue(ConstantStrings.maleText),
                                       style: TextStyle(
-                                          color: controller.selected.value ==
-                                                  'male'
+                                          color: controller.selected.value == 'male'
                                               ? ColorConstant.whiteColor
                                               : ColorConstant.whiteColor,
                                           fontWeight: FontWeight.normal,
@@ -220,8 +199,7 @@ class Registration extends StatelessWidget {
                                 children: [
                                   controller.selected.value == 'female'
                                       ? Image.asset(
-                                          ImageConstant
-                                              .femaleSignupSelectedImage,
+                                          ImageConstant.femaleSignupSelectedImage,
                                           height: 50,
                                           width: 50,
                                         )
@@ -233,8 +211,7 @@ class Registration extends StatelessWidget {
                                   const SizedBox(height: 10),
                                   Text(toLabelValue(ConstantStrings.femaleText),
                                       style: TextStyle(
-                                          color: controller.selected.value ==
-                                                  'female'
+                                          color: controller.selected.value == 'female'
                                               ? ColorConstant.whiteColor
                                               : ColorConstant.whiteColor,
                                           fontWeight: FontWeight.normal,
@@ -263,9 +240,7 @@ class Registration extends StatelessWidget {
                                   onPressed: () {
                                     controller.signupApiCalling();
                                   },
-                                  title: toLabelValue(
-                                          ConstantsLabelKeys.signupText)
-                                      .toString(),
+                                  title: toLabelValue(ConstantsLabelKeys.signupText).toString(),
                                   fontWeight: FontWeight.w300,
                                   btnColor: ColorConstant.whiteColor,
                                   txtColor: ColorConstant.appThemeColor,
@@ -302,10 +277,7 @@ class Registration extends StatelessWidget {
                       },
                       child: const Text(
                         "Done",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            color: Colors.blue),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.blue),
                       )),
                 ),
               ),
@@ -315,21 +287,17 @@ class Registration extends StatelessWidget {
                   mode: CupertinoDatePickerMode.date,
                   minimumDate: DateTime(1972, 1, 1),
                   // Set the minimum date
-                  maximumDate: DateTime(DateTime.now().year - 18,
-                      DateTime.now().month, DateTime.now().day),
+                  maximumDate: DateTime(DateTime.now().year - 18, DateTime.now().month, DateTime.now().day),
                   dateOrder: DatePickerDateOrder.dmy,
-                  initialDateTime: selectedDate ??
-                      DateTime(DateTime.now().year - 18, DateTime.now().month,
-                          DateTime.now().day),
+                  initialDateTime:
+                      selectedDate ?? DateTime(DateTime.now().year - 18, DateTime.now().month, DateTime.now().day),
 
                   onDateTimeChanged: (DateTime newDateTime) {
                     selectedDate = newDateTime;
-                    print(DateFormat('yyyy-MM-dd').format(newDateTime));
+                    debugPrint(DateFormat('yyyy-MM-dd').format(newDateTime));
 
-                    controller.dobController.text =
-                        DateFormat('yyyy-MM-dd').format(newDateTime);
-                    controller.showDobController.text =
-                        DateFormat('dd-MM-yyyy').format(newDateTime);
+                    controller.dobController.text = DateFormat('yyyy-MM-dd').format(newDateTime);
+                    controller.showDobController.text = DateFormat('dd-MM-yyyy').format(newDateTime);
                   },
                 ),
               ),

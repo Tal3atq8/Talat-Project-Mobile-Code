@@ -32,14 +32,12 @@ class ExtraActivity extends StatelessWidget {
                 Stack(
                   children: [
                     (extraAdvertisementData.value.advertisementImage == null &&
-                            extraAdvertisementData
-                                .value.advertisementImage!.isEmpty)
+                            extraAdvertisementData.value.advertisementImage!.isEmpty)
                         ? CachedNetworkImage(
                             height: 460,
                             fit: BoxFit.contain,
                             width: double.infinity,
-                            imageUrl:
-                                extraAdvertisementData.value.bannerImage ?? '',
+                            imageUrl: extraAdvertisementData.value.bannerImage ?? '',
                             errorWidget: (context, url, error) {
                               return const PlaceholderImage();
                             },
@@ -48,8 +46,7 @@ class ExtraActivity extends StatelessWidget {
                             },
                           )
                         : CarouselSlider(
-                            items: extraAdvertisementData
-                                .value.advertisementImage
+                            items: extraAdvertisementData.value.advertisementImage
                                 ?.map((imageUrl) => ClipRRect(
                                         child: Stack(
                                       children: <Widget>[
@@ -75,10 +72,8 @@ class ExtraActivity extends StatelessWidget {
                                 // height: 400,
                                 enlargeCenterPage: false,
                                 aspectRatio: 1.0,
-                                enableInfiniteScroll: extraAdvertisementData
-                                        .value.advertisementImage!.isEmpty
-                                    ? true
-                                    : false,
+                                enableInfiniteScroll:
+                                    extraAdvertisementData.value.advertisementImage!.isEmpty ? true : false,
                                 onPageChanged: (index, reason) {
                                   controller.current.value = index;
                                 }),
@@ -91,8 +86,7 @@ class ExtraActivity extends StatelessWidget {
                         width: 38,
                         height: 38,
                         decoration: BoxDecoration(
-                          border:
-                              Border.all(color: ColorConstant.appThemeColor),
+                          border: Border.all(color: ColorConstant.appThemeColor),
                           color: Colors.white, // border color
 
                           shape: BoxShape.circle,
@@ -121,9 +115,7 @@ class ExtraActivity extends StatelessWidget {
                         ),
                       ),
                     ),
-                    if (extraAdvertisementData
-                            .value.advertisementImage!.length >
-                        1)
+                    if (extraAdvertisementData.value.advertisementImage!.length > 1)
                       Positioned(
                         // top: 0.0,
                         bottom: 40.0,
@@ -131,20 +123,14 @@ class ExtraActivity extends StatelessWidget {
                         right: 0.0,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: extraAdvertisementData
-                              .value.advertisementImage!
-                              .asMap()
-                              .entries
-                              .map((entry) {
+                          children: extraAdvertisementData.value.advertisementImage!.asMap().entries.map((entry) {
                             return Obx(() {
                               return GestureDetector(
-                                onTap: () => controller.slideControllers
-                                    .animateToPage(entry.key),
+                                onTap: () => controller.slideControllers.animateToPage(entry.key),
                                 child: Container(
                                     width: 12,
                                     height: 12,
-                                    margin: const EdgeInsets.symmetric(
-                                        vertical: 8.0, horizontal: 2.0),
+                                    margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 2.0),
                                     decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: controller.current == entry.key
@@ -167,8 +153,7 @@ class ExtraActivity extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(top: 16.0, left: 16, right: 16),
+                  padding: const EdgeInsets.only(top: 16.0, left: 16, right: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -224,20 +209,14 @@ class ExtraActivity extends StatelessWidget {
                 ),
                 const SizedBox(height: 40),
                 CommonMapWidget(
-                  latitude: double.parse(
-                      extraAdvertisementData.value.latitude.toString()),
-                  longitude: double.parse(
-                      extraAdvertisementData.value.longitude.toString()),
+                  latitude: double.parse(extraAdvertisementData.value.latitude.toString()),
+                  longitude: double.parse(extraAdvertisementData.value.longitude.toString()),
                   markers: {
                     Marker(
                       visible: true,
-                      markerId:
-                          MarkerId("${extraAdvertisementData.value.itemId}"),
-                      position: LatLng(
-                          double.parse(
-                              extraAdvertisementData.value.latitude.toString()),
-                          double.parse(extraAdvertisementData.value.longitude
-                              .toString())),
+                      markerId: MarkerId("${extraAdvertisementData.value.itemId}"),
+                      position: LatLng(double.parse(extraAdvertisementData.value.latitude.toString()),
+                          double.parse(extraAdvertisementData.value.longitude.toString())),
                       // infoWindow: InfoWindow(title: "${result?.providerName}"),
                       icon: BitmapDescriptor.defaultMarker,
                     ),

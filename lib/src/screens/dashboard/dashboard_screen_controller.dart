@@ -6,7 +6,6 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:talat/main.dart';
 import 'package:talat/src/models/banner_model.dart';
 import 'package:talat/src/models/browse_model.dart';
@@ -337,9 +336,9 @@ class DashboardController extends GetxController {
   /// Get PopularActivityList api Calling
   Future<void> getPopularActivityList({bool? isRefresh}) async {
     // userLatLong();
-    print(
+    debugPrint(
         "userlat = ${userLat.value} ==========================  \nuserlong = ${userLong.value} ============================");
-    if (isRefresh == null || (isRefresh != null && !isRefresh)) {
+    if (isRefresh == null || (!isRefresh)) {
       showPopularItemsLoader.value = true;
     }
     try {
@@ -372,7 +371,7 @@ class DashboardController extends GetxController {
               popularActivityItemListFav.add(element.id);
             }
           }
-          print(popularActivityItemListFav);
+          debugPrint('$popularActivityItemListFav');
           popularRefreshController.refreshCompleted();
           popularRefreshController.loadComplete();
         } else if (response.data["code"] == "-7") {
@@ -422,7 +421,6 @@ class DashboardController extends GetxController {
   }
 
   getData() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
     bannerItems.value = BannerModel();
     languageID = language ?? "1";
     // popularActivityItems.value = PopularListModel();

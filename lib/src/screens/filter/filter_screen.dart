@@ -36,10 +36,7 @@ class Filter extends StatelessWidget {
           centerTitle: true,
           title: Text(
             toLabelValue(ConstantStrings.filtersText),
-            style: TextStyle(
-                color: ColorConstant.blackColor,
-                fontSize: 16,
-                fontWeight: FontWeight.bold),
+            style: TextStyle(color: ColorConstant.blackColor, fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
         bottomNavigationBar: Container(
@@ -61,11 +58,9 @@ class Filter extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10.0)),
                       // padding: const EdgeInsets.symmetric(
                       //     horizontal: 40, vertical: 16),
-                      textStyle: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.normal)),
+                      textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.normal)),
                   onPressed: () async {
-                    await SharedPref.removeSharedPref(
-                        PreferenceConstants.apply);
+                    await SharedPref.removeSharedPref(PreferenceConstants.apply);
                     ActivityListBinding().dependencies();
                     controller.minControllers.clear();
                     controller.maxController.clear();
@@ -78,14 +73,11 @@ class Filter extends StatelessWidget {
                     Get.find<ActivityListController>().fetchActivityItemList();
 
                     Get.back();
-                    await SharedPref.setString(
-                        PreferenceConstants.apply, remove);
+                    await SharedPref.setString(PreferenceConstants.apply, remove);
                   },
                   child: Text(
                     toLabelValue(ConstantStrings.clearText),
-                    style: TextStyle(
-                        color: ColorConstant.appThemeColor,
-                        fontWeight: FontWeight.normal),
+                    style: TextStyle(color: ColorConstant.appThemeColor, fontWeight: FontWeight.normal),
                   ),
                 ),
               ),
@@ -110,9 +102,7 @@ class Filter extends StatelessWidget {
             return Container(
               decoration: const BoxDecoration(),
               child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                Container(
-                    color: ColorConstant.grayTextFormFieldColor,
-                    child: categoryList()),
+                Container(color: ColorConstant.grayTextFormFieldColor, child: categoryList()),
                 // controller.selectedFilterIndex.value == 0
                 SizedBox(
                   height: Get.height,
@@ -125,10 +115,7 @@ class Filter extends StatelessWidget {
                         padding: const EdgeInsets.all(18.0),
                         child: Text(
                           toLabelValue(ConstantStrings.sortingText),
-                          style: TextStyle(
-                              color: ColorConstant.blackColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
+                          style: TextStyle(color: ColorConstant.blackColor, fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                       ),
                       ListView.builder(
@@ -142,9 +129,7 @@ class Filter extends StatelessWidget {
                               title: Text(
                                 items.title ?? "",
                                 style: TextStyle(
-                                    color: ColorConstant.blackColor,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.normal),
+                                    color: ColorConstant.blackColor, fontSize: 12, fontWeight: FontWeight.normal),
                               ),
                               value: items.id!,
                               activeColor: ColorConstant.appThemeColor,
@@ -187,14 +172,10 @@ class Filter extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 18),
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
                       child: Text(
                         controller.filterCategorylist[index],
-                        style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal),
+                        style: const TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.normal),
                       ),
                     ),
                   ],
@@ -208,13 +189,10 @@ class Filter extends StatelessWidget {
   checkFilterValidation() async {
     String errorMsg = "";
 
-    if (controller.maxController.value.text.isNotEmpty ||
-        controller.minControllers.value.text.isNotEmpty) {
-      if (controller.minControllers.value.text.isNotEmpty &&
-          controller.maxController.value.text.isEmpty) {
+    if (controller.maxController.value.text.isNotEmpty || controller.minControllers.value.text.isNotEmpty) {
+      if (controller.minControllers.value.text.isNotEmpty && controller.maxController.value.text.isEmpty) {
         errorMsg = "maximun_price_cannot_empty";
-      } else if (controller.maxController.value.text.isNotEmpty &&
-          controller.minControllers.value.text.isEmpty) {
+      } else if (controller.maxController.value.text.isNotEmpty && controller.minControllers.value.text.isEmpty) {
         errorMsg = "minimum_price_cannot_empty";
       } else if (int.parse(controller.minControllers.value.text.toString()) >
           int.parse(controller.maxController.value.text.toString())) {
@@ -224,11 +202,9 @@ class Filter extends StatelessWidget {
     if (errorMsg != "") {
       CommonWidgets().customSnackBar("title", errorMsg);
     } else {
-      await SharedPref.setString(
-          PreferenceConstants.apply, controller.selected.value);
+      await SharedPref.setString(PreferenceConstants.apply, controller.selected.value);
       ActivityListBinding().dependencies();
-      Get.find<ActivityListController>().filter.value =
-          controller.selected.value;
+      Get.find<ActivityListController>().filter.value = controller.selected.value;
       Get.find<ActivityListController>().fetchActivityItemList();
       Get.find<ActivityListController>().showLoader(true);
       Get.find<ActivityListController>().update();

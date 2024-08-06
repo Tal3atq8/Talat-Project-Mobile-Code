@@ -50,9 +50,7 @@ class SearchScreen extends StatelessWidget {
                   color: ColorConstant.appThemeColor,
                 )),
             title: Padding(
-              padding: EdgeInsets.only(
-                  right: language == "2" ? 0 : 16.0,
-                  left: language == "1" ? 0 : 16.0),
+              padding: EdgeInsets.only(right: language == "2" ? 0 : 16.0, left: language == "1" ? 0 : 16.0),
               child: SearchTextFormField(
                 width: double.infinity,
                 focusNode: controller.searchFocusNode,
@@ -69,12 +67,10 @@ class SearchScreen extends StatelessWidget {
                 suffix: Obx(
                   () {
                     if (controller.textValue.value.isEmpty) {
-                      return const SizedBox
-                          .shrink(); // Hide suffix icon when text is empty
+                      return const SizedBox.shrink(); // Hide suffix icon when text is empty
                     } else {
                       return IconButton(
-                        icon: Icon(Icons.clear,
-                            color: ColorConstant.grayTextFormFieldTextColor),
+                        icon: Icon(Icons.clear, color: ColorConstant.grayTextFormFieldTextColor),
                         onPressed: () {
                           controller.searchData("");
                           controller.clearText(); // Clear the text field
@@ -87,15 +83,12 @@ class SearchScreen extends StatelessWidget {
             ),
           ),
           body: GetBuilder<SeeALLActivityController>(builder: (controller) {
-            var providerList = controller.searchListModel.value.result
-                ?.where((item) => item.type!.contains("provider"))
-                .toList();
-            var itemList = controller.searchListModel.value.result
-                ?.where((item) => item.type!.contains("activity"))
-                .toList();
-            var myItemList = controller.searchListModel.value.result
-                ?.where((item) => item.type!.contains("item"))
-                .toList();
+            var providerList =
+                controller.searchListModel.value.result?.where((item) => item.type!.contains("provider")).toList();
+            var itemList =
+                controller.searchListModel.value.result?.where((item) => item.type!.contains("activity")).toList();
+            var myItemList =
+                controller.searchListModel.value.result?.where((item) => item.type!.contains("item")).toList();
 
             return Obx(() {
               return Column(
@@ -103,35 +96,28 @@ class SearchScreen extends StatelessWidget {
                 children: [
                   controller.showLoader.value
                       ? Expanded(
-                        child: Center(
-                            child: SizedBox(
+                          child: Center(
+                              child: SizedBox(
                             height: Get.height * 0.5,
                             child: const CommonLoading(),
                           )),
-                      )
+                        )
                       : Expanded(
-                          child: (controller.searchListModel.value.result
-                                          ?.isNotEmpty ==
-                                      true &&
+                          child: (controller.searchListModel.value.result?.isNotEmpty == true &&
                                   controller.searchController.text.isNotEmpty)
                               ? SingleChildScrollView(
                                   physics: const ClampingScrollPhysics(),
                                   padding: const EdgeInsets.only(bottom: 30),
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       if (providerList?.isNotEmpty == true)
                                         Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 18.0, top: 20, right: 16),
+                                          padding: const EdgeInsets.only(left: 18.0, top: 20, right: 16),
                                           child: Text(
-                                            toLabelValue(ConstantStrings
-                                                .activityProviderText),
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12),
+                                            toLabelValue(ConstantStrings.activityProviderText),
+                                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                                           ),
                                         ),
                                       if (providerList?.isNotEmpty == true)
@@ -142,92 +128,64 @@ class SearchScreen extends StatelessWidget {
                                           ),
                                           child: SizedBox(
                                             height: 90,
-                                            child:
-                                                providerListView(providerList),
+                                            child: providerListView(providerList),
                                           ),
                                         ),
                                       if (itemList?.isNotEmpty == true)
                                         Divider(
                                           thickness: 8,
-                                          color: ColorConstant
-                                              .grayTextFormFieldColor,
+                                          color: ColorConstant.grayTextFormFieldColor,
                                         ),
                                       if (itemList?.isNotEmpty == true)
                                         Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 16.0,
-                                              top: 20,
-                                              right: 16,
-                                              bottom: 8),
+                                          padding: const EdgeInsets.only(left: 16.0, top: 20, right: 16, bottom: 8),
                                           child: Text(
-                                            toLabelValue(
-                                                ConstantStrings.allPopularText),
+                                            toLabelValue(ConstantStrings.allPopularText),
                                             style: txtStyleTitleBoldBlack12(),
                                           ),
                                         ),
-                                      if (itemList?.isNotEmpty == true)
-                                        popularActivitiesGridView(itemList),
+                                      if (itemList?.isNotEmpty == true) popularActivitiesGridView(itemList),
                                       if (myItemList?.isNotEmpty == true)
                                         Divider(
                                           thickness: 8,
-                                          color: ColorConstant
-                                              .grayTextFormFieldColor,
+                                          color: ColorConstant.grayTextFormFieldColor,
                                         ),
                                       if (myItemList?.isNotEmpty == true)
                                         Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 16.0,
-                                              top: 16,
-                                              right: 16,
-                                              bottom: 8),
+                                          padding: const EdgeInsets.only(left: 16.0, top: 16, right: 16, bottom: 8),
                                           child: Text(
-                                            toLabelValue(
-                                                "all_popular_activities"),
+                                            toLabelValue("all_popular_activities"),
                                             style: txtStyleTitleBoldBlack12(),
                                           ),
                                         ),
                                       if (myItemList?.isNotEmpty == true)
                                         Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 14.0, top: 8, right: 12),
+                                          padding: const EdgeInsets.only(left: 14.0, top: 8, right: 12),
                                           child: SizedBox(
                                             height: Get.height * 0.3,
                                             // width: 420.w,
-                                            child: categoryItemListView(
-                                                myItemList),
+                                            child: categoryItemListView(myItemList),
                                           ),
                                         ),
                                       // const SizedBox(height: 20),
                                     ],
                                   ),
                                 )
-                              : searchHistory.isNotEmpty == true ||
-                                      providerSearchHistory.isNotEmpty == true
+                              : searchHistory.isNotEmpty == true || providerSearchHistory.isNotEmpty == true
                                   ? SingleChildScrollView(
                                       child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
-                                            if (providerSearchHistory
-                                                    .value.isNotEmpty ==
-                                                true)
+                                            if (providerSearchHistory.value.isNotEmpty == true)
                                               Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 18.0, top: 20),
+                                                padding: const EdgeInsets.only(left: 18.0, top: 20),
                                                 child: Text(
-                                                  toLabelValue(
-                                                      "activities_providers"),
-                                                  style: const TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 12),
+                                                  toLabelValue("activities_providers"),
+                                                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                                                 ),
                                               ),
-                                            if (providerSearchHistory
-                                                    .value.isNotEmpty ==
-                                                true)
+                                            if (providerSearchHistory.value.isNotEmpty == true)
                                               Padding(
                                                 padding: const EdgeInsets.only(
                                                   left: 8.0,
@@ -236,83 +194,48 @@ class SearchScreen extends StatelessWidget {
                                                 child: SizedBox(
                                                   height: 90,
                                                   child: ListView.builder(
-                                                      itemCount:
-                                                          providerSearchHistory
-                                                                      .value ==
-                                                                  null
-                                                              ? 5
-                                                              : (providerSearchHistory
-                                                                  .value
-                                                                  .length),
+                                                      itemCount: providerSearchHistory.value == null
+                                                          ? 5
+                                                          : (providerSearchHistory.value.length),
                                                       //  itemCount: controller.seeAllActivityDetailModel.value.result?.providerData?.links?.length,
-                                                      scrollDirection:
-                                                          Axis.horizontal,
+                                                      scrollDirection: Axis.horizontal,
                                                       shrinkWrap: true,
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        var browseItems =
-                                                            providerSearchHistory?[
-                                                                index];
+                                                      itemBuilder: (context, index) {
+                                                        var browseItems = providerSearchHistory[index];
                                                         return GestureDetector(
                                                           onTap: () {
-                                                            ActivityListBinding()
-                                                                .dependencies();
-                                                            Get.find<ActivityListController>()
-                                                                    .id
-                                                                    .value =
-                                                                browseItems!.id
-                                                                    .toString();
-                                                            Get.find<
-                                                                    ActivityListController>()
-                                                                .fetchActivityItemList();
-                                                            Get.find<ActivityListController>()
-                                                                    .activityName
-                                                                    .value =
-                                                                browseItems
-                                                                        ?.name ??
-                                                                    '';
-                                                            Get.toNamed(
-                                                                AppRouteNameConstant
-                                                                    .activityDetailScreen);
+                                                            ActivityListBinding().dependencies();
+                                                            Get.find<ActivityListController>().id.value =
+                                                                browseItems.id.toString();
+                                                            Get.find<ActivityListController>().fetchActivityItemList();
+                                                            Get.find<ActivityListController>().activityName.value =
+                                                                browseItems.name ?? '';
+                                                            Get.toNamed(AppRouteNameConstant.activityDetailScreen);
                                                           },
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsets
-                                                                    .only(
-                                                                    left: 10.0,
-                                                                    right: 10.0,
-                                                                    top: 4),
+                                                                const EdgeInsets.only(left: 10.0, right: 10.0, top: 4),
                                                             child: Column(
                                                               children: [
                                                                 // browseItems?.url==null||browseItems?.url=="https://talat.dev.vrinsoft.in/api/v1/seeAllActivities?page=1" ?
                                                                 Container(
                                                                   height: 56,
                                                                   width: 56,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
+                                                                  decoration: BoxDecoration(
+                                                                    shape: BoxShape.circle,
                                                                     image: DecorationImage(
                                                                         image: AssetImage(
-                                                                          ImageConstant
-                                                                              .imagePlaceholder,
+                                                                          ImageConstant.imagePlaceholder,
                                                                         ),
                                                                         fit: BoxFit.cover),
                                                                   ),
                                                                 ),
 
-                                                                const SizedBox(
-                                                                    height: 8),
+                                                                const SizedBox(height: 8),
                                                                 Text(
-                                                                  browseItems
-                                                                          ?.name ??
-                                                                      "",
+                                                                  browseItems.name ?? "",
                                                                   style: const TextStyle(
-                                                                      fontSize:
-                                                                          12,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .normal),
+                                                                      fontSize: 12, fontWeight: FontWeight.normal),
                                                                 )
                                                               ],
                                                             ),
@@ -321,27 +244,17 @@ class SearchScreen extends StatelessWidget {
                                                       }),
                                                 ),
                                               ),
-                                            if (providerSearchHistory
-                                                    .value.isNotEmpty ==
-                                                true)
+                                            if (providerSearchHistory.value.isNotEmpty == true)
                                               Divider(
                                                 thickness: 8,
-                                                color: ColorConstant
-                                                    .grayTextFormFieldColor,
+                                                color: ColorConstant.grayTextFormFieldColor,
                                               ),
-                                            if (searchHistory
-                                                    .value.isNotEmpty ==
-                                                true)
+                                            if (searchHistory.value.isNotEmpty == true)
                                               Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 18.0, top: 20),
+                                                padding: const EdgeInsets.only(left: 18.0, top: 20),
                                                 child: Text(
-                                                  ConstantStrings
-                                                      .allPopularText,
-                                                  style: const TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 12),
+                                                  ConstantStrings.allPopularText,
+                                                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                                                 ),
                                               ),
                                           ]),
@@ -356,20 +269,14 @@ class SearchScreen extends StatelessWidget {
                                             //     CrossAxisAlignment.center,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 0.0,
-                                                    left: 10,
-                                                    right: 10),
+                                                padding: const EdgeInsets.only(top: 0.0, left: 10, right: 10),
                                                 child: Text(
-                                                  toLabelValue(
-                                                      "no_data_available"),
+                                                  toLabelValue("no_data_available"),
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
-                                                      color: ColorConstant
-                                                          .blackColor,
+                                                      color: ColorConstant.blackColor,
                                                       fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.bold),
+                                                      fontWeight: FontWeight.bold),
                                                 ),
                                               ),
                                             ],
@@ -437,10 +344,8 @@ class SearchScreen extends StatelessWidget {
               providerID.value = browseItems!.id.toString();
               providerName.value = browseItems.name ?? "";
               ServiceProviderBinding().dependencies();
-              Get.find<ServiceProviderController>()
-                  .serviceProviderActivityList();
-              Get.toNamed(
-                  AppRouteNameConstant.serviceProviderActivityListScreen);
+              Get.find<ServiceProviderController>().serviceProviderActivityList();
+              Get.toNamed(AppRouteNameConstant.serviceProviderActivityListScreen);
             },
             child: Padding(
               padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 4),
@@ -466,8 +371,7 @@ class SearchScreen extends StatelessWidget {
                   const SizedBox(height: 8),
                   Text(
                     browseItems?.name.toString() ?? "",
-                    style: const TextStyle(
-                        fontSize: 12, fontWeight: FontWeight.normal),
+                    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
                   )
                 ],
               ),
@@ -525,8 +429,7 @@ class SearchScreen extends StatelessWidget {
                   child: Text(
                     activityList?.name ?? "",
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        fontSize: 12, fontWeight: FontWeight.normal),
+                    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
                   ),
                 ),
               ],

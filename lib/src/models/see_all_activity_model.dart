@@ -10,8 +10,7 @@ class SeeAllActivity {
     message = json['message'];
     status = json['status'];
     code = json['code'];
-    result =
-    json['result'] != null ? Result.fromJson(json['result']) : null;
+    result = json['result'] != null ? Result.fromJson(json['result']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -34,15 +33,9 @@ class Result {
   Result({this.providerData, this.categoryData, this.itemsData});
 
   Result.fromJson(Map<String, dynamic> json) {
-    providerData = json['provider_data'] != null
-        ? ProviderData.fromJson(json['provider_data'])
-        : null;
-    categoryData = json['category_data'] != null
-        ? CategoryData.fromJson(json['category_data'])
-        : null;
-    itemsData = json['items_data'] != null
-        ? ItemCategoryData.fromJson(json['items_data'])
-        : null;
+    providerData = json['provider_data'] != null ? ProviderData.fromJson(json['provider_data']) : null;
+    categoryData = json['category_data'] != null ? CategoryData.fromJson(json['category_data']) : null;
+    itemsData = json['items_data'] != null ? ItemCategoryData.fromJson(json['items_data']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -64,7 +57,7 @@ class ProviderData {
   int? currentPage;
   List<MyProviderdata>? mydata;
   String? firstPageUrl;
-  int?  from;
+  int? from;
   int? lastPage;
   String? lastPageUrl;
   List<Links>? links;
@@ -77,18 +70,18 @@ class ProviderData {
 
   ProviderData(
       {this.currentPage,
-        this.firstPageUrl,
-        this.from,
-        this.lastPage,
-        this.mydata,
-        this.lastPageUrl,
-        this.links,
-        this.nextPageUrl,
-        this.path,
-        this.perPage,
-        this.prevPageUrl,
-        this.to,
-        this.total});
+      this.firstPageUrl,
+      this.from,
+      this.lastPage,
+      this.mydata,
+      this.lastPageUrl,
+      this.links,
+      this.nextPageUrl,
+      this.path,
+      this.perPage,
+      this.prevPageUrl,
+      this.to,
+      this.total});
 
   ProviderData.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];
@@ -139,7 +132,6 @@ class ProviderData {
   }
 }
 
-
 class MyProviderdata {
   dynamic id;
   String? name;
@@ -164,6 +156,7 @@ class MyProviderdata {
     return data;
   }
 }
+
 class Links {
   String? url;
   String? label;
@@ -204,18 +197,18 @@ class CategoryData {
 
   CategoryData(
       {this.currentPage,
-        this.data,
-        this.firstPageUrl,
-        this.from,
-        this.lastPage,
-        this.lastPageUrl,
-        this.links,
-        this.nextPageUrl,
-        this.path,
-        this.perPage,
-        this.prevPageUrl,
-        this.to,
-        this.total});
+      this.data,
+      this.firstPageUrl,
+      this.from,
+      this.lastPage,
+      this.lastPageUrl,
+      this.links,
+      this.nextPageUrl,
+      this.path,
+      this.perPage,
+      this.prevPageUrl,
+      this.to,
+      this.total});
 
   CategoryData.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];
@@ -273,12 +266,7 @@ class MyData {
   String? descriptionAr;
   String? profileImage;
 
-  MyData(
-      {this.name,
-        this.nameAr,
-        this.description,
-        this.descriptionAr,
-        this.profileImage});
+  MyData({this.name, this.nameAr, this.description, this.descriptionAr, this.profileImage});
 
   MyData.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -320,22 +308,22 @@ class Data {
 
   Data(
       {this.id,
-        this.itemName,
-        this.description,
-        this.address,
-        this.city,
-        this.state,
-        this.country,
-        this.latitude,
-        this.longitude,
-        this.initialPrice,
-        this.discountedPrice,
-        this.specialInstructions,
-        this.categoryId,
-        this.categoryName,
-        this.providerId,
-        this.providerName,
-        this.isFav});
+      this.itemName,
+      this.description,
+      this.address,
+      this.city,
+      this.state,
+      this.country,
+      this.latitude,
+      this.longitude,
+      this.initialPrice,
+      this.discountedPrice,
+      this.specialInstructions,
+      this.categoryId,
+      this.categoryName,
+      this.providerId,
+      this.providerName,
+      this.isFav});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -379,6 +367,7 @@ class Data {
     return data;
   }
 }
+
 class ItemCategoryData {
   int? currentPage;
   List<Data>? data;
@@ -396,18 +385,18 @@ class ItemCategoryData {
 
   ItemCategoryData(
       {this.currentPage,
-        this.data,
-        this.firstPageUrl,
-        this.from,
-        this.lastPage,
-        this.lastPageUrl,
-        this.links,
-        this.nextPageUrl,
-        this.path,
-        this.perPage,
-        this.prevPageUrl,
-        this.to,
-        this.total});
+      this.data,
+      this.firstPageUrl,
+      this.from,
+      this.lastPage,
+      this.lastPageUrl,
+      this.links,
+      this.nextPageUrl,
+      this.path,
+      this.perPage,
+      this.prevPageUrl,
+      this.to,
+      this.total});
 
   ItemCategoryData.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];

@@ -99,7 +99,7 @@ class SeeALLActivityController extends GetxController {
   }
 
   ///search All Api calling
-  void searchData(String value) async  {
+  void searchData(String value) async {
     showLoader.value = true;
     try {
       await TalatService().searchApi({
@@ -146,7 +146,7 @@ class SeeALLActivityController extends GetxController {
           //     .customSnackBar("Error", 'not found any activity');
         }
       }).catchError((error) {
-        print(error);
+        debugPrint(error);
         showLoader.value = false;
       });
     } on DioError catch (e) {

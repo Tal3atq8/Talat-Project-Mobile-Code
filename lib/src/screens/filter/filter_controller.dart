@@ -9,8 +9,7 @@ import 'package:talat/src/utils/preference/preference_keys.dart';
 import 'package:talat/src/utils/preference/preferences.dart';
 import 'package:talat/src/utils/utility.dart';
 
-class FilterController extends GetxController
-    with GetSingleTickerProviderStateMixin {
+class FilterController extends GetxController with GetSingleTickerProviderStateMixin {
   int currentIndex = 0;
   RxList<FilterListModel> filterOptions = RxList<FilterListModel>();
 
@@ -27,8 +26,7 @@ class FilterController extends GetxController
     distanceController.clear();
   }
 
-  RxString selected =
-      "".obs; // the selected option, initialized with an empty string
+  RxString selected = "".obs; // the selected option, initialized with an empty string
   List<String> filterCategorylist = [
     toLabelValue(ConstantStrings.sortText),
   ];

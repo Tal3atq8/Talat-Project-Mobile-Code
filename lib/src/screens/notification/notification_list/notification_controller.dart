@@ -14,11 +14,9 @@ import '../../../widgets/progress_dialog.dart';
 
 class NotificationController extends GetxController {
   List<NotificationList> notificationList = [];
-  RefreshController refreshController =
-      RefreshController(initialRefresh: false);
+  RefreshController refreshController = RefreshController(initialRefresh: false);
   RxInt pageIndex = 1.obs;
-  Rx<NotificationListModel> notificationListingsItems =
-      NotificationListModel().obs;
+  Rx<NotificationListModel> notificationListingsItems = NotificationListModel().obs;
 
   RxBool showLoader = false.obs;
   String? token;
@@ -52,47 +50,37 @@ class NotificationController extends GetxController {
           ConstantStrings.pageKey: pageIndex.value.toString()
         }).then((response) async {
           if (response.data['code'] == "1") {
-            notificationListingsItems.value =
-                NotificationListModel.fromJson(response.data);
+            notificationListingsItems.value = NotificationListModel.fromJson(response.data);
 
-            notificationList
-                .addAll(notificationListingsItems.value.result!.data!);
+            notificationList.addAll(notificationListingsItems.value.result!.data!);
             update();
           } else if (response.data["code"] == "-7") {
             // Get.back();
             CommonWidgets().showToastMessage('user_login_other_device');
-            language =
-                await SharedPref.getString(PreferenceConstants.laguagecode);
+            language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
             await SharedPref.clearSharedPref();
-            await SharedPref.setString(
-                PreferenceConstants.laguagecode, language);
+            await SharedPref.setString(PreferenceConstants.laguagecode, language);
             Get.offAllNamed(AppRouteNameConstant.tabScreen);
             // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
             update();
-          } else if (response.data["code"] == "-1" &&
-              response.data["message"] == "inactive_account") {
+          } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
             CommonWidgets().showToastMessage('inactive_account');
-            language =
-                await SharedPref.getString(PreferenceConstants.laguagecode);
+            language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
             await SharedPref.clearSharedPref();
-            await SharedPref.setString(
-                PreferenceConstants.laguagecode, language);
+            await SharedPref.setString(PreferenceConstants.laguagecode, language);
             Get.offAllNamed(AppRouteNameConstant.tabScreen);
             // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
             update();
             showLoader(false);
-          } else if (response.data["code"] == "-4" &&
-              response.data["message"] == "delete_account") {
+          } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
             showLoader.value = false;
             CommonWidgets().showToastMessage(response.data["message"]);
-            language =
-                await SharedPref.getString(PreferenceConstants.laguagecode);
+            language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
             await SharedPref.clearSharedPref();
-            await SharedPref.setString(
-                PreferenceConstants.laguagecode, language);
+            await SharedPref.setString(PreferenceConstants.laguagecode, language);
             Get.offAllNamed(AppRouteNameConstant.tabScreen);
             // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
             update();

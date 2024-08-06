@@ -41,24 +41,15 @@ class LoginController extends GetxController {
   void onLoginTap(String code) async {
     showLoader.value = true;
     try {
-      String email = '';
-      String password = '';
       await TalatService().login({
         ConstantStrings.userTypeKey: '1',
         ConstantStrings.deviceTypeKey: '1',
         ConstantStrings.countryCodeKey: selectedCountryCode.value,
-        ConstantStrings.mobileNoKey: emailController.text.isNotEmpty == true
-            ? ""
-            : phoneNumberController.text,
+        ConstantStrings.mobileNoKey: emailController.text.isNotEmpty == true ? "" : phoneNumberController.text,
         ConstantStrings.deviceTokenKey: '1',
-        ConstantStrings.emailKey: phoneNumberController.text.isNotEmpty == true
-            ? ""
-            : emailController.text,
+        ConstantStrings.emailKey: phoneNumberController.text.isNotEmpty == true ? "" : emailController.text,
         ConstantStrings.firebaseTokenKey: firebaseToken.value,
-        ConstantStrings.passwordKey:
-            phoneNumberController.text.isNotEmpty == true
-                ? ""
-                : passwordController.text,
+        ConstantStrings.passwordKey: phoneNumberController.text.isNotEmpty == true ? "" : passwordController.text,
       }).then((response) async {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         if (response.data["code"] == "1") {
@@ -75,49 +66,33 @@ class LoginController extends GetxController {
               ConstantStrings.isChecked: "1",
             });
           }
-          await SharedPref.setString(
-              PreferenceConstants.token, userDetail.result?[0].token);
-          prefs.setString(PreferenceConstants.notification_setting_status,
-              userDetail.result?[0].notificationStatus ?? "1");
-          prefs.setString(PreferenceConstants.laguagecode,
-              userDetail.result?[0].languageId ?? "1");
-          await SharedPref.setString(PreferenceConstants.contryCodeKey,
-              userDetail.result?[0].countryCode);
-          await SharedPref.setString(
-              PreferenceConstants.userType, userDetail.result?[0].userType);
-          await SharedPref.setString(
-              PreferenceConstants.userId, userDetail.result?[0].userId);
-          await SharedPref.setString(PreferenceConstants.laguagecode,
-              userDetail.result?[0].languageId);
-          await SharedPref.setString(
-              PreferenceConstants.name, userDetail.result?[0].name);
-          await SharedPref.setString(
-              PreferenceConstants.email, userDetail.result?[0].email);
-          await SharedPref.setString(
-              PreferenceConstants.mobileKey, userDetail.result?[0].mobileNo);
-          await SharedPref.setString(
-              PreferenceConstants.genderKey, userDetail.result?[0].gender);
-          await SharedPref.setString(
-              PreferenceConstants.dobKey, userDetail.result?[0].dob);
+          await SharedPref.setString(PreferenceConstants.token, userDetail.result?[0].token);
+          prefs.setString(
+              PreferenceConstants.notification_setting_status, userDetail.result?[0].notificationStatus ?? "1");
+          prefs.setString(PreferenceConstants.laguagecode, userDetail.result?[0].languageId ?? "1");
+          await SharedPref.setString(PreferenceConstants.contryCodeKey, userDetail.result?[0].countryCode);
+          await SharedPref.setString(PreferenceConstants.userType, userDetail.result?[0].userType);
+          await SharedPref.setString(PreferenceConstants.userId, userDetail.result?[0].userId);
+          await SharedPref.setString(PreferenceConstants.laguagecode, userDetail.result?[0].languageId);
+          await SharedPref.setString(PreferenceConstants.name, userDetail.result?[0].name);
+          await SharedPref.setString(PreferenceConstants.email, userDetail.result?[0].email);
+          await SharedPref.setString(PreferenceConstants.mobileKey, userDetail.result?[0].mobileNo);
+          await SharedPref.setString(PreferenceConstants.genderKey, userDetail.result?[0].gender);
+          await SharedPref.setString(PreferenceConstants.dobKey, userDetail.result?[0].dob);
 
-          await SharedPref.setString(
-              PreferenceConstants.savePassword, userDetail.result?[0].password);
+          await SharedPref.setString(PreferenceConstants.savePassword, userDetail.result?[0].password);
 
           TabbarBinding().dependencies();
           Get.find<DashboardController>().update();
           Get.find<DashboardController>().getPopularActivityList();
 
           OtpBinding().dependencies();
-          Get.find<OtpController>().hintOtp.value =
-              response.data['result'][0]['otp'];
-          Get.find<OtpController>().phoneNo =
-              response.data['result'][0]['mobile_no'];
-          Get.find<OtpController>().countryCode.value =
-              selectedCountryCode.value;
+          Get.find<OtpController>().hintOtp.value = response.data['result'][0]['otp'];
+          Get.find<OtpController>().phoneNo = response.data['result'][0]['mobile_no'];
+          Get.find<OtpController>().countryCode.value = selectedCountryCode.value;
           response.data['result'][0]['otp'];
 
-          if (phoneNumberController.text.isNotEmpty &&
-              userDetail.result?[0].otp!.isNotEmpty == true) {
+          if (phoneNumberController.text.isNotEmpty && userDetail.result?[0].otp!.isNotEmpty == true) {
             if (isNotLoggedIn.value == "0") {
               Get.toNamed(AppRouteNameConstant.otpScreen);
             } else {
@@ -130,8 +105,7 @@ class LoginController extends GetxController {
               Get.back();
             }
           }
-        } else if (response.data["code"] == "-4" &&
-            response.data["message"] == "delete_account") {
+        } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
           showLoader.value = false;
           // Get.back();
           CommonWidgets().showToastMessage(response.data["message"]);
@@ -159,14 +133,11 @@ class LoginController extends GetxController {
   ///Check Validation
   Future<void> isLogedIn(String value) async {
     fcmToken = await SharedPref.getString(PreferenceConstants.FCM_TOKEN);
-    print(fcmToken);
+    debugPrint(fcmToken);
     String? errorMessage;
-    if (phoneNumberController.text.isEmpty &&
-        emailController.text.isEmpty &&
-        passwordController.text.isEmpty) {
+    if (phoneNumberController.text.isEmpty && emailController.text.isEmpty && passwordController.text.isEmpty) {
       errorMessage = "please_enter_your_mobile_or_email";
-    } else if (phoneNumberController.text.isNotEmpty &&
-        phoneNumberController.text.length < 8) {
+    } else if (phoneNumberController.text.isNotEmpty && phoneNumberController.text.length < 8) {
       errorMessage = "please_enter_valid_number";
     } else {
       if (phoneNumberController.text.isEmpty) {

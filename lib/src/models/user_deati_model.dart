@@ -119,10 +119,8 @@ class Result {
     data['otp_expire_time'] = otpExpireTime;
     data['language_id'] = languageId;
     data['token'] = token;
-    // final Map<String, dynamic> data = <String, dynamic>{};
     if (selectedServies != null) {
-      data['selected_servies'] =
-          selectedServies!.map((v) => v.toJson()).toList();
+      data['selected_servies'] = selectedServies!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -135,8 +133,8 @@ class Result {
 }
 
 class SelectedServies {
-  dynamic? id;
-  dynamic? name;
+  dynamic id;
+  dynamic name;
 
   SelectedServies({this.id, this.name});
 

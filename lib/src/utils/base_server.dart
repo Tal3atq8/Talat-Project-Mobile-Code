@@ -6,7 +6,7 @@ Future<void> showBaseUrlDialog(BuildContext context) async {
   final TextEditingController baseUrlController = TextEditingController(text: ConstantStrings.baseUrl);
   return showDialog<void>(
     context: context,
-    barrierDismissible: false, // User must enter URL
+    barrierDismissible: false,
     builder: (BuildContext context) {
       return AlertDialog(
         title: const Text('Enter Base URL'),
@@ -27,7 +27,7 @@ Future<void> showBaseUrlDialog(BuildContext context) async {
               if (baseUrlController.text.isNotEmpty) {
                 ConstantStrings.updateBaseUrl(baseUrlController.text);
                 Get.back();
-                print("New Base URL: ${ConstantStrings.baseUrl}");
+                debugPrint("New Base URL: ${ConstantStrings.baseUrl}");
               }
             },
           ),

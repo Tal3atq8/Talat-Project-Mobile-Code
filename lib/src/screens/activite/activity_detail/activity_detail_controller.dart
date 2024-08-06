@@ -88,7 +88,7 @@ class ActivityDetailController extends GetxController with GetTickerProviderStat
 
         showLoader(false);
         update();
-        print("My Tabs=>>>>>>>>>>>>${myTabs.length}");
+        debugPrint("My Tabs=>>>>>>>>>>>>${myTabs.length}");
       } else if (response.data["code"] == "-7") {
         CommonWidgets().showToastMessage('user_login_other_device');
         language = await SharedPref.getString(PreferenceConstants.laguagecode);

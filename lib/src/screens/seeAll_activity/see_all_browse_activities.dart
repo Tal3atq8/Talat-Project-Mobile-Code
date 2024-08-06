@@ -75,29 +75,24 @@ class SeeAllBrowseActivities extends StatelessWidget {
                 ? SmartRefresher(
                     enablePullUp: true,
                     enablePullDown: true,
-                    controller:
-                        dashboardController.seeAllBrowseRefreshController,
+                    controller: dashboardController.seeAllBrowseRefreshController,
                     header: MaterialClassicHeader(
                       backgroundColor: ColorConstant.appThemeColor,
                       color: ColorConstant.whiteBackgroundColor,
                     ),
                     onLoading: () {
-                      dashboardController.page.value =
-                          dashboardController.page.value + 1;
+                      dashboardController.page.value = dashboardController.page.value + 1;
                       dashboardController.initLimit.value = 20;
-                      dashboardController.getBrowseActivityList(
-                          isRefresh: true);
+                      dashboardController.getBrowseActivityList(isRefresh: true);
                     },
                     onRefresh: () {
                       dashboardController.page.value = 1;
                       dashboardController.initLimit.value = 20;
-                      dashboardController.getBrowseActivityList(
-                          isRefresh: true);
+                      dashboardController.getBrowseActivityList(isRefresh: true);
                     },
                     footer: customFooterSmartRefresh(),
                     child: GridView.builder(
-                      padding:
-                          const EdgeInsets.only(top: 16, right: 8, left: 8),
+                      padding: const EdgeInsets.only(top: 16, right: 8, left: 8),
                       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                         maxCrossAxisExtent: Get.width * .33,
                         mainAxisExtent: 150,
@@ -105,18 +100,15 @@ class SeeAllBrowseActivities extends StatelessWidget {
                       ),
                       itemCount: dashboardController.browseListData.length,
                       itemBuilder: (context, index) {
-                        var browseActivities =
-                            dashboardController.browseListData[index];
+                        var browseActivities = dashboardController.browseListData[index];
                         return GestureDetector(
                           onTap: () {
                             activityID.value = browseActivities.id ?? '';
-                            activityName.value =
-                                browseActivities.activityName ?? '';
+                            activityName.value = browseActivities.activityName ?? '';
                             FilterBinding().dependencies();
-                            Get.toNamed(
-                                AppRouteNameConstant.activityListScreen);
+                            Get.toNamed(AppRouteNameConstant.activityListScreen);
 
-                            print(browseActivities.id);
+                            debugPrint(browseActivities.id);
                           },
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -128,8 +120,7 @@ class SeeAllBrowseActivities extends StatelessWidget {
                                   height: 100,
                                   width: 100,
                                   fit: BoxFit.cover,
-                                  imageUrl:
-                                      browseActivities.activityImage ?? '',
+                                  imageUrl: browseActivities.activityImage ?? '',
                                   placeholder: (context, url) {
                                     return const PlaceholderImage();
                                   },

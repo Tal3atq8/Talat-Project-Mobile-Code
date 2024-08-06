@@ -34,8 +34,8 @@ class Result {
   String? aboutBusiness;
   String? activityImage;
   String? serviceProviderEmail;
-  dynamic? serviceProviderPhone;
-  dynamic? distance;
+  dynamic serviceProviderPhone;
+  dynamic distance;
   List<Gallary>? gallary;
   List<Review>? review;
 
@@ -102,13 +102,7 @@ class Review {
   String? review;
   String? createdAt;
 
-  Review(
-      {this.customerName,
-      this.itemName,
-      this.providerName,
-      this.ratings,
-      this.review,
-      this.createdAt});
+  Review({this.customerName, this.itemName, this.providerName, this.ratings, this.review, this.createdAt});
 
   Review.fromJson(Map<String, dynamic> json) {
     customerName = json['customer_name'];

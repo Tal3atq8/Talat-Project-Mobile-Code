@@ -35,7 +35,7 @@ class AppStyle {
     fontFamily: 'Outfit',
     fontWeight: FontWeight.w400,
   );
-  static TextStyle txtOutfitRegular16= TextStyle(
+  static TextStyle txtOutfitRegular16 = TextStyle(
     color: ColorConstant.blackColor,
     fontSize: getFontSize(
       16,
@@ -51,7 +51,7 @@ class AppStyle {
     fontFamily: 'Outfit',
     fontWeight: FontWeight.w400,
   );
-  static TextStyle txtOutfitRegular18= TextStyle(
+  static TextStyle txtOutfitRegular18 = TextStyle(
     color: ColorConstant.blackColor,
     fontSize: getFontSize(
       18,

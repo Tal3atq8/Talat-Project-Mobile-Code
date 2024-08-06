@@ -1,8 +1,7 @@
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 class NotificationSettingModel {
-  const NotificationSettingModel(
-      {this.id, this.title, this.desc, this.isEnableItem});
+  const NotificationSettingModel({this.id, this.title, this.desc, this.isEnableItem});
 
   final int? id;
   final String? title;
@@ -56,8 +55,7 @@ class Result {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (notificationSettingList != null) {
-      data['notificationSetting_list'] =
-          notificationSettingList!.map((v) => v.toJson()).toList();
+      data['notificationSetting_list'] = notificationSettingList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -68,8 +66,7 @@ class NotificationSettingList {
   String? notificationDec;
   String? notificationIsEnable;
 
-  NotificationSettingList(
-      {this.notificationName, this.notificationDec, this.notificationIsEnable});
+  NotificationSettingList({this.notificationName, this.notificationDec, this.notificationIsEnable});
 
   NotificationSettingList.fromJson(Map<String, dynamic> json) {
     notificationName = json['notification_name'];

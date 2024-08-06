@@ -36,11 +36,10 @@ class CmsController extends GetxController {
       if (response.data['code'] == "1") {
         cms.value = CmsModel.fromJson(response.data);
         for (var cms in cms.value.result!) {
-          if (cms.cmsTitle!.toLowerCase().replaceAll(" ", "") ==
-              describeEnum(Get.arguments).toString()) {
+          if (cms.cmsTitle!.toLowerCase().replaceAll(" ", "") == describeEnum(Get.arguments).toString()) {
             cmsData.value = cms.cmsDescription!;
           } else {
-            print(cms.cmsTitle!.toLowerCase().replaceAll(" ", ""));
+            debugPrint(cms.cmsTitle!.toLowerCase().replaceAll(" ", ""));
           }
         }
         showLoader.value = false;
@@ -55,8 +54,7 @@ class CmsController extends GetxController {
         Get.offAllNamed(AppRouteNameConstant.tabScreen);
         // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
         update();
-      } else if (response.data["code"] == "-1" &&
-          response.data["message"] == "inactive_account") {
+      } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
         CommonWidgets().showToastMessage('inactive_account');
         language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
@@ -66,8 +64,7 @@ class CmsController extends GetxController {
         // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
         update();
         showLoader(false);
-      } else if (response.data["code"] == "-4" &&
-          response.data["message"] == "delete_account") {
+      } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
         showLoader.value = false;
         CommonWidgets().showToastMessage(response.data["message"]);
         language = await SharedPref.getString(PreferenceConstants.laguagecode);

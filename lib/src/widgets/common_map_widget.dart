@@ -10,11 +10,7 @@ class CommonMapWidget extends StatelessWidget {
   final double longitude;
   final Set<Marker> markers;
 
-  CommonMapWidget(
-      {super.key,
-      required this.latitude,
-      required this.longitude,
-      required this.markers});
+  CommonMapWidget({super.key, required this.latitude, required this.longitude, required this.markers});
 
   @override
   Widget build(BuildContext context) {

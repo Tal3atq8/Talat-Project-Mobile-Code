@@ -1,4 +1,3 @@
-
 bool isValidPassword(String? inputString, {bool isRequired = false}) {
   bool isInputStringValid = false;
 
@@ -7,8 +6,7 @@ bool isValidPassword(String? inputString, {bool isRequired = false}) {
   }
 
   if (inputString != null) {
-    const pattern =
-        r'^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$';
+    const pattern = r'^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$';
 
     final regExp = RegExp(pattern);
 
@@ -37,6 +35,7 @@ bool isValidEmail(String? inputString, {bool isRequired = false}) {
 
   return isInputStringValid;
 }
+
 bool isText(String? inputString, {bool isRequired = false}) {
   bool isInputStringValid = false;
 
@@ -45,8 +44,7 @@ bool isText(String? inputString, {bool isRequired = false}) {
   }
 
   if (inputString != null) {
-    const pattern =
-        r'^\d+(?:\.\d+)?$';
+    const pattern = r'^\d+(?:\.\d+)?$';
 
     final regExp = RegExp(pattern);
 

@@ -65,7 +65,7 @@ class PopularList {
       this.amount,
       this.serviceProviderImage,
       this.itemImage,
-        this.activityName,
+      this.activityName,
       this.distance,
       this.isFav});
 

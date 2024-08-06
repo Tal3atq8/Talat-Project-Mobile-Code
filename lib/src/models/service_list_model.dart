@@ -8,8 +8,7 @@ class ServiceList {
   ServiceList.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     message = json['message'];
-    result =
-    json['result'] != null ? new Result.fromJson(json['result']) : null;
+    result = json['result'] != null ? new Result.fromJson(json['result']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -40,8 +39,7 @@ class Result {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.servicesList != null) {
-      data['services_list'] =
-          this.servicesList!.map((v) => v.toJson()).toList();
+      data['services_list'] = this.servicesList!.map((v) => v.toJson()).toList();
     }
     return data;
   }

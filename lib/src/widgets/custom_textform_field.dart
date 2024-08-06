@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:talat/src/theme/color_constants.dart';
@@ -202,10 +204,7 @@ class CustomTextFormField extends StatelessWidget {
   _setFillColor() {
     switch (variant) {
       default:
-        return (readOnly != null &&
-                readOnly! &&
-                readOnlyBgColor != null &&
-                readOnlyBgColor!)
+        return (readOnly != null && readOnly! && readOnlyBgColor != null && readOnlyBgColor!)
             ? ColorConstant.grayBorderColor.withOpacity(.2)
             : ColorConstant.whiteColor;
     }

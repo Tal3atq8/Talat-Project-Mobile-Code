@@ -36,9 +36,7 @@ class TabNavigator extends StatelessWidget {
         onGenerateRoute: (routeSettings) {
           var name = routeSettings.name;
           debugPrint(" Route $name");
-          return MaterialPageRoute(
-              builder: (context) =>
-                  routeBuilders[routeSettings.name!]!(context));
+          return MaterialPageRoute(builder: (context) => routeBuilders[routeSettings.name!]!(context));
         });
   }
 }

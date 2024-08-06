@@ -54,11 +54,9 @@ class EditProfile extends GetWidget<EditProfileController> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 20),
+                                  padding: const EdgeInsets.symmetric(vertical: 20),
                                   child: Text(
-                                    toLabelValue(
-                                        ConstantStrings.accountInformationText),
+                                    toLabelValue(ConstantStrings.accountInformationText),
                                     style: txtStyleTitleBoldBlack20w300(),
                                   ),
                                 ),
@@ -68,8 +66,7 @@ class EditProfile extends GetWidget<EditProfileController> {
                                   readOnly: true,
                                   readOnlyBgColor: true,
                                   inputFormatters: [
-                                    FilteringTextInputFormatter.allow(
-                                        RegExp("[0-9]")),
+                                    FilteringTextInputFormatter.allow(RegExp("[0-9]")),
                                     FilteringTextInputFormatter.digitsOnly,
                                     LengthLimitingTextInputFormatter(9)
                                   ],
@@ -77,30 +74,23 @@ class EditProfile extends GetWidget<EditProfileController> {
                                     width: Get.width * 0.3,
                                     child: Padding(
                                       padding: const EdgeInsets.only(bottom: 4),
-                                      child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            const SizedBox(
-                                              width: 12,
-                                            ),
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
-                                              child: SvgPicture.asset(
-                                                  "assets/icons/kuwait2.svg",
-                                                  height: 26,
-                                                  width: 20,
-                                                  fit: BoxFit.cover),
-                                            ),
-                                            const SizedBox(
-                                              width: 12,
-                                            ),
-                                            Text(
-                                              ConstantStrings.countryCodeKuwait,
-                                              style: txtStyleNormalBlack14(),
-                                            )
-                                          ]),
+                                      child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                                        const SizedBox(
+                                          width: 12,
+                                        ),
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(4),
+                                          child: SvgPicture.asset("assets/icons/kuwait2.svg",
+                                              height: 26, width: 20, fit: BoxFit.cover),
+                                        ),
+                                        const SizedBox(
+                                          width: 12,
+                                        ),
+                                        Text(
+                                          ConstantStrings.countryCodeKuwait,
+                                          style: txtStyleNormalBlack14(),
+                                        )
+                                      ]),
                                     ),
                                   ),
                                   width: double.infinity,
@@ -117,13 +107,11 @@ class EditProfile extends GetWidget<EditProfileController> {
                                   hintText: toLabelValue("full_name"),
                                   controller: controller.fullNameController,
                                   textInputType: TextInputType.text,
-                                  errorStyle: TextStyle(
-                                      color: ColorConstant.appThemeColor),
+                                  errorStyle: TextStyle(color: ColorConstant.appThemeColor),
                                   inputFormatters: [
                                     NoLeadingSpaceFormatter(),
                                     FilteringTextInputFormatter.deny('  '),
-                                    FilteringTextInputFormatter.allow(
-                                        RegExp("[a-zA-Z ]")),
+                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
                                     LengthLimitingTextInputFormatter(30)
                                   ],
                                   margin: getMargin(
@@ -139,19 +127,15 @@ class EditProfile extends GetWidget<EditProfileController> {
                                   readOnlyBgColor: true,
                                   hintText: toLabelValue("email_address"),
                                   validator: (value) {
-                                    if (value == null ||
-                                        (!isValidEmail(value,
-                                            isRequired: true))) {
+                                    if (value == null || (!isValidEmail(value, isRequired: true))) {
                                       return "Please enter valid email";
                                     }
                                     return null;
                                   },
                                   textInputType: TextInputType.emailAddress,
-                                  errorStyle: TextStyle(
-                                      color: ColorConstant.appThemeColor),
+                                  errorStyle: TextStyle(color: ColorConstant.appThemeColor),
                                   inputFormatters: [
-                                    FilteringTextInputFormatter.allow(
-                                        RegExp("[a-zA-Z0-9@.]")),
+                                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9@.]")),
                                   ],
                                   margin: getMargin(
                                     top: 10,
@@ -163,17 +147,15 @@ class EditProfile extends GetWidget<EditProfileController> {
                                   child: CustomTextFormField(
                                     width: double.infinity,
                                     onTapEvent: () {
-                                      print("HJklsajdkajskjdk");
+                                      debugPrint("HJklsajdkajskjdk");
                                       _showDatePicker(context);
                                     },
                                     controller: controller.showDobController,
                                     textInputType: TextInputType.none,
                                     inputFormatters: [
-                                      FilteringTextInputFormatter.allow(
-                                          RegExp("[a-zA-Z0-9@.]")),
+                                      FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9@.]")),
                                     ],
-                                    errorStyle: TextStyle(
-                                        color: ColorConstant.appThemeColor),
+                                    errorStyle: TextStyle(color: ColorConstant.appThemeColor),
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "Please enter Date Of Birth";
@@ -182,8 +164,7 @@ class EditProfile extends GetWidget<EditProfileController> {
                                     },
                                     // focusNode: FocusNode(),
                                     suffix: Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 8.0),
+                                      padding: const EdgeInsets.only(right: 8.0),
                                       child: GestureDetector(
                                           onTap: () {
                                             _showDatePicker(context);
@@ -211,29 +192,21 @@ class EditProfile extends GetWidget<EditProfileController> {
                                         children: [
                                           controller.selected.value == 'male'
                                               ? Image.asset(
-                                                  ImageConstant
-                                                      .editUserSelectedMaleIcon,
+                                                  ImageConstant.editUserSelectedMaleIcon,
                                                   height: 50,
                                                   width: 50,
                                                 )
                                               : Image.asset(
-                                                  ImageConstant
-                                                      .unselectedMaleEditProfileImage,
+                                                  ImageConstant.unselectedMaleEditProfileImage,
                                                   height: 50,
                                                   width: 50,
                                                 ),
                                           const SizedBox(height: 10),
-                                          Text(
-                                              toLabelValue(
-                                                  ConstantStrings.maleText),
+                                          Text(toLabelValue(ConstantStrings.maleText),
                                               style: TextStyle(
-                                                  color: controller
-                                                              .selected.value ==
-                                                          'male'
-                                                      ? ColorConstant
-                                                          .appThemeColor
-                                                      : ColorConstant
-                                                          .lightTextGrayColor,
+                                                  color: controller.selected.value == 'male'
+                                                      ? ColorConstant.appThemeColor
+                                                      : ColorConstant.lightTextGrayColor,
                                                   fontWeight: FontWeight.normal,
                                                   fontSize: 14))
                                         ],
@@ -248,29 +221,21 @@ class EditProfile extends GetWidget<EditProfileController> {
                                         children: [
                                           controller.selected.value == 'female'
                                               ? Image.asset(
-                                                  ImageConstant
-                                                      .selectedFemaleEditProfileImage,
+                                                  ImageConstant.selectedFemaleEditProfileImage,
                                                   height: 50,
                                                   width: 50,
                                                 )
                                               : Image.asset(
-                                                  ImageConstant
-                                                      .unselectedFemaleIcon,
+                                                  ImageConstant.unselectedFemaleIcon,
                                                   height: 50,
                                                   width: 50,
                                                 ),
                                           const SizedBox(height: 10),
-                                          Text(
-                                              toLabelValue(
-                                                  ConstantStrings.femaleText),
+                                          Text(toLabelValue(ConstantStrings.femaleText),
                                               style: TextStyle(
-                                                  color: controller
-                                                              .selected.value ==
-                                                          'female'
-                                                      ? ColorConstant
-                                                          .appThemeColor
-                                                      : ColorConstant
-                                                          .lightTextGrayColor,
+                                                  color: controller.selected.value == 'female'
+                                                      ? ColorConstant.appThemeColor
+                                                      : ColorConstant.lightTextGrayColor,
                                                   fontWeight: FontWeight.normal,
                                                   fontSize: 14)),
                                         ],
@@ -285,8 +250,7 @@ class EditProfile extends GetWidget<EditProfileController> {
                                       width: Get.width,
                                       height: 46,
                                       child: ButtonWidget(
-                                        title: toLabelValue(
-                                            ConstantStrings.updateAccount),
+                                        title: toLabelValue(ConstantStrings.updateAccount),
                                         onPressed: () {
                                           controller.update();
                                           controller.editProfile();
@@ -305,19 +269,14 @@ class EditProfile extends GetWidget<EditProfileController> {
                                   width: Get.width,
                                   child: OutlinedButton(
                                       style: OutlinedButton.styleFrom(
-                                          side: BorderSide(
-                                              color:
-                                                  ColorConstant.appThemeColor),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(8))),
+                                          side: BorderSide(color: ColorConstant.appThemeColor),
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
                                       onPressed: () {
                                         controller.openDialog();
                                       },
                                       child: Text(
                                         toLabelValue("account_delete_button"),
-                                        style: TextStyle(
-                                            color: ColorConstant.appThemeColor),
+                                        style: TextStyle(color: ColorConstant.appThemeColor),
                                       )),
                                 ),
                                 const SizedBox(
@@ -359,10 +318,7 @@ class EditProfile extends GetWidget<EditProfileController> {
                       },
                       child: Text(
                         "Done",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            color: ColorConstant.appThemeColor),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: ColorConstant.appThemeColor),
                       )),
                 ),
               ),
@@ -372,20 +328,16 @@ class EditProfile extends GetWidget<EditProfileController> {
                   mode: CupertinoDatePickerMode.date,
                   minimumDate: DateTime(1972, 1, 1),
                   // Set the minimum date
-                  maximumDate: DateTime(DateTime.now().year - 18,
-                      DateTime.now().month, DateTime.now().day),
+                  maximumDate: DateTime(DateTime.now().year - 18, DateTime.now().month, DateTime.now().day),
                   dateOrder: DatePickerDateOrder.dmy,
                   initialDateTime: controller.userDateOFBirth ??
-                      DateTime(DateTime.now().year - 18, DateTime.now().month,
-                          DateTime.now().day),
+                      DateTime(DateTime.now().year - 18, DateTime.now().month, DateTime.now().day),
                   onDateTimeChanged: (DateTime newDateTime) {
                     selectedDate = newDateTime;
-                    print(DateFormat('yyyy-MM-dd').format(newDateTime));
+                    debugPrint(DateFormat('yyyy-MM-dd').format(newDateTime));
 
-                    serviceProviderController.dobController.text =
-                        DateFormat('yyyy-MM-dd').format(newDateTime);
-                    serviceProviderController.showDobController.text =
-                        DateFormat('dd-MM-yyyy').format(newDateTime);
+                    serviceProviderController.dobController.text = DateFormat('yyyy-MM-dd').format(newDateTime);
+                    serviceProviderController.showDobController.text = DateFormat('dd-MM-yyyy').format(newDateTime);
                     //Get.back();
 
                     //controller.dobController.text = DateFormat.yMMMd().format(newDateTime);

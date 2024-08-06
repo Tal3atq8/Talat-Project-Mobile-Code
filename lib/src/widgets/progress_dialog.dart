@@ -35,11 +35,7 @@ Future<void> onNewLoading(BuildContext context) async {
           child: const Dialog(
             backgroundColor: Colors.transparent,
             elevation: 0,
-            child: SizedBox(
-                width: 50,
-                height: 50,
-                child: Center(
-                    child: CircularProgressIndicator(color: Colors.red))),
+            child: SizedBox(width: 50, height: 50, child: Center(child: CircularProgressIndicator(color: Colors.red))),
           ))).then((value) {
     // dispose the timer in case something else has triggered the dismiss.
     timer?.cancel();
@@ -61,8 +57,7 @@ class CommonWidgets {
       borderRadius: 20,
       titleText: Padding(
         padding: const EdgeInsets.only(left: 20, top: 20, right: 20),
-        child: Text(toLabelValue(msg),
-            style: TextStyle(color: ColorConstant.whiteColor)),
+        child: Text(toLabelValue(msg), style: TextStyle(color: ColorConstant.whiteColor)),
       ),
       padding: const EdgeInsets.all(0),
       margin: const EdgeInsets.all(15),
@@ -77,9 +72,7 @@ class CommonWidgets {
   showToastMessage(String msg, {bool? isShortToast}) {
     return Fluttertoast.showToast(
       timeInSecForIosWeb: 3,
-      toastLength: isShortToast != null && isShortToast
-          ? Toast.LENGTH_SHORT
-          : Toast.LENGTH_LONG,
+      toastLength: isShortToast != null && isShortToast ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG,
       msg: toLabelValue(msg),
     );
   }

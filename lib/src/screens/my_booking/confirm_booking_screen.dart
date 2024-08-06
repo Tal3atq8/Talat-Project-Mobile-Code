@@ -143,7 +143,7 @@ class BookingConfirmDetail extends StatelessWidget {
                                         ),
                                         if (controller.bookingDetailModel.value.result?.bookingDetail?.timeSlot != "")
                                           Obx(() {
-                                            print(controller.showLoader.value);
+                                            debugPrint('${controller.showLoader.value}');
                                             return Padding(
                                               padding: const EdgeInsets.only(top: 8.0),
                                               child: Row(
@@ -172,7 +172,7 @@ class BookingConfirmDetail extends StatelessWidget {
                                           }),
                                         if (controller.bookingDetailModel.value.result?.bookingDetail?.timeSlot == "")
                                           Obx(() {
-                                            print(controller.showLoader.value);
+                                            debugPrint('${controller.showLoader.value}');
                                             return Padding(
                                               padding: const EdgeInsets.only(top: 8.0),
                                               child: Text(
@@ -221,24 +221,10 @@ class BookingConfirmDetail extends StatelessWidget {
                                       ),
                                     ),
 
-                                    // without time
-                                    /*    Padding(
-                                      padding: const EdgeInsets.only(top: 8.0),
-                                      child: Text(
-                                        (controller.bookingDetailModel.value.result?.bookingDetail?.bookingFromDate !=
-                                                controller
-                                                    .bookingDetailModel.value.result?.bookingDetail?.bookingToDate)
-                                            ? ' From ${DateFormat('d MMM yyyy').format(DateFormat("yyyy-MM-dd").parse(controller.bookingDetailModel.value.result?.bookingDetail?.bookingFromDate ?? "2023-06-29"))} To ${DateFormat('d MMM yyyy').format(DateFormat("yyyy-MM-dd").parse(controller.bookingDetailModel.value.result?.bookingDetail?.bookingToDate ?? "2023-06-29"))}'
-                                            : ' ${DateFormat('d MMM yyyy').format(DateFormat("yyyy-MM-dd").parse("${controller.bookingDetailModel.value.result?.bookingDetail?.bookingFromDate}"))}',
-                                        style: TextStyle(
-                                            color: ColorConstant.blackColor, fontSize: 12, fontWeight: FontWeight.bold),
-                                      ),
-                                    ),*/
-
                                     // with time
                                     if (controller.bookingDetailModel.value.result?.bookingDetail?.timeSlot != "")
                                       Obx(() {
-                                        print(controller.showLoader.value);
+                                        debugPrint('${controller.showLoader.value}');
                                         return Padding(
                                           padding: const EdgeInsets.only(top: 8.0),
                                           child: Row(
@@ -272,7 +258,7 @@ class BookingConfirmDetail extends StatelessWidget {
                                       }),
                                     if (controller.bookingDetailModel.value.result?.bookingDetail?.timeSlot == "")
                                       Obx(() {
-                                        print(controller.showLoader.value);
+                                        debugPrint('${controller.showLoader.value}');
                                         return Padding(
                                           padding: const EdgeInsets.only(top: 8.0),
                                           child: Text(
@@ -516,15 +502,7 @@ class BookingConfirmDetail extends StatelessWidget {
                                 controller.bookingDetailModel.value.result!.itemDetail!.is_location == ""
                             ? Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                                child: /*Text(
-                                  "${controller.bookingDetailModel.value.result?.providerDetail?.serviceProviderName ?? ""} " +
-                                      toLabelValue('no_location'),
-                                  style: TextStyle(
-                                      color: ColorConstant.blackColor,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.normal),
-                                )*/
-                                    Row(
+                                child: Row(
                                   children: [
                                     Expanded(
                                         child: RichText(
@@ -698,7 +676,7 @@ class BookingConfirmDetail extends StatelessWidget {
                         color: ColorConstant.appThemeColor,
                       ),
                       onRatingUpdate: (rating) {
-                        print(rating);
+                        debugPrint('$rating');
                         controller.initialRating.value = rating;
                       },
                     ),

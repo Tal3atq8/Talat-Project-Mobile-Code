@@ -37,11 +37,6 @@ class _BookingCalendarState extends State<BookingCalendar> {
   DateTime? startDate;
   DateTime? endDate;
 
-  List<DateTime?> _rangeDatePickerValueWithDefaultValue = [
-    DateTime.now(),
-    if (activityDetailItem.value.typeOfActivity == 'Day') DateTime.now(),
-  ];
-
   Duration initialTimer = const Duration();
 
   bool webview = false;
@@ -70,7 +65,7 @@ class _BookingCalendarState extends State<BookingCalendar> {
                 SizedBox(
                   height: Get.height * 0.45,
                   child: Obx(() {
-                    print(controller.availableDays.length);
+                    debugPrint('${controller.availableDays.length}');
                     if (controller.availableDays.isNotEmpty && !controller.availableDays.contains(startDate)) {
                       startDate = null;
                       endDate = null;
@@ -85,7 +80,7 @@ class _BookingCalendarState extends State<BookingCalendar> {
                             ? SfDateRangePicker(
                                 onSelectionChanged:
                                     (DateRangePickerSelectionChangedArgs dateRangePickerSelectionChangedArgs) {
-                                  print(
+                                  debugPrint(
                                       "dateRangePickerSelectionChangedArgs ====> ${dateRangePickerSelectionChangedArgs.value}");
                                   List<DateTime> dates = [];
                                   controller.listOfDate.value = [];
@@ -171,7 +166,6 @@ class _BookingCalendarState extends State<BookingCalendar> {
                                     totalDays = diff.inDays.toString();
 
                                     setState(() {
-                                      _rangeDatePickerValueWithDefaultValue = dates;
                                       controller.showContainer.value = true;
                                     });
                                   }
@@ -209,7 +203,6 @@ class _BookingCalendarState extends State<BookingCalendar> {
                                   controller.startDateStr = DateFormat('yyyy-MM-dd').format(_selectedDate);
 
                                   setState(() {
-                                    _rangeDatePickerValueWithDefaultValue = [_selectedDate];
                                     controller.isAllSlotAvailable(false);
                                     controller.getTimeSlots().then((value) {
                                       if (controller.getTimeSlotsResponseModel.value.result!.isNotEmpty) {
@@ -647,7 +640,8 @@ class _BookingCalendarState extends State<BookingCalendar> {
           debugPrint(" Slot Availability json.decode ==========> ${json.decode(value.toString())["result"]}");
           if (json.decode(value.toString())["result"] != null) {
             if (activityDetailItem.value.typeOfActivity == "Time") {
-              print('Time response ===================>>> ${json.decode(value.toString())["result"]["availablility"]}');
+              debugPrint(
+                  'Time response ===================>>> ${json.decode(value.toString())["result"]["availablility"]}');
               if (json.decode(value.toString())["result"]["availablility"] == "Available") {
                 isFromCalendar.value = "1";
                 controller.isAllSlotAvailable(true);
@@ -662,7 +656,7 @@ class _BookingCalendarState extends State<BookingCalendar> {
                 controller.isAllSlotAvailable(false);
                 controller.isAllSlotLoading(false);
                 if (json.decode(value.toString())["result"]["availablility"] == "Not Available") {
-                  if (isInit == null || (isInit != null && !isInit)) {
+                  if (isInit == null || (!isInit)) {
                     CommonWidgets().showToastMessage("slot_not_available", isShortToast: true);
                   }
                 }
@@ -721,8 +715,8 @@ class _BookingCalendarState extends State<BookingCalendar> {
             }
           }
           if (controller.isAllSlotAvailable.isTrue) {
-            print("START DATE = ${selectedStartDate}");
-            print("END DATE = ${selectedEndDate}");
+            debugPrint("START DATE = ${selectedStartDate}");
+            debugPrint("END DATE = ${selectedEndDate}");
             if (selectedEndDate.isNotEmpty && selectedStartDate.isNotEmpty) {
               if (selectedStartDate != selectedEndDate) {
                 controller.totalAmount.value = (int.parse(controller.totalAmount.value) * 2).toString();
@@ -800,7 +794,6 @@ class _BookingCalendarState extends State<BookingCalendar> {
       totalDays = diff.inDays.toString();
 
       setState(() {
-        _rangeDatePickerValueWithDefaultValue = dates;
         controller.showContainer.value = true;
       });
       checkSlotAvailability(isInit: isInit);
@@ -812,7 +805,6 @@ class _BookingCalendarState extends State<BookingCalendar> {
       controller.startDateStr = DateFormat('yyyy-MM-dd').format(_selectedDate);
 
       setState(() {
-        _rangeDatePickerValueWithDefaultValue = [_selectedDate];
         controller.getTimeSlots().then((value) {
           if (controller.getTimeSlotsResponseModel.value.result != null &&
               controller.getTimeSlotsResponseModel.value.result!.isNotEmpty) {

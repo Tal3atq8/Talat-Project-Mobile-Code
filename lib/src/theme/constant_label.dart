@@ -11,13 +11,11 @@ class ConstantsLabelKeys {
   static const String submitText = 'submit_text';
   static const String loginText = 'login_text';
   static const String forgotpassword = 'forgot_password';
-  static const String enter_email_to_receive_password =
-      'enter_email_to_receive_password';
+  static const String enter_email_to_receive_password = 'enter_email_to_receive_password';
   static const String talatTitle = 'talat';
   static const String saved = 'saved';
   static const String notifications = 'notifications';
   static const String account = 'account';
-  // static const String browseActivitiesText = 'browse_category';
   static const String browseCategoryText = 'browse_category';
   static const String seeAllText = 'see_all';
   static const String popularActivitiesText = 'popular_activitites';
@@ -40,8 +38,7 @@ class ConstantsLabelKeys {
   static String bookingCancelledNoti = "booking_cancelled_noti";
   static String your_booking_confrimed = "your_booking_confrimed";
   static String completed_booking = "completed_booking";
-  static String your_booking_has_been_cancelled =
-      "your_booking_has_been_cancelled";
+  static String your_booking_has_been_cancelled = "your_booking_has_been_cancelled";
   static String booking_cancelled_noti = "booking_cancelled_noti";
   static String your_booking_confrimed_noti = "your_booking_confrimed_noti";
   static String no_notification_yet = "no_notification_yet";
@@ -57,7 +54,7 @@ class ConstantsLabelKeys {
   static String your_booking_on = "your_booking_on";
   static String note = "note";
   static String double_tap_note = "double_tap_note";
-    static String correct_ifo_lbl = "correct_ifo_lbl";
+  static String correct_ifo_lbl = "correct_ifo_lbl";
 
   static String enter_description = "enter_description";
   static String somethimg_about_business = "somethimg_about_business";

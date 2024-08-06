@@ -21,8 +21,7 @@ class BookingDetailController extends GetxController {
   RxBool isSecondButtonPressed = false.obs;
   RxBool isThiredButtonPressed = false.obs;
   TextEditingController noteController = TextEditingController();
-  Rx<BookingDetailResponseModel> bookingDetailModel =
-      BookingDetailResponseModel().obs;
+  Rx<BookingDetailResponseModel> bookingDetailModel = BookingDetailResponseModel().obs;
   RxDouble initialRating = 0.0.obs;
   final cancelBookingFormKey = GlobalKey<FormState>();
   RxBool isFormValid = false.obs;
@@ -74,8 +73,7 @@ class BookingDetailController extends GetxController {
     markers.add(
       Marker(
         visible: true,
-        markerId:
-            MarkerId("${bookingDetailModel.value.result!.itemDetail!.itemId}"),
+        markerId: MarkerId("${bookingDetailModel.value.result!.itemDetail!.itemId}"),
         position: position,
         icon: BitmapDescriptor.defaultMarker,
       ),
@@ -102,13 +100,9 @@ class BookingDetailController extends GetxController {
           ConstantStrings.userIdKey: userId,
           ConstantStrings.deviceTokenKey: token,
           ConstantStrings.languageId: language ?? "1",
-          "booking_id":
-              bookingDetailModel.value.result?.bookingDetail?.bookingId ?? "",
-          ConstantStrings.itemIdKey:
-              bookingDetailModel.value.result?.itemDetail?.itemId ?? "",
-          "provider_id": bookingDetailModel
-                  .value.result?.providerDetail?.serviceProviderId ??
-              "",
+          "booking_id": bookingDetailModel.value.result?.bookingDetail?.bookingId ?? "",
+          ConstantStrings.itemIdKey: bookingDetailModel.value.result?.itemDetail?.itemId ?? "",
+          "provider_id": bookingDetailModel.value.result?.providerDetail?.serviceProviderId ?? "",
           ConstantStrings.ratingKey: initialRating.value,
           ConstantStrings.reviewKey: textEditingController.text,
         }).then((response) async {
@@ -125,37 +119,29 @@ class BookingDetailController extends GetxController {
           } else if (response.data["code"] == "-7") {
             // Get.back();
             CommonWidgets().showToastMessage('user_login_other_device');
-            language =
-                await SharedPref.getString(PreferenceConstants.laguagecode);
+            language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
             await SharedPref.clearSharedPref();
-            await SharedPref.setString(
-                PreferenceConstants.laguagecode, language);
+            await SharedPref.setString(PreferenceConstants.laguagecode, language);
             Get.offAllNamed(AppRouteNameConstant.tabScreen);
             update();
-          } else if (response.data["code"] == "-1" &&
-              response.data["message"] == "inactive_account") {
+          } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
             CommonWidgets().showToastMessage('inactive_account');
-            language =
-                await SharedPref.getString(PreferenceConstants.laguagecode);
+            language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
             await SharedPref.clearSharedPref();
-            await SharedPref.setString(
-                PreferenceConstants.laguagecode, language);
+            await SharedPref.setString(PreferenceConstants.laguagecode, language);
             Get.offAllNamed(AppRouteNameConstant.tabScreen);
             // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
             update();
             showLoader(false);
-          } else if (response.data["code"] == "-4" &&
-              response.data["message"] == "delete_account") {
+          } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
             showLoader.value = false;
             CommonWidgets().showToastMessage(response.data["message"]);
-            language =
-                await SharedPref.getString(PreferenceConstants.laguagecode);
+            language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
             await SharedPref.clearSharedPref();
-            await SharedPref.setString(
-                PreferenceConstants.laguagecode, language);
+            await SharedPref.setString(PreferenceConstants.laguagecode, language);
             Get.offAllNamed(AppRouteNameConstant.tabScreen);
             // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
             update();
@@ -187,35 +173,24 @@ class BookingDetailController extends GetxController {
         ConstantStrings.bookingIdKey: bookingID.value,
       }).then((response) async {
         if (response.data['code'] == 200) {
-          bookingDetailModel.value =
-              BookingDetailResponseModel.fromJson(response.data);
-          addMarker(LatLng(
-              double.parse(bookingDetailModel
-                      .value.result!.itemDetail!.itemLatitude
-                      .toString() ??
-                  '0.0'),
-              double.parse(bookingDetailModel
-                      .value.result!.itemDetail!.itemLongitude
-                      .toString() ??
-                  '0.0')));
+          bookingDetailModel.value = BookingDetailResponseModel.fromJson(response.data);
+          addMarker(LatLng(double.parse(bookingDetailModel.value.result!.itemDetail!.itemLatitude.toString()),
+              double.parse(bookingDetailModel.value.result!.itemDetail!.itemLongitude.toString())));
           update();
           showLoader.value = false;
         } else if (response.data["code"] == "-7") {
           // Get.back();
           CommonWidgets().showToastMessage('user_login_other_device');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
           Get.offAllNamed(AppRouteNameConstant.tabScreen);
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
-        } else if (response.data["code"] == "-1" &&
-            response.data["message"] == "inactive_account") {
+        } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
           CommonWidgets().showToastMessage('inactive_account');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -223,12 +198,10 @@ class BookingDetailController extends GetxController {
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
           showLoader(false);
-        } else if (response.data["code"] == "-4" &&
-            response.data["message"] == "delete_account") {
+        } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
           showLoader.value = false;
           CommonWidgets().showToastMessage(response.data["message"]);
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -259,19 +232,14 @@ class BookingDetailController extends GetxController {
         ConstantStrings.languageId: language ?? "1",
         ConstantStrings.bookingIdKey: bookingID.value,
         ConstantStrings.cancelTypeKey: selectedvalue.value,
-        ConstantStrings.cancelReasonKey: noteController.text.isNotEmpty == true
-            ? noteController.text
-            : emtyText,
+        ConstantStrings.cancelReasonKey: noteController.text.isNotEmpty == true ? noteController.text : emtyText,
       }).then((response) async {
         if (response.data['code'] == "1") {
           Get.back();
           // Get.back();
           showLoader.value = false;
           bookingDetail();
-          CommonWidgets().customSnackBar(
-              "Talat",
-              CommonWidgets()
-                  .showToastMessage("your_booking_has_been_cancelled"));
+          CommonWidgets().customSnackBar("Talat", CommonWidgets().showToastMessage("your_booking_has_been_cancelled"));
 
           // Future.delayed(Duration.zero, () {
           MyBookingBinding().dependencies();
@@ -287,19 +255,16 @@ class BookingDetailController extends GetxController {
         } else if (response.data["code"] == "-7") {
           // Get.back();
           CommonWidgets().showToastMessage('user_login_other_device');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
           Get.offAllNamed(AppRouteNameConstant.tabScreen);
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
-        } else if (response.data["code"] == "-1" &&
-            response.data["message"] == "inactive_account") {
+        } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
           CommonWidgets().showToastMessage('inactive_account');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -307,12 +272,10 @@ class BookingDetailController extends GetxController {
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
           showLoader(false);
-        } else if (response.data["code"] == "-4" &&
-            response.data["message"] == "delete_account") {
+        } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
           showLoader.value = false;
           CommonWidgets().showToastMessage(response.data["message"]);
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -337,8 +300,7 @@ class BookingDetailController extends GetxController {
     Get.dialog(
       AlertDialog(
         title: Text("Booking Cancelled!"),
-        content:
-            Text("Your booking has been cancelled with “Vendor name here”"),
+        content: Text("Your booking has been cancelled with “Vendor name here”"),
         actions: [
           TextButton(
               child: Text(ConstantStrings.yes),

@@ -64,7 +64,7 @@ class BookingCalendarController extends GetxController {
     token = await SharedPref.getString(PreferenceConstants.token);
     userId = await SharedPref.getString(PreferenceConstants.userId);
     providerName.value = await SharedPref.getString(PreferenceConstants.providerName);
-    print(ammount);
+    debugPrint(ammount);
     await getAvailableDate();
   }
 
@@ -83,7 +83,6 @@ class BookingCalendarController extends GetxController {
     showLoader.value = true;
     showLoader.refresh();
     try {
-      var emptyText = "";
       await TalatService().bookingConfirmApi({
         ConstantStrings.userTypeKey: '1',
         ConstantStrings.deviceTypeKey: '1',
@@ -267,10 +266,10 @@ class BookingCalendarController extends GetxController {
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
         }
-        print(availableDays);
+        debugPrint('$availableDays');
         update();
       } catch (e) {
-        print(e);
+        debugPrint('$e');
       }
     });
     isCalenderLoading(false);
@@ -291,10 +290,10 @@ class BookingCalendarController extends GetxController {
     }).then((response) async {
       try {
         isCalenderLoading(false);
-        print("=========================== checkAvailableBookingSlot $response");
+        debugPrint("=========================== checkAvailableBookingSlot $response");
         if (response.data != null && response.data["code"].toString() == "200") {
           checkAvailableBookingSlotModel.value = CheckAvailableBookingSlotModel.fromJson(response.data);
-          print("checkAvailableBookingSlotModel $checkAvailableBookingSlotModel");
+          debugPrint("checkAvailableBookingSlotModel $checkAvailableBookingSlotModel");
           update();
         } else if (response.data["code"].toString() == "-7") {
           // Get.back();
@@ -329,10 +328,10 @@ class BookingCalendarController extends GetxController {
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
         }
-        print(availableDays);
+        debugPrint('$availableDays');
         update();
       } catch (e) {
-        print(e);
+        debugPrint('$e');
       }
     });
     isCalenderLoading(false);

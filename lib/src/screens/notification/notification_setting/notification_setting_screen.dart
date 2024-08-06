@@ -29,8 +29,7 @@ class NotificationSetting extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16, left: 16),
-                    child:
-                        Text(toLabelValue("notification_setting_button_label")),
+                    child: Text(toLabelValue("notification_setting_button_label")),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 16),
@@ -44,8 +43,7 @@ class NotificationSetting extends StatelessWidget {
                             width: 51.0,
                             height: 28,
                             toggleSize: 23,
-                            value: ServiceProvidercontroller
-                                .notificationEnabled.value,
+                            value: ServiceProvidercontroller.notificationEnabled.value,
                             borderRadius: 20,
                             padding: 2.0,
                             activeColor: ColorConstant.appThemeColor,
@@ -53,11 +51,9 @@ class NotificationSetting extends StatelessWidget {
                             toggleColor: ColorConstant.whiteColor,
                             showOnOff: false,
                             onToggle: (val) {
-                              ServiceProvidercontroller
-                                  .notificationEnabled.value = val;
+                              ServiceProvidercontroller.notificationEnabled.value = val;
                               ServiceProvidercontroller.update();
-                              ServiceProvidercontroller
-                                  .getNotificationSettingList();
+                              ServiceProvidercontroller.getNotificationSettingList();
                             },
                           ),
                         ),

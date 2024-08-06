@@ -10,9 +10,7 @@ class ActivityDetailModel {
     message = json['message'];
     status = json['status'];
     code = json['code'];
-    result = json['result'] != null
-        ? ActivityDetailResult.fromJson(json['result'])
-        : null;
+    result = json['result'] != null ? ActivityDetailResult.fromJson(json['result']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -34,9 +32,8 @@ class ActivityDetailResult {
   ActivityDetailResult({this.serviceProviderInfo, this.categories});
 
   ActivityDetailResult.fromJson(Map<String, dynamic> json) {
-    serviceProviderInfo = json['service_providerInfo'] != null
-        ? ServiceProviderInfo.fromJson(json['service_providerInfo'])
-        : null;
+    serviceProviderInfo =
+        json['service_providerInfo'] != null ? ServiceProviderInfo.fromJson(json['service_providerInfo']) : null;
     if (json['categories'] != null) {
       categories = <Categories>[];
       json['categories'].forEach((v) {
@@ -76,7 +73,7 @@ class ServiceProviderInfo {
     serviceProviderName = json['service_provider_name'];
     serviceProviderAdress = json['service_provider_adress'];
     serviceProviderImage = json['service_provider_image'];
-    if (json['gallary'] != null ) {
+    if (json['gallary'] != null) {
       gallary = <Gallary>[];
       json['gallary'].forEach((v) {
         gallary!.add(Gallary.fromJson(v));
@@ -125,14 +122,7 @@ class Categories {
   String? image;
   List<ActivityDetailItemList>? item;
 
-  Categories(
-      {this.id,
-      this.name,
-      this.nameAr,
-      this.description,
-      this.descriptionAr,
-      this.image,
-      this.item});
+  Categories({this.id, this.name, this.nameAr, this.description, this.descriptionAr, this.image, this.item});
 
   Categories.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -183,7 +173,7 @@ class ActivityDetailItemList {
   ActivityDetailItemList(
       {this.isChecked,
       this.itemName,
-        this.itemId,
+      this.itemId,
       this.description,
       this.address,
       this.city,

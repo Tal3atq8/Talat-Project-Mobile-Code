@@ -8,8 +8,7 @@ class BannerModel {
   BannerModel.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     message = json['message'];
-    result =
-    json['result'] != null ? Result.fromJson(json['result']) : null;
+    result = json['result'] != null ? Result.fromJson(json['result']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -52,17 +51,17 @@ class BannerData {
   int? itemId;
   String? itemName;
   String? advertisementType;
-  dynamic? partner_id;
+  dynamic partner_id;
   ExtraAdvertisementData? extraAdvertisementData;
 
   BannerData(
       {this.id,
-        this.bannerImage,
-        this.itemId,
-        this.itemName,
-        this.partner_id,
-        this.advertisementType,
-        this.extraAdvertisementData});
+      this.bannerImage,
+      this.itemId,
+      this.itemName,
+      this.partner_id,
+      this.advertisementType,
+      this.extraAdvertisementData});
 
   BannerData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -93,7 +92,7 @@ class BannerData {
 
 class ExtraAdvertisementData {
   String? id;
- dynamic itemId;
+  dynamic itemId;
   String? extraItemName;
   String? description;
   String? bannerImage;
@@ -104,14 +103,14 @@ class ExtraAdvertisementData {
 
   ExtraAdvertisementData(
       {this.id,
-        this.itemId,
-        this.extraItemName,
-        this.description,
-        this.bannerImage,
-        this.advertisementImage,
-        this.address,
-        this.latitude,
-        this.longitude});
+      this.itemId,
+      this.extraItemName,
+      this.description,
+      this.bannerImage,
+      this.advertisementImage,
+      this.address,
+      this.latitude,
+      this.longitude});
 
   ExtraAdvertisementData.fromJson(Map<String, dynamic> json) {
     id = json['id'];

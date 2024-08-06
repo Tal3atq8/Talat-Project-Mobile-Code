@@ -29,8 +29,7 @@ class ServiceProvider extends StatelessWidget {
         body: Obx(
           () => serviceProviderController.showLoader.value
               ? const CommonProgressIndicator()
-              : serviceProviderController.providerDetailModel.value.result !=
-                      null
+              : serviceProviderController.providerDetailModel.value.result != null
                   ? SingleChildScrollView(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,12 +38,8 @@ class ServiceProvider extends StatelessWidget {
                             children: [
                               // controller.providerDetailModel.value.result.
                               CachedNetworkImage(
-                                imageUrl: serviceProviderController
-                                        .providerDetailModel
-                                        .value
-                                        .result
-                                        ?.activityImage ??
-                                    '',
+                                imageUrl:
+                                    serviceProviderController.providerDetailModel.value.result?.activityImage ?? '',
                                 height: Get.height * 0.45,
                                 fit: BoxFit.cover,
                                 errorWidget: (context, url, error) {
@@ -53,8 +48,7 @@ class ServiceProvider extends StatelessWidget {
                                 placeholder: (context, url) {
                                   return Container(
                                     color: Colors.red,
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20),
+                                    padding: const EdgeInsets.symmetric(horizontal: 20),
                                     child: Image.asset(
                                       ImageConstant.appLogo,
                                       fit: BoxFit.contain,
@@ -76,8 +70,7 @@ class ServiceProvider extends StatelessWidget {
                                     width: 38,
                                     height: 38,
                                     decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: ColorConstant.appThemeColor),
+                                      border: Border.all(color: ColorConstant.appThemeColor),
                                       color: Colors.white, // border color
 
                                       shape: BoxShape.circle,
@@ -100,8 +93,7 @@ class ServiceProvider extends StatelessWidget {
                                                 ImageConstant.backArrowIcon,
                                               ),
                                               size: 28,
-                                              color:
-                                                  ColorConstant.appThemeColor,
+                                              color: ColorConstant.appThemeColor,
                                             )),
                                       ), // inner content
                                     ),
@@ -112,12 +104,9 @@ class ServiceProvider extends StatelessWidget {
                           ),
                           const SizedBox(height: 8),
                           ListTile(
-                            contentPadding:
-                                const EdgeInsets.symmetric(horizontal: 16),
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                             title: Text(
-                              serviceProviderController.providerDetailModel
-                                      .value.result?.serviceProviderName ??
-                                  "",
+                              serviceProviderController.providerDetailModel.value.result?.serviceProviderName ?? "",
                               style: txtStyleTitleBoldBlack20(),
                             ),
                           ),
@@ -125,22 +114,19 @@ class ServiceProvider extends StatelessWidget {
                             thickness: 2,
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(
-                                left: 16.0, top: 12, right: 16),
+                            padding: const EdgeInsets.only(left: 16.0, top: 12, right: 16),
                             child: Text(
                               toLabelValue("contact_information_label"),
                               style: txtStyleTitleBoldBlack20(),
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 8),
+                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  serviceProviderController.providerDetailModel
-                                          .value.result?.serviceProviderEmail ??
+                                  serviceProviderController.providerDetailModel.value.result?.serviceProviderEmail ??
                                       "",
                                   style: txtStyleNormalGray14(),
                                 ),
@@ -162,20 +148,16 @@ class ServiceProvider extends StatelessWidget {
                             thickness: 2,
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(
-                                left: 16.0, top: 12, right: 16),
+                            padding: const EdgeInsets.only(left: 16.0, top: 12, right: 16),
                             child: Text(
                               toLabelValue(ConstantsLabelKeys.business_info),
                               style: txtStyleTitleBoldBlack20(),
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 8),
+                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                             child: Text(
-                              serviceProviderController.providerDetailModel
-                                      .value.result?.aboutBusiness ??
-                                  "",
+                              serviceProviderController.providerDetailModel.value.result?.aboutBusiness ?? "",
                               style: txtStyleNormalGray14(),
                             ),
                           ),
@@ -184,114 +166,79 @@ class ServiceProvider extends StatelessWidget {
                             thickness: 2,
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(
-                                left: 16.0, top: 12, right: 16),
+                            padding: const EdgeInsets.only(left: 16.0, top: 12, right: 16),
                             child: Text(
                               toLabelValue(ConstantsLabelKeys.rating_review),
                               textAlign: TextAlign.left,
-                              style: const TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
+                              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                           ),
-                          if (serviceProviderController.providerDetailModel
-                                      .value.result?.review ==
-                                  null ||
-                              serviceProviderController.providerDetailModel
-                                  .value.result!.review!.isNotEmpty)
+                          if (serviceProviderController.providerDetailModel.value.result?.review == null ||
+                              serviceProviderController.providerDetailModel.value.result!.review!.isNotEmpty)
                             SizedBox(
                                 child: Padding(
                               padding: const EdgeInsets.only(top: 10),
                               child: ListView.separated(
-                                itemCount: serviceProviderController
-                                            .providerDetailModel
-                                            .value
-                                            .result!
-                                            .review!
-                                            .length >
-                                        1
-                                    ? 2
-                                    : 1,
+                                itemCount:
+                                    serviceProviderController.providerDetailModel.value.result!.review!.length > 1
+                                        ? 2
+                                        : 1,
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 12),
+                                padding: const EdgeInsets.symmetric(vertical: 12),
                                 itemBuilder: (context, index) {
-                                  var reviewItems = serviceProviderController
-                                      .providerDetailModel
-                                      .value
-                                      .result
-                                      ?.review?[index];
+                                  var reviewItems =
+                                      serviceProviderController.providerDetailModel.value.result?.review?[index];
 
                                   return Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       ratingWidget(reviewItems),
                                     ],
                                   );
                                 },
-                                separatorBuilder:
-                                    (BuildContext context, int index) =>
-                                        const Divider(thickness: 2),
+                                separatorBuilder: (BuildContext context, int index) => const Divider(thickness: 2),
                               ),
                             )),
                           const SizedBox(height: 40),
-                          ((serviceProviderController.providerDetailModel.value
-                                          .result?.review?.length ??
-                                      0) >
-                                  2)
+                          ((serviceProviderController.providerDetailModel.value.result?.review?.length ?? 0) > 2)
                               ? Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 78.0, right: 78),
+                                  padding: const EdgeInsets.only(left: 78.0, right: 78),
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                        backgroundColor:
-                                            ColorConstant.appThemeColor,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0)),
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10, vertical: 10),
+                                        backgroundColor: ColorConstant.appThemeColor,
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                                         textStyle: txtStyleTitleBoldBlack18()),
                                     onPressed: () {
-                                      Get.toNamed(AppRouteNameConstant
-                                          .reviewListScreen);
+                                      Get.toNamed(AppRouteNameConstant.reviewListScreen);
                                     },
                                     child: Center(
                                       child: Text(
                                         ConstantStrings.viewMoreText,
-                                        style: const TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w600),
+                                        style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
                                       ),
                                     ),
                                   ),
                                 )
-                              : ((serviceProviderController.providerDetailModel
-                                              .value.result?.review?.length ??
-                                          0) ==
-                                      0)
+                              : ((serviceProviderController.providerDetailModel.value.result?.review?.length ?? 0) == 0)
                                   ? SizedBox(
                                       height: Get.height * .25,
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           ClipOval(
                                             child: Material(
-                                              color: ColorConstant.appThemeColor
-                                                  .withOpacity(.1),
+                                              color: ColorConstant.appThemeColor.withOpacity(.1),
                                               child: SizedBox(
                                                   width: 80,
                                                   height: 80,
                                                   child: Icon(
                                                     Icons.star_rate_outlined,
-                                                    color: ColorConstant
-                                                        .appThemeColor,
+                                                    color: ColorConstant.appThemeColor,
                                                     size: 38,
                                                   )),
                                             ),
@@ -300,11 +247,8 @@ class ServiceProvider extends StatelessWidget {
                                             height: 20,
                                           ),
                                           Center(
-                                            child: Text(
-                                                toLabelValue(
-                                                    "no_reviews_added"),
-                                                style:
-                                                    txtStyleTitleBoldBlack18()),
+                                            child: Text(toLabelValue("no_reviews_added"),
+                                                style: txtStyleTitleBoldBlack18()),
                                           ),
                                         ],
                                       ),
@@ -335,8 +279,7 @@ class ServiceProvider extends StatelessWidget {
           ),
           // const SizedBox(height: 2),
           Text(
-            DateTime.parse(reviewItems?.createdAt ?? "")
-                .timeAgo(numericDates: false),
+            DateTime.parse(reviewItems?.createdAt ?? "").timeAgo(numericDates: false),
             style: txtStyleNormalBlack14(),
           ),
           const SizedBox(
@@ -371,7 +314,7 @@ class ServiceProvider extends StatelessWidget {
                 color: ColorConstant.appThemeColor,
               ),
               onRatingUpdate: (rating) {
-                print(rating);
+                debugPrint('$rating');
               },
             ),
           ],

@@ -22,7 +22,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(serviceProviderController.showLoader.value);
+    debugPrint('${serviceProviderController.showLoader.value}');
 
     return WillPopScope(
       onWillPop: () async => true,
@@ -44,13 +44,10 @@ class ProfileScreen extends StatelessWidget {
                               },
                               child: Center(
                                 child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: 16.0, left: 16),
+                                  padding: const EdgeInsets.only(right: 16.0, left: 16),
                                   child: Directionality(
                                       textDirection:
-                                          Get.locale == const Locale('ar', '')
-                                              ? TextDirection.rtl
-                                              : TextDirection.ltr,
+                                          Get.locale == const Locale('ar', '') ? TextDirection.rtl : TextDirection.ltr,
                                       child: Image.asset(
                                         ImageConstant.logOutIcon,
                                         height: 24,
@@ -65,19 +62,15 @@ class ProfileScreen extends StatelessWidget {
                           return Center(
                               child: SizedBox(
                             child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
                               child: Text(
-                                controller.viewProfile.value.result?[0].name ??
-                                    "",
+                                controller.viewProfile.value.result?[0].name ?? "",
                                 textAlign: TextAlign.center,
                                 overflow: TextOverflow.ellipsis,
                                 softWrap: true,
                                 maxLines: 2,
                                 style: TextStyle(
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.bold,
-                                    color: ColorConstant.blackColor),
+                                    fontSize: 28, fontWeight: FontWeight.bold, color: ColorConstant.blackColor),
                               ),
                             ),
                           ));
@@ -88,9 +81,7 @@ class ProfileScreen extends StatelessWidget {
                               child: Text(
                             controller.viewProfile.value.result?[0].email ?? "",
                             textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: ColorConstant.darkGrayColor),
+                            style: TextStyle(fontSize: 16, color: ColorConstant.darkGrayColor),
                           )),
                         ),
                         Padding(
@@ -98,60 +89,40 @@ class ProfileScreen extends StatelessWidget {
                           child: GestureDetector(
                             onTap: () {
                               PartnerRegistrationBinding().dependencies();
-                              Get.find<PartnerRegistrationController>()
-                                  .clearFields();
-                              Get.toNamed(AppRouteNameConstant
-                                  .partnerRegistrationScreen);
+                              Get.find<PartnerRegistrationController>().clearFields();
+                              Get.toNamed(AppRouteNameConstant.partnerRegistrationScreen);
                             },
                             child: Directionality(
                               textDirection:
-                                  Get.locale == const Locale('ar', '')
-                                      ? TextDirection.rtl
-                                      : TextDirection.ltr,
+                                  Get.locale == const Locale('ar', '') ? TextDirection.rtl : TextDirection.ltr,
                               child: Container(
                                 decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        bottomRight: Radius.circular(48)),
+                                    borderRadius: BorderRadius.only(bottomRight: Radius.circular(48)),
                                     color: Colors.red),
                                 height: 56,
                                 width: double.infinity,
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 8.0),
-                                          child: Image.asset(
-                                              ImageConstant.becomePartnerIcon),
+                                          padding: const EdgeInsets.only(left: 8.0),
+                                          child: Image.asset(ImageConstant.becomePartnerIcon),
                                         ),
                                         Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 6.0),
+                                          padding: const EdgeInsets.only(left: 6.0),
                                           child: Text(
-                                            toLabelValue(ConstantsLabelKeys
-                                                    .beComePartner)
-                                                .toString(),
-                                            style: TextStyle(
-                                                color: ColorConstant.whiteColor,
-                                                fontSize: 16),
+                                            toLabelValue(ConstantsLabelKeys.beComePartner).toString(),
+                                            style: TextStyle(color: ColorConstant.whiteColor, fontSize: 16),
                                           ),
                                         ),
                                       ],
                                     ),
-                                    if (userDetailModel.value.result?[0]
-                                                .providerRequestStatus !=
-                                            null &&
-                                        userDetailModel.value.result?[0]
-                                                .providerRequestStatus !=
-                                            '' &&
-                                        userDetailModel.value.result?[0]
-                                                .providerRequestStatus ==
-                                            '2')
+                                    if (userDetailModel.value.result?[0].providerRequestStatus != null &&
+                                        userDetailModel.value.result?[0].providerRequestStatus != '' &&
+                                        userDetailModel.value.result?[0].providerRequestStatus == '2')
                                       Container(
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 8,
@@ -160,28 +131,16 @@ class ProfileScreen extends StatelessWidget {
                                         margin: const EdgeInsets.symmetric(
                                           horizontal: 16,
                                         ),
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(12)),
+                                        decoration:
+                                            BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
                                         // child: Text(userDetailModel.value.result[0].),
                                         child: Text(
-                                            (userDetailModel.value.result?[0]
-                                                            .providerRequestStatus ==
-                                                        '2' &&
-                                                    userDetailModel
-                                                            .value
-                                                            .result?[0]
-                                                            .providerRequestAccept
-                                                            .toString() ==
+                                            (userDetailModel.value.result?[0].providerRequestStatus == '2' &&
+                                                    userDetailModel.value.result?[0].providerRequestAccept.toString() ==
                                                         '0')
-                                                ? toLabelValue(
-                                                    'pending_approval')
+                                                ? toLabelValue('pending_approval')
                                                 : '',
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                color: ColorConstant
-                                                    .appThemeColor)),
+                                            style: TextStyle(fontSize: 12, color: ColorConstant.appThemeColor)),
                                       ),
                                   ],
                                 ),
@@ -195,14 +154,10 @@ class ProfileScreen extends StatelessWidget {
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
-                            return profileItemWidget(
-                                controller.profileItemList[index]);
+                            return profileItemWidget(controller.profileItemList[index]);
                           },
                           separatorBuilder: (context, index) {
-                            return Divider(
-                                thickness: 1.5,
-                                height: 1,
-                                color: ColorConstant.lightGrayColor);
+                            return Divider(thickness: 1.5, height: 1, color: ColorConstant.lightGrayColor);
                           },
                         )
                       ],
@@ -217,10 +172,7 @@ class ProfileScreen extends StatelessWidget {
                           child: Text(
                         toLabelValue(ConstantStrings.welcomeText),
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                            color: ColorConstant.blackColor),
+                        style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: ColorConstant.blackColor),
                       )),
                       Padding(
                         padding: const EdgeInsets.only(top: 12.0),
@@ -228,8 +180,7 @@ class ProfileScreen extends StatelessWidget {
                             child: Text(
                           toLabelValue(ConstantStrings.moreFeaturesText),
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 16, color: ColorConstant.darkGrayColor),
+                          style: TextStyle(fontSize: 16, color: ColorConstant.darkGrayColor),
                         )),
                       ),
                       GestureDetector(
@@ -245,38 +196,28 @@ class ProfileScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(top: 28.0, right: 38),
                           child: Directionality(
-                            textDirection: language == "2"
-                                ? TextDirection.rtl
-                                : TextDirection.ltr,
+                            textDirection: language == "2" ? TextDirection.rtl : TextDirection.ltr,
                             child: Container(
                               decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                      bottomRight: Radius.circular(48)),
+                                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(48)),
                                   color: Colors.grey),
                               height: 54,
                               width: double.infinity,
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 16.0, right: 16),
+                                    padding: const EdgeInsets.only(left: 16.0, right: 16),
                                     child: Text(
                                       toLabelValue(ConstantStrings.quickText),
-                                      style: TextStyle(
-                                          color: ColorConstant.whiteColor,
-                                          fontSize: 14),
+                                      style: TextStyle(color: ColorConstant.whiteColor, fontSize: 14),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 28.0, left: 16),
+                                    padding: const EdgeInsets.only(right: 28.0, left: 16),
                                     child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Colors.white),
+                                      decoration:
+                                          BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white),
                                       height: 20,
                                       width: 34,
                                       child: Icon(
@@ -294,18 +235,14 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       ListView.separated(
                         separatorBuilder: (context, index) {
-                          return Divider(
-                              thickness: 1.5,
-                              height: 1,
-                              color: ColorConstant.lightGrayColor);
+                          return Divider(thickness: 1.5, height: 1, color: ColorConstant.lightGrayColor);
                         },
                         itemCount: controller.guestProfileItemList.length,
                         padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
-                          return profileItemWidget(
-                              controller.guestProfileItemList[index]);
+                          return profileItemWidget(controller.guestProfileItemList[index]);
                         },
                       )
                     ],
@@ -330,7 +267,7 @@ class ProfileScreen extends StatelessWidget {
       title: Row(
         children: [
           Text(
-            toLabelValue(model.title ?? '').toString() ?? '',
+            toLabelValue(model.title ?? '').toString() ,
             overflow: TextOverflow.clip,
             textAlign: TextAlign.left,
             style: txtStyleNormalBlack14(),
@@ -345,15 +282,10 @@ class ProfileScreen extends StatelessWidget {
           children: [
             if (model.subTitle != null)
               Text(
-                toLabelValue(language == "1" ? "english" : "arabic")
-                        .toString() ??
-                    '',
+                toLabelValue(language == "1" ? "english" : "arabic").toString() ?? '',
                 overflow: TextOverflow.clip,
                 textAlign: TextAlign.left,
-                style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 10,
-                    fontWeight: FontWeight.normal),
+                style: const TextStyle(color: Colors.grey, fontSize: 10, fontWeight: FontWeight.normal),
               ),
             const SizedBox(
               width: 4,

@@ -27,7 +27,7 @@ class TabbarController extends GetxController {
         label.value = LabelModel.fromJson(response.data);
 
         labelResult.value = label.value.result!;
-        // print(label.value);
+        // debugPrint(label.value);
         WorldLanguage().addLabelKeyToModel();
       }
     });

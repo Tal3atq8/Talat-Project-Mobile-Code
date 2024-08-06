@@ -4,15 +4,13 @@ class ServiceProviderActivityListResponse {
   int? code;
   Result? result;
 
-  ServiceProviderActivityListResponse(
-      {this.message, this.status, this.code, this.result});
+  ServiceProviderActivityListResponse({this.message, this.status, this.code, this.result});
 
   ServiceProviderActivityListResponse.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     status = json['status'];
     code = json['code'];
-    result =
-    json['result'] != null ? Result.fromJson(json['result']) : null;
+    result = json['result'] != null ? Result.fromJson(json['result']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -33,9 +31,7 @@ class Result {
   Result({this.itemList});
 
   Result.fromJson(Map<String, dynamic> json) {
-    itemList = json['item_list'] != null
-        ? ItemList.fromJson(json['item_list'])
-        : null;
+    itemList = json['item_list'] != null ? ItemList.fromJson(json['item_list']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -55,27 +51,27 @@ class ItemList {
   int? lastPage;
   String? lastPageUrl;
   List<Links>? links;
-  Null? nextPageUrl;
+  Null nextPageUrl;
   String? path;
   int? perPage;
-  Null? prevPageUrl;
+  Null prevPageUrl;
   int? to;
   int? total;
 
   ItemList(
       {this.currentPage,
-        this.data,
-        this.firstPageUrl,
-        this.from,
-        this.lastPage,
-        this.lastPageUrl,
-        this.links,
-        this.nextPageUrl,
-        this.path,
-        this.perPage,
-        this.prevPageUrl,
-        this.to,
-        this.total});
+      this.data,
+      this.firstPageUrl,
+      this.from,
+      this.lastPage,
+      this.lastPageUrl,
+      this.links,
+      this.nextPageUrl,
+      this.path,
+      this.perPage,
+      this.prevPageUrl,
+      this.to,
+      this.total});
 
   ItemList.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];
@@ -141,16 +137,16 @@ class Data {
 
   Data(
       {this.id,
-        this.categoryName,
-        this.categoryAddress,
-        this.categoryDistance,
-        this.categoryAmount,
-        this.categoryImage,
-        this.serviceProviderImage,
-        this.serviceProviderId,
-        this.serviceProviderName,
-        this.serviceProviderAddress,
-        this.isFav});
+      this.categoryName,
+      this.categoryAddress,
+      this.categoryDistance,
+      this.categoryAmount,
+      this.categoryImage,
+      this.serviceProviderImage,
+      this.serviceProviderId,
+      this.serviceProviderName,
+      this.serviceProviderAddress,
+      this.isFav});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];

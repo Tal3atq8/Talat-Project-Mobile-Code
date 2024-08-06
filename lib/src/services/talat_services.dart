@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:talat/src/screens/dashboard/dashboard_screen_binding.dart';
@@ -125,7 +126,7 @@ class TalatService {
   }
 
   Future<Response> signupAsPartnerApi(data) async {
-    print(data);
+    debugPrint(data);
     return await networkService.post('${ConstantStrings.baseUrl}signupPartner',
         headers: await getGeneralSettingsHeaders(), body: jsonEncode(data));
   }

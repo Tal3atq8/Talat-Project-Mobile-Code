@@ -19,5 +19,4 @@ class UserGuideController extends GetxController {
     textController = PageController();
     update();
   }
-
 }

@@ -29,104 +29,60 @@ class ServiceProviderActivityList extends StatelessWidget {
           : Stack(
               children: [
                 IgnorePointer(
-                    ignoring: serviceProviderController.showLoader.value
-                        ? true
-                        : false,
-                    child: (serviceProviderController.providerActivityList.value
-                                    .result?.itemList?.data !=
-                                null &&
-                            serviceProviderController.providerActivityList.value
-                                .result!.itemList!.data!.isNotEmpty)
+                    ignoring: serviceProviderController.showLoader.value ? true : false,
+                    child: (serviceProviderController.providerActivityList.value.result?.itemList?.data != null &&
+                            serviceProviderController.providerActivityList.value.result!.itemList!.data!.isNotEmpty)
                         ? Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 8),
+                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                             child: SmartRefresher(
-                              controller:
-                                  serviceProviderController.refreshController,
+                              controller: serviceProviderController.refreshController,
                               onRefresh: () {
-                                serviceProviderController
-                                    .serviceProviderActivityList(
-                                        isRefresh: true);
+                                serviceProviderController.serviceProviderActivityList(isRefresh: true);
                               },
                               enablePullDown: true,
                               child: ListView.builder(
                                 physics: const BouncingScrollPhysics(),
                                 itemCount: serviceProviderController
-                                        .providerActivityList
-                                        .value
-                                        .result
-                                        ?.itemList
-                                        ?.data
-                                        ?.length ??
+                                        .providerActivityList.value.result?.itemList?.data?.length ??
                                     0,
                                 itemBuilder: (context, index) {
-                                  var popularListData =
-                                      serviceProviderController
-                                          .providerActivityList
-                                          .value
-                                          .result
-                                          ?.itemList
-                                          ?.data?[index];
+                                  var popularListData = serviceProviderController
+                                      .providerActivityList.value.result?.itemList?.data?[index];
                                   return Padding(
                                     padding: const EdgeInsets.only(bottom: 8),
                                     child: ActivityItemWidget(
                                       onBannerTap: () {
-                                        providerID.value = popularListData
-                                                ?.serviceProviderId
-                                                .toString() ??
-                                            '';
-                                        itemID.value =
-                                            popularListData?.id.toString() ??
-                                                '';
+                                        providerID.value = popularListData?.serviceProviderId.toString() ?? '';
+                                        itemID.value = popularListData?.id.toString() ?? '';
                                         ActivityDetailBinding().dependencies();
-                                        Get.find<ActivityDetailController>()
-                                            .selectCategoryIndex = 0.obs;
-                                        Get.find<ActivityDetailController>()
-                                            .myTabs = [];
+                                        Get.find<ActivityDetailController>().selectCategoryIndex = 0.obs;
+                                        Get.find<ActivityDetailController>().myTabs = [];
 
-                                        Get.find<ActivityDetailController>()
-                                            .categoryActivityDetail();
+                                        Get.find<ActivityDetailController>().categoryActivityDetail();
 
                                         serviceProviderController.update();
                                         Get.toNamed(
-                                          AppRouteNameConstant
-                                              .activityDetailScreen,
+                                          AppRouteNameConstant.activityDetailScreen,
                                         );
                                       },
-                                      isIconDisplay: (serviceProviderController
-                                                  .token?.isNotEmpty ==
-                                              true &&
-                                          serviceProviderController.token !=
-                                              null),
-                                      favShowLoader: serviceProviderController
-                                          .favShowLoader,
+                                      isIconDisplay: (serviceProviderController.token?.isNotEmpty == true &&
+                                          serviceProviderController.token != null),
+                                      favShowLoader: serviceProviderController.favShowLoader,
                                       onFavIconTap: () {
-                                        serviceProviderController
-                                            .selectedIndex.value = index;
+                                        serviceProviderController.selectedIndex.value = index;
                                         popularListData?.isFav == 0
-                                            ? serviceProviderController
-                                                .addFavouriteItem(
-                                                    popularListData?.id
-                                                        .toString())
+                                            ? serviceProviderController.addFavouriteItem(popularListData?.id.toString())
                                             : serviceProviderController
-                                                .deleteFavouriteItem(
-                                                    popularListData?.id
-                                                        .toString());
+                                                .deleteFavouriteItem(popularListData?.id.toString());
                                       },
                                       isNotFav: popularListData?.isFav == 0,
-                                      itemImageUrl:
-                                          popularListData?.categoryImage ?? '',
-                                      serviceProviderImageUrl:
-                                          popularListData?.serviceProviderImage,
-                                      serviceProviderName:
-                                          popularListData?.categoryName,
-                                      serviceProviderAddress:
-                                          popularListData?.serviceProviderName,
-                                      serviceProviderDistance:
-                                          popularListData?.categoryDistance,
+                                      itemImageUrl: popularListData?.categoryImage ?? '',
+                                      serviceProviderImageUrl: popularListData?.serviceProviderImage,
+                                      serviceProviderName: popularListData?.categoryName,
+                                      serviceProviderAddress: popularListData?.serviceProviderName,
+                                      serviceProviderDistance: popularListData?.categoryDistance,
                                       isCurrentIndex: index,
-                                      isSelectedIndex: serviceProviderController
-                                          .selectedIndex,
+                                      isSelectedIndex: serviceProviderController.selectedIndex,
                                     ),
                                   );
                                 },

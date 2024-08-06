@@ -23,32 +23,23 @@ class FavoriteList extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async => true,
       child: Scaffold(
-        appBar: CustomAppbarNoSearchBar(
-            title: toLabelValue('favourite_label'), hideBackIcon: true),
+        appBar: CustomAppbarNoSearchBar(title: toLabelValue('favourite_label'), hideBackIcon: true),
         backgroundColor: Colors.white,
         body: Obx(() => SafeArea(
               child: (controller.userId == null || controller.userId == "")
-                  ? Center(
-                      child: Text(
-                          toLabelValue(ConstantsLabelKeys.user_not_logged_in)))
+                  ? Center(child: Text(toLabelValue(ConstantsLabelKeys.user_not_logged_in)))
                   : Stack(
                       children: [
                         IgnorePointer(
-                          ignoring:
-                              controller.myshowLoader.value ? true : false,
+                          ignoring: controller.myshowLoader.value ? true : false,
                           child: controller.resultFavList.isNotEmpty
                               ? Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 28, left: 8, right: 8),
+                                  padding: const EdgeInsets.only(top: 28, left: 8, right: 8),
                                   child: SmartRefresher(
                                     enablePullDown: true,
-                                    enablePullUp:
-                                        (controller.resultFavList.isNotEmpty)
-                                            ? true
-                                            : false,
+                                    enablePullUp: (controller.resultFavList.isNotEmpty) ? true : false,
                                     header: MaterialClassicHeader(
-                                      backgroundColor:
-                                          ColorConstant.appThemeColor,
+                                      backgroundColor: ColorConstant.appThemeColor,
                                       color: ColorConstant.whiteBackgroundColor,
                                     ),
                                     footer: customFooterSmartRefresh(),
@@ -56,127 +47,83 @@ class FavoriteList extends StatelessWidget {
                                     onRefresh: () async {
                                       controller.myshowLoader(false);
 
-                                      await Future.delayed(
-                                          const Duration(milliseconds: 1000));
+                                      await Future.delayed(const Duration(milliseconds: 1000));
                                       controller.pageIndex(1);
                                       controller.getFavouriteList();
-                                      controller.refreshController
-                                          .refreshCompleted();
+                                      controller.refreshController.refreshCompleted();
                                     },
                                     onLoading: () async {
                                       if (controller.resultFavList.length <
-                                          controller.favoriteItems.value.result!
-                                              .total!
-                                              .toInt()) {
-                                        await Future.delayed(
-                                            const Duration(milliseconds: 1000));
+                                          controller.favoriteItems.value.result!.total!.toInt()) {
+                                        await Future.delayed(const Duration(milliseconds: 1000));
 
                                         controller.pageIndex.value += 1;
                                         controller.myshowLoader(false);
                                         controller.getFavouriteList();
-                                        controller.refreshController
-                                            .loadComplete();
+                                        controller.refreshController.loadComplete();
                                       } else {
-                                        controller.refreshController
-                                            .loadNoData();
+                                        controller.refreshController.loadNoData();
                                       }
                                     },
                                     child: ListView.builder(
-                                        itemCount:
-                                            controller.resultFavList.length,
+                                        itemCount: controller.resultFavList.length,
                                         shrinkWrap: true,
                                         physics: const ClampingScrollPhysics(),
                                         itemBuilder: (context, index) {
-                                          var favoriteListData =
-                                              controller.resultFavList[index];
+                                          var favoriteListData = controller.resultFavList[index];
 
                                           return ActivityItemWidget(
                                             onBannerTap: () {
-                                              providerID.value =
-                                                  favoriteListData.providerId ??
-                                                      "";
-                                              itemID.value =
-                                                  favoriteListData.itemId ?? "";
+                                              providerID.value = favoriteListData.providerId ?? "";
+                                              itemID.value = favoriteListData.itemId ?? "";
 
-                                              ActivityDetailBinding()
-                                                  .dependencies();
-                                              Get.find<
-                                                      ActivityDetailController>()
-                                                  .categoryActivityDetail();
-                                              Get.toNamed(AppRouteNameConstant
-                                                  .activityDetailScreen);
+                                              ActivityDetailBinding().dependencies();
+                                              Get.find<ActivityDetailController>().categoryActivityDetail();
+                                              Get.toNamed(AppRouteNameConstant.activityDetailScreen);
                                             },
                                             isIconDisplay:
-                                                (controller.token?.isNotEmpty ==
-                                                        true &&
-                                                    controller.token != null),
-                                            favShowLoader:
-                                                controller.favShowLoader,
+                                                (controller.token?.isNotEmpty == true && controller.token != null),
+                                            favShowLoader: controller.favShowLoader,
                                             onFavIconTap: () {
-                                              controller.selectedIndex.value =
-                                                  index;
+                                              controller.selectedIndex.value = index;
 
-                                              controller.deleteFavouriteItem(
-                                                  favoriteListData.itemId);
+                                              controller.deleteFavouriteItem(favoriteListData.itemId);
                                             },
                                             isNotFav: false,
-                                            itemImageUrl:
-                                                favoriteListData.itemImage ??
-                                                    '',
-                                            serviceProviderImageUrl:
-                                                favoriteListData
-                                                    .serviceProviderImage,
-                                            serviceProviderName:
-                                                favoriteListData.itemName,
-                                            serviceProviderAddress:
-                                                favoriteListData.providerName
-                                                    .toString(),
-                                            serviceProviderDistance:
-                                                favoriteListData.distance,
+                                            itemImageUrl: favoriteListData.itemImage ?? '',
+                                            serviceProviderImageUrl: favoriteListData.serviceProviderImage,
+                                            serviceProviderName: favoriteListData.itemName,
+                                            serviceProviderAddress: favoriteListData.providerName.toString(),
+                                            serviceProviderDistance: favoriteListData.distance,
                                             isCurrentIndex: index,
-                                            isSelectedIndex:
-                                                controller.selectedIndex,
+                                            isSelectedIndex: controller.selectedIndex,
                                           );
                                         }),
                                   ),
                                   // ),
                                 )
-                              : (controller.myshowLoader.value ||
-                                      controller.favShowLoader.isTrue)
+                              : (controller.myshowLoader.value || controller.favShowLoader.isTrue)
                                   ? const SizedBox()
                                   : Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 16),
+                                      padding: const EdgeInsets.symmetric(horizontal: 16),
                                       child: Center(
                                         child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
-                                            Image.asset(
-                                                "assets/images/favorite_list_empty_icon.png",
-                                                height: 120,
-                                                width: 120),
+                                            Image.asset("assets/images/favorite_list_empty_icon.png",
+                                                height: 120, width: 120),
                                             const SizedBox(
                                               height: 20,
                                             ),
-                                            Text(
-                                                toLabelValue(
-                                                    "your_fav_list_empty"),
-                                                style: const TextStyle(
-                                                    fontSize: 18)),
+                                            Text(toLabelValue("your_fav_list_empty"),
+                                                style: const TextStyle(fontSize: 18)),
                                             const SizedBox(
                                               height: 10,
                                             ),
                                             Center(
-                                              child: Text(
-                                                  toLabelValue(
-                                                      "explore_more_fav"),
-                                                  style: TextStyle(
-                                                      fontSize: 16,
-                                                      color: ColorConstant
-                                                          .grayBorderColor),
+                                              child: Text(toLabelValue("explore_more_fav"),
+                                                  style: TextStyle(fontSize: 16, color: ColorConstant.grayBorderColor),
                                                   textAlign: TextAlign.center),
                                             ),
                                           ],

@@ -48,10 +48,8 @@ class ProfileController extends GetxController {
     isLogin = await SharedPref.getString(PreferenceConstants.isRegister);
     userType = await SharedPref.getString(PreferenceConstants.userType);
 
-    selectedLanguage.value =
-        await SharedPref.getString(PreferenceConstants.laguagecode);
-    isMobileVerified =
-        await SharedPref.getString(PreferenceConstants.isMobileVerifiedKey);
+    selectedLanguage.value = await SharedPref.getString(PreferenceConstants.laguagecode);
+    isMobileVerified = await SharedPref.getString(PreferenceConstants.isMobileVerifiedKey);
     viewProfile.value = UserDetailModel();
 
     addProfileItems();
@@ -70,15 +68,13 @@ class ProfileController extends GetxController {
         ConstantStrings.userIdKey: userId,
         ConstantStrings.deviceTokenKey: token,
       }).then((response) async {
-        print(response);
+        debugPrint('$response');
         if (response.data["code"] == "1") {
           // CommonWidgets().showToastMessage('logout_successfully');
           userDetailModel.value = UserDetailModel();
-          String languag1e =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          String languag1e = await SharedPref.getString(PreferenceConstants.laguagecode);
           await SharedPref.clearSharedPref();
-          await SharedPref.setString(
-              PreferenceConstants.laguagecode, languag1e);
+          await SharedPref.setString(PreferenceConstants.laguagecode, languag1e);
           TabbarBinding().dependencies();
           DashboardBinding().dependencies();
           Get.offAllNamed(AppRouteNameConstant.tabScreen);
@@ -90,8 +86,7 @@ class ProfileController extends GetxController {
           CommonWidgets().showToastMessage('user_login_other_device');
 
           await SharedPref.clearSharedPref();
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
           TabbarBinding().dependencies();
@@ -109,19 +104,16 @@ class ProfileController extends GetxController {
         } else if (response.data["code"] == "-7") {
           // Get.back();
           CommonWidgets().showToastMessage('user_login_other_device');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
           Get.offAllNamed(AppRouteNameConstant.tabScreen);
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
-        } else if (response.data["code"] == "-1" &&
-            response.data["message"] == "inactive_account") {
+        } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
           CommonWidgets().showToastMessage('inactive_account');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -129,12 +121,10 @@ class ProfileController extends GetxController {
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
           showLoader(false);
-        } else if (response.data["code"] == "-4" &&
-            response.data["message"] == "delete_account") {
+        } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
           showLoader.value = false;
           CommonWidgets().showToastMessage(response.data["message"]);
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -159,13 +149,11 @@ class ProfileController extends GetxController {
         content: Text(toLabelValue(ConstantStrings.msgLogout)),
         actions: [
           TextButton(
-            child: Text(toLabelValue(ConstantStrings.no),
-                style: TextStyle(color: ColorConstant.appThemeColor)),
+            child: Text(toLabelValue(ConstantStrings.no), style: TextStyle(color: ColorConstant.appThemeColor)),
             onPressed: () => Get.back(),
           ),
           TextButton(
-              child: Text(toLabelValue(ConstantStrings.yes),
-                  style: TextStyle(color: ColorConstant.appThemeColor)),
+              child: Text(toLabelValue(ConstantStrings.yes), style: TextStyle(color: ColorConstant.appThemeColor)),
               onPressed: () {
                 Get.back();
                 Future.delayed(const Duration(seconds: 2), () {
@@ -197,8 +185,7 @@ class ProfileController extends GetxController {
         } else if (response.data["code"] == "-7") {
           // Get.back();
           CommonWidgets().showToastMessage('logout_successfully');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -207,20 +194,17 @@ class ProfileController extends GetxController {
           update();
         } else if (response.data["code"] == "-1") {
           CommonWidgets().showToastMessage(response.data["message"]);
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
           Get.offAllNamed(AppRouteNameConstant.tabScreen);
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
-        } else if (response.data["code"] == "-4" &&
-            response.data["message"] == "delete_account") {
+        } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
           showLoader.value = false;
           CommonWidgets().showToastMessage(response.data["message"]);
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -255,8 +239,7 @@ class ProfileController extends GetxController {
                 style: const TextStyle(fontSize: 16),
               ),
               onPressed: () {
-                Logger.handleLaunchEmail(
-                    generalSetting?.result?[0].contactUsEmail ?? "");
+                Logger.handleLaunchEmail(generalSetting?.result?[0].contactUsEmail ?? "");
               },
             ),
             if (generalSetting?.result?[0].contactUsMobileNo != "" &&
@@ -267,8 +250,7 @@ class ProfileController extends GetxController {
                   style: const TextStyle(fontSize: 16),
                 ),
                 onPressed: () {
-                  Logger.handleUrlOpen(
-                      "https://wa.me/${generalSetting?.result?[0].contactUsMobileNo}");
+                  Logger.handleUrlOpen("https://wa.me/${generalSetting?.result?[0].contactUsMobileNo}");
                 },
               )
           ],
@@ -414,10 +396,8 @@ class ProfileController extends GetxController {
         icon: ImageConstant.changeLanguageTextIcon,
         title: (ConstantsLabelKeys.changeLanguageText),
         onTap: () {
-          Get.toNamed(AppRouteNameConstant.changeLanguageScreen)!
-              .then((value) async {
-            selectedLanguage.value =
-                await SharedPref.getString(PreferenceConstants.laguagecode);
+          Get.toNamed(AppRouteNameConstant.changeLanguageScreen)!.then((value) async {
+            selectedLanguage.value = await SharedPref.getString(PreferenceConstants.laguagecode);
             update();
             // onInit();
           });
@@ -471,9 +451,5 @@ class ProfileItemModel {
   final String? subTitle;
   final Function()? onTap;
 
-  ProfileItemModel(
-      {required this.icon,
-      required this.title,
-      required this.onTap,
-      this.subTitle});
+  ProfileItemModel({required this.icon, required this.title, required this.onTap, this.subTitle});
 }

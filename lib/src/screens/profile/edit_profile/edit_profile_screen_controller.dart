@@ -85,8 +85,7 @@ class EditProfileController extends GetxController {
   }
 
   void getPhoneNumber() async {
-    countryCodes.value =
-        await SharedPref.getString(PreferenceConstants.contryCodeKey);
+    countryCodes.value = await SharedPref.getString(PreferenceConstants.contryCodeKey);
   }
 
   ///View Profile Api calling
@@ -107,21 +106,15 @@ class EditProfileController extends GetxController {
           emailController.text = viewProfile!.result![0].email!;
           countryCodes.value = viewProfile!.result![0].countryCode!;
           phoneNumberController.text = viewProfile!.result![0].mobileNo!;
-          if (viewProfile?.result?[0].dob != null &&
-              viewProfile!.result![0].dob != '0000-00-00') {
-            dobController.text = DateFormat('yyyy-MM-dd')
-                .format(DateTime.parse(viewProfile?.result?[0].dob));
-            showDobController.text = DateFormat('dd/MM/yyyy')
-                .format(DateTime.parse(viewProfile?.result?[0].dob));
+          if (viewProfile?.result?[0].dob != null && viewProfile!.result![0].dob != '0000-00-00') {
+            dobController.text = DateFormat('yyyy-MM-dd').format(DateTime.parse(viewProfile?.result?[0].dob));
+            showDobController.text = DateFormat('dd/MM/yyyy').format(DateTime.parse(viewProfile?.result?[0].dob));
           } else {
-            showDobController.text =
-                toLabelValue(ConstantStrings.dateOfBirthText);
+            showDobController.text = toLabelValue(ConstantStrings.dateOfBirthText);
           }
           selected.value = viewProfile!.result![0].gender!;
-          if (viewProfile!.result![0].dob != null &&
-              viewProfile!.result![0].dob != '0000-00-00') {
-            userDateOFBirth =
-                DateTime.parse(viewProfile!.result![0].dob.toString());
+          if (viewProfile!.result![0].dob != null && viewProfile!.result![0].dob != '0000-00-00') {
+            userDateOFBirth = DateTime.parse(viewProfile!.result![0].dob.toString());
           }
           name = response.data['result'][0]['name'];
           email = response.data['result'][0]['email'];
@@ -129,19 +122,16 @@ class EditProfileController extends GetxController {
         } else if (response.data["code"] == "-7") {
           // Get.back();
           CommonWidgets().showToastMessage('user_login_other_device');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
           Get.offAllNamed(AppRouteNameConstant.tabScreen);
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
-        } else if (response.data["code"] == "-1" &&
-            response.data["message"] == "inactive_account") {
+        } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
           CommonWidgets().showToastMessage('inactive_account');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -149,12 +139,10 @@ class EditProfileController extends GetxController {
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
           showLoader(false);
-        } else if (response.data["code"] == "-4" &&
-            response.data["message"] == "delete_account") {
+        } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
           showLoader.value = false;
           CommonWidgets().showToastMessage(response.data["message"]);
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -174,15 +162,6 @@ class EditProfileController extends GetxController {
     }
   }
 
-  Future<void> _getInitialCountryCode() async {
-    String countryCode =
-        await SharedPref.getString(PreferenceConstants.contryCodeKey) ??
-            '+1'; // Fetch the stored country code
-
-    initialCountryCode = countryCode;
-  }
-
-  ///update Profile Api calling
   editProfile() async {
     String? errorMsg;
 
@@ -193,8 +172,7 @@ class EditProfileController extends GetxController {
         (selected.value != viewProfile!.result![0].gender!)) {
       if (phoneNumberController.value.text.trim().isEmpty) {
         errorMsg = "enter_number";
-      } else if (phoneNumberController.text.isNotEmpty &&
-          phoneNumberController.text.length < 8) {
+      } else if (phoneNumberController.text.isNotEmpty && phoneNumberController.text.length < 8) {
         errorMsg = "password_length_error";
       } else if (fullNameController.value.text.trim().isEmpty) {
         errorMsg = "enter_full_name";
@@ -218,18 +196,11 @@ class EditProfileController extends GetxController {
             ConstantStrings.passwordKey: password,
             ConstantStrings.dobKey: dobController.text,
             ConstantStrings.languageIdKey: 1,
-            ConstantStrings.countryCodeKey:
-                generalSetting?.result![0].countryCode ??
-                    ConstantStrings.countryCodeKuwait,
+            ConstantStrings.countryCodeKey: generalSetting?.result![0].countryCode ?? ConstantStrings.countryCodeKuwait,
             ConstantStrings.genderKey: selected.value,
           }).then((response) async {
             if (response.data["code"] == "1") {
-              print("${response.data["message"]}");
-              var userDetail = EditProfileMode.fromJson(response.data);
-
-              // RxInt page = 3.obs;
-              // TabbarBinding().dependencies();
-              // Get.find<TabbarController>().currentIndex = page;
+              debugPrint("${response.data["message"]}");
 
               ProfileBinding().dependencies();
               showLoader(false);
@@ -245,38 +216,30 @@ class EditProfileController extends GetxController {
             } else if (response.data["code"] == "-7") {
               // Get.back();
               CommonWidgets().showToastMessage('user_login_other_device');
-              language =
-                  await SharedPref.getString(PreferenceConstants.laguagecode);
+              language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
               await SharedPref.clearSharedPref();
-              await SharedPref.setString(
-                  PreferenceConstants.laguagecode, language);
+              await SharedPref.setString(PreferenceConstants.laguagecode, language);
               Get.offAllNamed(AppRouteNameConstant.tabScreen);
               // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
               update();
-            } else if (response.data["code"] == "-1" &&
-                response.data["message"] == "inactive_account") {
+            } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
               CommonWidgets().showToastMessage('inactive_account');
-              language =
-                  await SharedPref.getString(PreferenceConstants.laguagecode);
+              language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
               await SharedPref.clearSharedPref();
-              await SharedPref.setString(
-                  PreferenceConstants.laguagecode, language);
+              await SharedPref.setString(PreferenceConstants.laguagecode, language);
               Get.offAllNamed(AppRouteNameConstant.tabScreen);
               // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
               update();
               showLoader(false);
-            } else if (response.data["code"] == "-4" &&
-                response.data["message"] == "delete_account") {
+            } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
               showLoader.value = false;
               CommonWidgets().showToastMessage(response.data["message"]);
-              language =
-                  await SharedPref.getString(PreferenceConstants.laguagecode);
+              language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
               await SharedPref.clearSharedPref();
-              await SharedPref.setString(
-                  PreferenceConstants.laguagecode, language);
+              await SharedPref.setString(PreferenceConstants.laguagecode, language);
               Get.offAllNamed(AppRouteNameConstant.tabScreen);
               // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
               update();
@@ -310,8 +273,7 @@ class EditProfileController extends GetxController {
         content: Text(toLabelValue("delete_account_message")),
         actions: [
           TextButton(
-              child: Text(toLabelValue(ConstantStrings.no),
-                  style: TextStyle(color: ColorConstant.appThemeColor)),
+              child: Text(toLabelValue(ConstantStrings.no), style: TextStyle(color: ColorConstant.appThemeColor)),
               onPressed: () {
                 Get.back();
               }),
@@ -340,9 +302,8 @@ class EditProfileController extends GetxController {
       "device_type": "1",
     }).then((value) async {
       try {
-        print(value);
-        if ((value.statusCode.toString() == "1" ||
-                value.statusCode.toString() == "200") &&
+        debugPrint('$value');
+        if ((value.statusCode.toString() == "1" || value.statusCode.toString() == "200") &&
             value.data["message"] == "account_delete") {
           ProfileBinding().dependencies();
           CommonWidgets().showToastMessage(value.data["message"]);
@@ -356,8 +317,7 @@ class EditProfileController extends GetxController {
             update();
           });
           showLoader.value = false;
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -371,7 +331,7 @@ class EditProfileController extends GetxController {
         Get.back();
         showLoader.value = false;
         update();
-        print(e.toString());
+        debugPrint(e.toString());
       }
     });
   }

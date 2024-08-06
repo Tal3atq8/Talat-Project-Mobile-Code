@@ -1,6 +1,5 @@
 class ReviewModel {
-  const ReviewModel(
-      {this.id, this.title,this.desc,this.rate,this.dateTime});
+  const ReviewModel({this.id, this.title, this.desc, this.rate, this.dateTime});
 
   final int? id;
   final String? title;
@@ -8,6 +7,7 @@ class ReviewModel {
   final String? rate;
   final String? dateTime;
 }
+
 class ReviewListModel {
   String? code;
   String? message;
@@ -54,8 +54,7 @@ class Result {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.ratingReviewList != null) {
-      data['rating_review_list'] =
-          this.ratingReviewList!.map((v) => v.toJson()).toList();
+      data['rating_review_list'] = this.ratingReviewList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -68,8 +67,7 @@ class RatingReviewList {
   String? review;
   String? dateTime;
 
-  RatingReviewList(
-      {this.id, this.userName, this.ratings, this.review, this.dateTime});
+  RatingReviewList({this.id, this.userName, this.ratings, this.review, this.dateTime});
 
   RatingReviewList.fromJson(Map<String, dynamic> json) {
     id = json['id'];

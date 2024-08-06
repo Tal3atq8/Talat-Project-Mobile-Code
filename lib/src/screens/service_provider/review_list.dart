@@ -18,14 +18,11 @@ class ReviewListScreen extends StatelessWidget {
         appBar: CustomAppbarNoSearchBar(title: toLabelValue("rating_review")),
         backgroundColor: ColorConstant.whiteColor,
         body: Obx(() => ListView.separated(
-              itemCount:
-                  controller.providerDetailModel.value.result?.review?.length ??
-                      0,
+              itemCount: controller.providerDetailModel.value.result?.review?.length ?? 0,
               shrinkWrap: true,
               // physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
-                var reviewItems =
-                    controller.providerDetailModel.value.result?.review?[index];
+                var reviewItems = controller.providerDetailModel.value.result?.review?[index];
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,19 +47,15 @@ class ReviewListScreen extends StatelessWidget {
                             padding: const EdgeInsets.only(left: 16),
                             child: Row(
                               children: [
-                                if (reviewItems?.ratings != null &&
-                                    reviewItems!.ratings.toString().isNotEmpty)
+                                if (reviewItems?.ratings != null && reviewItems!.ratings.toString().isNotEmpty)
                                   Text(
                                     " ${double.parse(reviewItems.ratings.toString()).toStringAsFixed(1)}",
                                     style: TextStyle(
-                                        fontSize: 12,
-                                        color: ColorConstant.blackColor,
-                                        fontWeight: FontWeight.normal),
+                                        fontSize: 12, color: ColorConstant.blackColor, fontWeight: FontWeight.normal),
                                   ),
                                 const SizedBox(width: 2),
                                 RatingBar.builder(
-                                  initialRating:
-                                      reviewItems?.ratings?.toDouble() ?? 0.0,
+                                  initialRating: reviewItems?.ratings?.toDouble() ?? 0.0,
                                   minRating: 1,
                                   ignoreGestures: true,
                                   direction: Axis.horizontal,
@@ -76,7 +69,7 @@ class ReviewListScreen extends StatelessWidget {
                                     color: ColorConstant.appThemeColor,
                                   ),
                                   onRatingUpdate: (rating) {
-                                    print(rating);
+                                    debugPrint('$rating');
                                   },
                                 ),
                               ],
@@ -94,8 +87,7 @@ class ReviewListScreen extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(left: 16),
                               child: Text(
-                                DateTime.parse(reviewItems?.createdAt ?? "")
-                                    .timeAgo(numericDates: false),
+                                DateTime.parse(reviewItems?.createdAt ?? "").timeAgo(numericDates: false),
                                 style: txtStyleNormalBlack14(),
                               ),
                             ),
@@ -119,8 +111,7 @@ class ReviewListScreen extends StatelessWidget {
                   ],
                 );
               },
-              separatorBuilder: (BuildContext context, int index) =>
-                  const Divider(thickness: 2),
+              separatorBuilder: (BuildContext context, int index) => const Divider(thickness: 2),
             )));
   }
 }

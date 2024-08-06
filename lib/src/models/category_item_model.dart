@@ -14,11 +14,11 @@ class CategoryItemModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['message'] = this.message;
-    data['status'] = this.status;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['message'] = message;
+    data['status'] = status;
     data['code'] = this.code;
-    if (this.result != null) {
+    if (result != null) {
       data['result'] = this.result!.toJson();
     }
     return data;
@@ -35,9 +35,9 @@ class Result {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.itemList != null) {
-      data['item_list'] = this.itemList!.toJson();
+      data['item_list'] = itemList!.toJson();
     }
     return data;
   }
@@ -101,7 +101,7 @@ class ItemList {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['current_page'] = this.currentPage;
+    data['current_page'] = currentPage;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }

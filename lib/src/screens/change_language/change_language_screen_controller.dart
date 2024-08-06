@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:talat/src/models/label_model.dart';
@@ -10,7 +11,7 @@ class ChangeLanguageController extends GetxController {
 
   void setOrderType(String type) {
     laguagecode.value = type;
-    print("The order type is ${laguagecode.value}");
+    debugPrint("The order type is ${laguagecode.value}");
     update();
   }
 
@@ -26,7 +27,6 @@ class ChangeLanguageController extends GetxController {
   }
 
   getLabels() async {
-    laguagecode.value =
-        await SharedPref.getString(PreferenceConstants.laguagecode) ?? "1";
+    laguagecode.value = await SharedPref.getString(PreferenceConstants.laguagecode) ?? "1";
   }
 }

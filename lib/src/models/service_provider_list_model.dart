@@ -4,8 +4,7 @@ class ServiceProviderListResponseModel {
   int? code;
   ServiceProviderListResult? result;
 
-  ServiceProviderListResponseModel(
-      {this.message, this.status, this.code, this.result});
+  ServiceProviderListResponseModel({this.message, this.status, this.code, this.result});
 
   ServiceProviderListResponseModel.fromJson(Map<String, dynamic> json) {
     message = json['message'];
@@ -33,10 +32,8 @@ class ServiceProviderListResult {
   ServiceProviderListResult({this.category, this.provider});
 
   ServiceProviderListResult.fromJson(Map<String, dynamic> json) {
-    category =
-        json['category'] != null ? Category.fromJson(json['category']) : null;
-    provider =
-        json['provider'] != null ? Provider.fromJson(json['provider']) : null;
+    category = json['category'] != null ? Category.fromJson(json['category']) : null;
+    provider = json['provider'] != null ? Provider.fromJson(json['provider']) : null;
   }
 
   Map<String, dynamic> toJson() {

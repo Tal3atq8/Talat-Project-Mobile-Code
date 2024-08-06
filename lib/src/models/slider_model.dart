@@ -1,44 +1,38 @@
-import 'package:flutter/material.dart';
 import 'package:talat/src/theme/image_constants.dart';
 
-
-class SliderModel{
-
+class SliderModel {
   String? imageAssetPath;
   String? title;
   String? desc;
 
-  SliderModel({this.imageAssetPath,this.title,this.desc});
+  SliderModel({this.imageAssetPath, this.title, this.desc});
 
-  void setImageAssetPath(String getImageAssetPath){
+  void setImageAssetPath(String getImageAssetPath) {
     imageAssetPath = getImageAssetPath;
   }
 
-  void setTitle(String getTitle){
+  void setTitle(String getTitle) {
     title = getTitle;
   }
 
-  void setDesc(String getDesc){
+  void setDesc(String getDesc) {
     desc = getDesc;
   }
 
-  String? getImageAssetPath(){
+  String? getImageAssetPath() {
     return imageAssetPath;
   }
 
-  String? getTitle(){
+  String? getTitle() {
     return title;
   }
 
-  String? getDesc(){
+  String? getDesc() {
     return desc;
   }
-
 }
 
-
-List<SliderModel> getSlides(){
-
+List<SliderModel> getSlides() {
   List<SliderModel> slides = <SliderModel>[];
   SliderModel sliderModel = new SliderModel();
 

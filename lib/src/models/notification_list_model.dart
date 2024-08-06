@@ -8,8 +8,7 @@ class NotificationListModel {
   NotificationListModel.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     message = json['message'];
-    result =
-    json['result'] != null ? new Result.fromJson(json['result']) : null;
+    result = json['result'] != null ? new Result.fromJson(json['result']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -31,27 +30,27 @@ class Result {
   int? lastPage;
   String? lastPageUrl;
   List<Links>? links;
-  dynamic? nextPageUrl;
+  dynamic nextPageUrl;
   String? path;
   int? perPage;
-  dynamic? prevPageUrl;
+  dynamic prevPageUrl;
   int? to;
   int? total;
 
   Result(
       {this.currentPage,
-        this.data,
-        this.firstPageUrl,
-        this.from,
-        this.lastPage,
-        this.lastPageUrl,
-        this.links,
-        this.nextPageUrl,
-        this.path,
-        this.perPage,
-        this.prevPageUrl,
-        this.to,
-        this.total});
+      this.data,
+      this.firstPageUrl,
+      this.from,
+      this.lastPage,
+      this.lastPageUrl,
+      this.links,
+      this.nextPageUrl,
+      this.path,
+      this.perPage,
+      this.prevPageUrl,
+      this.to,
+      this.total});
 
   Result.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];
@@ -115,14 +114,14 @@ class NotificationList {
 
   NotificationList(
       {this.id,
-        this.bookingId,
-        this.notificationType,
-        this.notificationAmount,
-        this.activityName,
-        this.notificationTitle,
-        this.notificationMessage,
-        this.notificationUser,
-        this.notificationDate});
+      this.bookingId,
+      this.notificationType,
+      this.notificationAmount,
+      this.activityName,
+      this.notificationTitle,
+      this.notificationMessage,
+      this.notificationUser,
+      this.notificationDate});
 
   NotificationList.fromJson(Map<String, dynamic> json) {
     id = json['id'];

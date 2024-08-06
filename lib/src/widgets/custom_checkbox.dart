@@ -21,8 +21,8 @@ class CustomCheckBox extends StatefulWidget {
   final String? tooltip;
   final MouseCursor? mouseCursors;
 
-  CustomCheckBox({
-    Key? key,
+  const CustomCheckBox({
+    super.key,
     required this.value,
     required this.onChanged,
     this.checkedIcon,
@@ -36,9 +36,10 @@ class CustomCheckBox extends StatefulWidget {
     this.splashColor,
     this.tooltip,
     this.mouseCursors,
-  }) : super(key: key);
+  });
 
   @override
+  // ignore: library_private_types_in_public_api
   _CustomCheckBoxState createState() => _CustomCheckBoxState();
 }
 

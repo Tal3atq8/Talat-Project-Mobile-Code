@@ -4,8 +4,7 @@ class CheckAvailableBookingSlotModel {
   dynamic code;
   List<Result>? result;
 
-  CheckAvailableBookingSlotModel(
-      {this.message, this.status, this.code, this.result});
+  CheckAvailableBookingSlotModel({this.message, this.status, this.code, this.result});
 
   CheckAvailableBookingSlotModel.fromJson(Map<String, dynamic> json) {
     message = json['message'];
@@ -53,8 +52,7 @@ class Result {
     date = json['date'];
     startDate = json['start_date'];
     endDate = json['end_date'];
-    timeSlot =
-        json['time_slot'] != null ? TimeSlot.fromJson(json['time_slot']) : null;
+    timeSlot = json['time_slot'] != null ? TimeSlot.fromJson(json['time_slot']) : null;
     availableSlot = json['available_slot'];
   }
 

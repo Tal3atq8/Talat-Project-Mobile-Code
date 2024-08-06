@@ -36,8 +36,8 @@ class Result {
   String? contactUsEmail;
   String? contactUsMobileNo;
   String? contactUsAddress;
-  Null? latitude;
-  Null? longitude;
+  Null latitude;
+  Null longitude;
   String? instagramLink;
   String? facebookLink;
   String? twitterLink;
@@ -46,20 +46,20 @@ class Result {
 
   Result(
       {this.currency,
-        this.countryCode,
-        this.noData,
-        this.passwordMinCount,
-        this.otpTimerSeconds,
-        this.contactUsEmail,
-        this.contactUsMobileNo,
-        this.contactUsAddress,
-        this.latitude,
-        this.longitude,
-        this.instagramLink,
-        this.facebookLink,
-        this.twitterLink,
-        this.youtubeLink,
-        this.whatsappLink});
+      this.countryCode,
+      this.noData,
+      this.passwordMinCount,
+      this.otpTimerSeconds,
+      this.contactUsEmail,
+      this.contactUsMobileNo,
+      this.contactUsAddress,
+      this.latitude,
+      this.longitude,
+      this.instagramLink,
+      this.facebookLink,
+      this.twitterLink,
+      this.youtubeLink,
+      this.whatsappLink});
 
   Result.fromJson(Map<String, dynamic> json) {
     currency = json['currency'];

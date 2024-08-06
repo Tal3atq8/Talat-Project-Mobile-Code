@@ -14,8 +14,7 @@ import 'package:talat/src/widgets/progress_dialog.dart';
 class FavoriteListController extends GetxController {
   Rx<FavoriteModel> favoriteItems = FavoriteModel().obs;
   RxList<FavouriteList> resultFavList = <FavouriteList>[].obs;
-  RefreshController refreshController =
-      RefreshController(initialRefresh: false);
+  RefreshController refreshController = RefreshController(initialRefresh: false);
 
   RxBool myshowLoader = false.obs;
   RxBool favShowLoader = false.obs;
@@ -37,7 +36,7 @@ class FavoriteListController extends GetxController {
   /// Get FavouriteList api Calling
   Future<void> getFavouriteList({bool? isRefresh}) async {
     if (pageIndex.value == 1) {
-      if (isRefresh == null || (isRefresh != null && !isRefresh)) {
+      if (isRefresh == null || (!isRefresh)) {
         myshowLoader.value = true;
       }
       // result.value = [];
@@ -50,15 +49,13 @@ class FavoriteListController extends GetxController {
           ConstantStrings.userIdKey: userId,
           ConstantStrings.deviceTokenKey: token,
           ConstantStrings.languageId: language ?? "1",
-          ConstantStrings.longitudeKey:
-              userLong.value != "" ? userLong.value : "0.0",
-          ConstantStrings.latitudKey:
-              userLat.value != "" ? userLat.value : "0.0",
+          ConstantStrings.longitudeKey: userLong.value != "" ? userLong.value : "0.0",
+          ConstantStrings.latitudKey: userLat.value != "" ? userLat.value : "0.0",
           ConstantStrings.limitKey: limit.value,
           ConstantStrings.pageKey: pageIndex.value.toString()
         }).then((response) async {
           if (response.data['code'] == 200) {
-            print("Favourite List Count == ${response.data["result"]}");
+            debugPrint("Favourite List Count == ${response.data["result"]}");
 
             favoriteItems.value = FavoriteModel.fromJson(response.data);
             resultFavList.value = [];
@@ -73,37 +70,29 @@ class FavoriteListController extends GetxController {
             Get.back();
           } else if (response.data["code"] == "-7") {
             CommonWidgets().showToastMessage('user_login_other_device');
-            language =
-                await SharedPref.getString(PreferenceConstants.laguagecode);
+            language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
             await SharedPref.clearSharedPref();
-            await SharedPref.setString(
-                PreferenceConstants.laguagecode, language);
+            await SharedPref.setString(PreferenceConstants.laguagecode, language);
             Get.offAllNamed(AppRouteNameConstant.tabScreen);
             // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
             update();
-          } else if (response.data["code"] == "-1" &&
-              response.data["message"] == "inactive_account") {
+          } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
             CommonWidgets().showToastMessage('inactive_account');
-            language =
-                await SharedPref.getString(PreferenceConstants.laguagecode);
+            language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
             await SharedPref.clearSharedPref();
-            await SharedPref.setString(
-                PreferenceConstants.laguagecode, language);
+            await SharedPref.setString(PreferenceConstants.laguagecode, language);
             Get.offAllNamed(AppRouteNameConstant.tabScreen);
             update();
             myshowLoader.value = false;
             favShowLoader.value = false;
-          } else if (response.data["code"] == "-4" &&
-              response.data["message"] == "delete_account") {
+          } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
             CommonWidgets().showToastMessage(response.data["message"]);
-            language =
-                await SharedPref.getString(PreferenceConstants.laguagecode);
+            language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
             await SharedPref.clearSharedPref();
-            await SharedPref.setString(
-                PreferenceConstants.laguagecode, language);
+            await SharedPref.setString(PreferenceConstants.laguagecode, language);
             Get.offAllNamed(AppRouteNameConstant.tabScreen);
             update();
           }
@@ -122,7 +111,7 @@ class FavoriteListController extends GetxController {
   /// Delete FavouriteItem api Calling
   void deleteFavouriteItem(String? activityId) async {
     favShowLoader.value = true;
-    print("delete object ===");
+    debugPrint("delete object ===");
     await TalatService().removeFavApi({
       ConstantStrings.userTypeKey: '1',
       ConstantStrings.deviceTypeKey: '1',
@@ -133,8 +122,7 @@ class FavoriteListController extends GetxController {
       ConstantStrings.isFavKey: 0,
     }).then((response) async {
       if (response.data['code'] == "1") {
-        getFavouriteList(isRefresh: true).then((value) =>
-            CommonWidgets().showToastMessage("removed_from_favourite"));
+        getFavouriteList(isRefresh: true).then((value) => CommonWidgets().showToastMessage("removed_from_favourite"));
       } else if (response.data["code"] == "-1") {
         myshowLoader.value = false;
         Get.back();
@@ -146,8 +134,7 @@ class FavoriteListController extends GetxController {
         await SharedPref.setString(PreferenceConstants.laguagecode, language);
         Get.offAllNamed(AppRouteNameConstant.tabScreen);
         update();
-      } else if (response.data["code"] == "-1" &&
-          response.data["message"] == "inactive_account") {
+      } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
         CommonWidgets().showToastMessage('inactive_account');
         language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
@@ -156,8 +143,7 @@ class FavoriteListController extends GetxController {
         Get.offAllNamed(AppRouteNameConstant.tabScreen);
         myshowLoader.value = false;
         update();
-      } else if (response.data["code"] == "-4" &&
-          response.data["message"] == "delete_account") {
+      } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
         CommonWidgets().showToastMessage(response.data["message"]);
         language = await SharedPref.getString(PreferenceConstants.laguagecode);
 

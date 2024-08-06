@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:talat/src/models/service_list_model.dart';
-import 'package:talat/src/models/user_deati_model.dart';
 import 'package:talat/src/services/talat_services.dart';
 import 'package:talat/src/theme/constant_strings.dart';
 import 'package:talat/src/utils/global_constants.dart';
@@ -68,18 +67,14 @@ class PartnerRegistrationController extends GetxController {
           "email": emailController.text,
           "business": businessController.text,
           "country_code": selectedCountryCode.value,
-          "services":
-              selectedService.value.isNotEmpty ? selectedService.value : "0",
+          "services": selectedService.value.isNotEmpty ? selectedService.value : "0",
           "user_id": userId,
         }).then((response) async {
           if (response.data["code"] == "1") {
-            var userDetail = UserDetailModel.fromJson(response.data);
-
             Get.back();
             showLoader.value = false;
             if (response.data["message"] == "success") {
-              CommonWidgets()
-                  .showToastMessage("successfully_registered_as_partner");
+              CommonWidgets().showToastMessage("successfully_registered_as_partner");
             } else {
               CommonWidgets().showToastMessage(response.data["message"]);
               Get.back();
@@ -95,24 +90,19 @@ class PartnerRegistrationController extends GetxController {
           } else if (response.data["code"] == "-7") {
             // Get.back();
             CommonWidgets().showToastMessage('user_login_other_device');
-            language =
-                await SharedPref.getString(PreferenceConstants.laguagecode);
+            language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
             await SharedPref.clearSharedPref();
-            await SharedPref.setString(
-                PreferenceConstants.laguagecode, language);
+            await SharedPref.setString(PreferenceConstants.laguagecode, language);
             Get.offAllNamed(AppRouteNameConstant.tabScreen);
             // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
             update();
-          } else if (response.data["code"] == "-1" &&
-              response.data["message"] == "inactive_account") {
+          } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
             CommonWidgets().showToastMessage('inactive_account');
-            language =
-                await SharedPref.getString(PreferenceConstants.laguagecode);
+            language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
             await SharedPref.clearSharedPref();
-            await SharedPref.setString(
-                PreferenceConstants.laguagecode, language);
+            await SharedPref.setString(PreferenceConstants.laguagecode, language);
             Get.offAllNamed(AppRouteNameConstant.tabScreen);
             // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
             showLoader(false);
@@ -120,16 +110,13 @@ class PartnerRegistrationController extends GetxController {
           } else if (response.data["code"] == "0") {
             CommonWidgets().showToastMessage('${response.data["message"]}');
             showLoader(false);
-          } else if (response.data["code"] == "-4" &&
-              response.data["message"] == "delete_account") {
+          } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
             showLoader.value = false;
             CommonWidgets().showToastMessage(response.data["message"]);
-            language =
-                await SharedPref.getString(PreferenceConstants.laguagecode);
+            language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
             await SharedPref.clearSharedPref();
-            await SharedPref.setString(
-                PreferenceConstants.laguagecode, language);
+            await SharedPref.setString(PreferenceConstants.laguagecode, language);
             Get.offAllNamed(AppRouteNameConstant.tabScreen);
             // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
             update();
@@ -157,23 +144,19 @@ class PartnerRegistrationController extends GetxController {
         ConstantStrings.languageId: language ?? "1",
       }).then((response) async {
         if (response.data['code'] == "1") {
-          serviceList.value =
-              ServiceList.fromJson(response.data).result!.servicesList!;
+          serviceList.value = ServiceList.fromJson(response.data).result!.servicesList!;
           if (serviceList.isNotEmpty) {
-            String categoryId =
-                await SharedPref.getString(ConstantStrings.emailText);
+            String categoryId = await SharedPref.getString(ConstantStrings.emailText);
             if (categoryId.isNotEmpty) {
-              selectedServicesList.value = serviceList
-                  .where((element) => (element.id ?? "") == categoryId)
-                  .toList()
-                  .first;
+              selectedServicesList.value =
+                  serviceList.where((element) => (element.id ?? "") == categoryId).toList().first;
             } else {
               serviceList.value = serviceList.value;
             }
           } else {
             serviceList.value = [];
           }
-          print("quotesId ${response.data}");
+          debugPrint("quotesId ${response.data}");
           serviceItems.value = ServiceList.fromJson(response.data);
           update();
         }

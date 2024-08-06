@@ -43,22 +43,14 @@ class ForgotPassword extends GetWidget<ForgotPasswordController> {
               const SizedBox(height: 50),
               Padding(
                 padding: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
-                child: Text(
-                    toLabelValue(ConstantsLabelKeys.forgotpassword).toString(),
+                child: Text(toLabelValue(ConstantsLabelKeys.forgotpassword).toString(),
                     maxLines: 2,
-                    style: TextStyle(
-                        color: ColorConstant.whiteColor,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w300)),
+                    style: TextStyle(color: ColorConstant.whiteColor, fontSize: 24, fontWeight: FontWeight.w300)),
               ),
               Padding(
-                padding:
-                    const EdgeInsets.only(left: 16.0, bottom: 40, right: 16),
-                child: Text(
-                    toLabelValue(
-                        ConstantsLabelKeys.enter_email_to_receive_password),
-                    style:
-                        txtStyleNormalGray14(color: ColorConstant.whiteColor)),
+                padding: const EdgeInsets.only(left: 16.0, bottom: 40, right: 16),
+                child: Text(toLabelValue(ConstantsLabelKeys.enter_email_to_receive_password),
+                    style: txtStyleNormalGray14(color: ColorConstant.whiteColor)),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -87,19 +79,14 @@ class ForgotPassword extends GetWidget<ForgotPasswordController> {
                       : ElevatedButton(
                           style: ButtonStyle(
                             elevation: MaterialStateProperty.all(0),
-                            minimumSize: MaterialStateProperty.all(
-                                const Size.fromHeight(50)),
-                            backgroundColor: MaterialStateProperty.all(
-                                ColorConstant.whiteColor),
-                            textStyle: MaterialStateProperty.all(
-                                const TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold)),
+                            minimumSize: MaterialStateProperty.all(const Size.fromHeight(50)),
+                            backgroundColor: MaterialStateProperty.all(ColorConstant.whiteColor),
+                            textStyle:
+                                MaterialStateProperty.all(const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                             shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
+                              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                             ),
-                            overlayColor:
-                                MaterialStateProperty.resolveWith<Color?>(
+                            overlayColor: MaterialStateProperty.resolveWith<Color?>(
                               (Set<MaterialState> states) {
                                 if (states.contains(MaterialState.pressed)) {
                                   return Colors.blue[100]; //<-- SEE HERE
@@ -115,12 +102,9 @@ class ForgotPassword extends GetWidget<ForgotPasswordController> {
                             if (controller.showLoader.value == true) {}
                           },
                           child: Text(
-                            toLabelValue(ConstantsLabelKeys.submitText)
-                                .toString(),
+                            toLabelValue(ConstantsLabelKeys.submitText).toString(),
                             style: TextStyle(
-                                color: ColorConstant.appThemeColor,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400),
+                                color: ColorConstant.appThemeColor, fontSize: 16, fontWeight: FontWeight.w400),
                           ),
                         ),
                 ),

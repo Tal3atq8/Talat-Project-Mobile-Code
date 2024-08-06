@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-
-import 'package:google_maps_webservice_ex/directions.dart';
 import 'package:google_maps_webservice_ex/places.dart';
 
 import 'flutter_google_places.dart';
@@ -137,14 +135,12 @@ class PlacesAutocompleteField extends StatefulWidget {
   final ValueChanged<PlacesAutocompleteResponse>? onError;
 
   @override
-  _LocationAutocompleteFieldState createState() =>
-      _LocationAutocompleteFieldState();
+  _LocationAutocompleteFieldState createState() => _LocationAutocompleteFieldState();
 }
 
 class _LocationAutocompleteFieldState extends State<PlacesAutocompleteField> {
   TextEditingController? _controller;
-  TextEditingController? get _effectiveController =>
-      widget.controller ?? _controller;
+  TextEditingController? get _effectiveController => widget.controller ?? _controller;
 
   @override
   void initState() {
@@ -159,10 +155,8 @@ class _LocationAutocompleteFieldState extends State<PlacesAutocompleteField> {
       widget.controller!.text = oldWidget.controller!.text;
     }
     if (widget.controller == null && oldWidget.controller != null)
-      _controller =
-          TextEditingController.fromValue(oldWidget.controller!.value);
-    else if (widget.controller != null && oldWidget.controller == null)
-      _controller = null;
+      _controller = TextEditingController.fromValue(oldWidget.controller!.value);
+    else if (widget.controller != null && oldWidget.controller == null) _controller = null;
   }
 
   Future<Prediction?> _showAutocomplete() async => PlacesAutocomplete.show(

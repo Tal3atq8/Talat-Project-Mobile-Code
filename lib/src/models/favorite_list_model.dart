@@ -10,8 +10,7 @@ class FavoriteModel {
     message = json['message'];
     status = json['status'];
     code = json['code'];
-    result =
-        json['result'] != null ? new Result.fromJson(json['result']) : null;
+    result = json['result'] != null ? new Result.fromJson(json['result']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -34,10 +33,10 @@ class Result {
   int? lastPage;
   String? lastPageUrl;
   List<Links>? links;
-  dynamic? nextPageUrl;
+  dynamic nextPageUrl;
   String? path;
   int? perPage;
-  dynamic? prevPageUrl;
+  dynamic prevPageUrl;
   int? to;
   int? total;
 
@@ -159,7 +158,7 @@ class FavouriteList {
 }
 
 class Links {
-  dynamic? url;
+  dynamic url;
   String? label;
   bool? active;
 

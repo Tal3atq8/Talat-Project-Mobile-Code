@@ -42,8 +42,7 @@ class ChangePasswordController extends GetxController {
         ConstantStrings.newPasswordKey: newPasswordController.text,
       }).then((response) async {
         if (response.data["code"] == "1") {
-          CommonWidgets()
-              .showToastMessage("password_has_been_changed".toString());
+          CommonWidgets().showToastMessage("password_has_been_changed".toString());
           Get.back();
           Get.back();
           // Get.offNamed(AppRouteNameConstant.tabScreen);
@@ -54,19 +53,16 @@ class ChangePasswordController extends GetxController {
         } else if (response.data["code"] == "-7") {
           // Get.back();
           CommonWidgets().showToastMessage('user_login_other_device');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
           Get.offAllNamed(AppRouteNameConstant.tabScreen);
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
-        } else if (response.data["code"] == "-1" &&
-            response.data["message"] == "inactive_account") {
+        } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
           CommonWidgets().showToastMessage('inactive_account');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -74,12 +70,10 @@ class ChangePasswordController extends GetxController {
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
           showLoader(false);
-        } else if (response.data["code"] == "-4" &&
-            response.data["message"] == "delete_account") {
+        } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
           showLoader.value = false;
           CommonWidgets().showToastMessage(response.data["message"]);
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);

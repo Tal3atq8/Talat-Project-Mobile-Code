@@ -43,39 +43,31 @@ class ChangePassword extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Padding(
-                  padding:
-                      const EdgeInsets.only(left: 16.0, top: 24.0, right: 16),
+                  padding: const EdgeInsets.only(left: 16.0, top: 24.0, right: 16),
                   child: Text(
-                    toLabelValue(ConstantsLabelKeys.setAccountPassword)
-                        .toString(),
+                    toLabelValue(ConstantsLabelKeys.setAccountPassword).toString(),
                     style: txtStyleTitleBoldBlack20w300(),
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(left: 16.0, top: 20, right: 16),
+                  padding: const EdgeInsets.only(left: 16.0, top: 20, right: 16),
                   child: CustomTextFormField(
                     // readOnly: false,
                     controller: controller.passwordController,
                     width: double.infinity,
-                    hintText: toLabelValue(ConstantsLabelKeys.currentPassword)
-                        .toString(),
+                    hintText: toLabelValue(ConstantsLabelKeys.currentPassword).toString(),
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9@]")),
                     ],
                     onChanged: (value) {},
                     suffix: InkWell(
                       onTap: () {
-                        controller.isShowPassword.value =
-                            !controller.isShowPassword.value;
+                        controller.isShowPassword.value = !controller.isShowPassword.value;
                       },
                       child: Container(
-                          margin: getMargin(
-                              left: 12, top: 12, right: 20, bottom: 12),
+                          margin: getMargin(left: 12, top: 12, right: 20, bottom: 12),
                           child: Icon(
-                            controller.isShowPassword.value
-                                ? Icons.visibility_outlined
-                                : Icons.visibility_off_outlined,
+                            controller.isShowPassword.value ? Icons.visibility_outlined : Icons.visibility_off_outlined,
                             color: ColorConstant.appThemeColor,
                           )),
                     ),
@@ -87,8 +79,7 @@ class ChangePassword extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(left: 16.0, top: 10, right: 16),
+                  padding: const EdgeInsets.only(left: 16.0, top: 10, right: 16),
                   child: CustomTextFormField(
                     readOnly: false,
                     width: double.infinity,
@@ -97,12 +88,10 @@ class ChangePassword extends StatelessWidget {
                     ],
                     suffix: InkWell(
                       onTap: () {
-                        controller.isNewShowPassword.value =
-                            !controller.isNewShowPassword.value;
+                        controller.isNewShowPassword.value = !controller.isNewShowPassword.value;
                       },
                       child: Container(
-                          margin: getMargin(
-                              left: 12, top: 12, right: 16, bottom: 12),
+                          margin: getMargin(left: 12, top: 12, right: 16, bottom: 12),
                           child: Icon(
                             controller.isNewShowPassword.value
                                 ? Icons.visibility_outlined
@@ -113,8 +102,7 @@ class ChangePassword extends StatelessWidget {
                     isObscureText: !controller.isNewShowPassword.value,
                     onChanged: (value) {},
                     controller: controller.newPasswordController,
-                    hintText:
-                        toLabelValue(ConstantsLabelKeys.newPassword).toString(),
+                    hintText: toLabelValue(ConstantsLabelKeys.newPassword).toString(),
                     textInputType: TextInputType.visiblePassword,
                     margin: getMargin(
                       top: 10,
@@ -122,18 +110,15 @@ class ChangePassword extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(left: 16.0, top: 10, right: 16),
+                  padding: const EdgeInsets.only(left: 16.0, top: 10, right: 16),
                   child: CustomTextFormField(
                     width: double.infinity,
                     suffix: InkWell(
                       onTap: () {
-                        controller.isConfirmShowPassword.value =
-                            !controller.isConfirmShowPassword.value;
+                        controller.isConfirmShowPassword.value = !controller.isConfirmShowPassword.value;
                       },
                       child: Container(
-                          margin: getMargin(
-                              left: 12, top: 12, right: 16, bottom: 12),
+                          margin: getMargin(left: 12, top: 12, right: 16, bottom: 12),
                           child: Icon(
                             controller.isConfirmShowPassword.value
                                 ? Icons.visibility_outlined
@@ -148,8 +133,7 @@ class ChangePassword extends StatelessWidget {
                       FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9@]")),
                     ],
                     controller: controller.confirmPasswordController,
-                    hintText: toLabelValue(ConstantsLabelKeys.confirmPassword)
-                        .toString(),
+                    hintText: toLabelValue(ConstantsLabelKeys.confirmPassword).toString(),
                     textInputType: TextInputType.visiblePassword,
                     margin: getMargin(
                       top: 10,
@@ -158,8 +142,7 @@ class ChangePassword extends StatelessWidget {
                 ),
                 Center(
                   child: Padding(
-                    padding:
-                        const EdgeInsets.only(top: 28.0, left: 18, right: 18),
+                    padding: const EdgeInsets.only(top: 28.0, left: 18, right: 18),
                     child: SizedBox(
                       width: double.infinity,
                       height: 50.0,
@@ -167,59 +150,35 @@ class ChangePassword extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                             elevation: 0,
                             backgroundColor: ColorConstant.appThemeColor,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                             //padding: EdgeInsets.symmetric(horizontal: 110, vertical: 16),
-                            textStyle: const TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold)),
+                            textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                         onPressed: () {
                           if (controller.passwordController.text == "") {
-                            CommonWidgets()
-                                .customSnackBar("", 'please_enter_currentpass');
-                          } else if (controller
-                                  .passwordController.text.characters.length <
-                              8) {
-                            CommonWidgets().customSnackBar(
-                                "", 'passwor_must_be_more_than_8_characters');
-                          } else if (controller.newPasswordController.text ==
-                              "") {
-                            CommonWidgets()
-                                .customSnackBar("", 'please_enter_new_pass');
-                          } else if (controller.newPasswordController.text
-                                  .characters.length <
-                              8) {
-                            CommonWidgets().customSnackBar(
-                                "", 'passwor_must_be_more_than_8_characters');
-                          } else if (controller.newPasswordController.text ==
-                              controller.passwordController.text) {
-                            CommonWidgets()
-                                .customSnackBar("", 'pass_should_not_same');
-                          } else if (controller
-                                  .confirmPasswordController.text ==
-                              "") {
-                            CommonWidgets()
-                                .customSnackBar("", 'enter_confirm_pass');
-                          } else if (controller.confirmPasswordController.text
-                                  .characters.length <
-                              8) {
-                            CommonWidgets().customSnackBar(
-                                "", 'passwor_must_be_more_than_8_characters');
-                          } else if (controller
-                                  .confirmPasswordController.text !=
+                            CommonWidgets().customSnackBar("", 'please_enter_currentpass');
+                          } else if (controller.passwordController.text.characters.length < 8) {
+                            CommonWidgets().customSnackBar("", 'passwor_must_be_more_than_8_characters');
+                          } else if (controller.newPasswordController.text == "") {
+                            CommonWidgets().customSnackBar("", 'please_enter_new_pass');
+                          } else if (controller.newPasswordController.text.characters.length < 8) {
+                            CommonWidgets().customSnackBar("", 'passwor_must_be_more_than_8_characters');
+                          } else if (controller.newPasswordController.text == controller.passwordController.text) {
+                            CommonWidgets().customSnackBar("", 'pass_should_not_same');
+                          } else if (controller.confirmPasswordController.text == "") {
+                            CommonWidgets().customSnackBar("", 'enter_confirm_pass');
+                          } else if (controller.confirmPasswordController.text.characters.length < 8) {
+                            CommonWidgets().customSnackBar("", 'passwor_must_be_more_than_8_characters');
+                          } else if (controller.confirmPasswordController.text !=
                               controller.newPasswordController.text) {
-                            CommonWidgets().customSnackBar(
-                                "", 'confirm_pass_must_match_new');
+                            CommonWidgets().customSnackBar("", 'confirm_pass_must_match_new');
                           } else {
                             controller.onChangePasswordTap();
-                            if (controller.showLoader.value)
-                              onNewLoading(context);
+                            if (controller.showLoader.value) onNewLoading(context);
                           }
                         },
                         child: Text(
-                          toLabelValue(ConstantsLabelKeys.changePasswordText)
-                              .toString(),
-                          style: const TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.w600),
+                          toLabelValue(ConstantsLabelKeys.changePasswordText).toString(),
+                          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
                         ),
                       ),
                     ),

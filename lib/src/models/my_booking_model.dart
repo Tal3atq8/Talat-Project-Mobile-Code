@@ -31,11 +31,7 @@ class Result {
   List<CancelBooking>? cancelBooking;
   String? langId;
 
-  Result(
-      {this.activeBooking,
-      this.completedBooking,
-      this.cancelBooking,
-      this.langId});
+  Result({this.activeBooking, this.completedBooking, this.cancelBooking, this.langId});
 
   Result.fromJson(Map<String, dynamic> json) {
     if (json['active_booking'] != null) {
@@ -65,8 +61,7 @@ class Result {
       data['active_booking'] = activeBooking!.map((v) => v.toJson()).toList();
     }
     if (completedBooking != null) {
-      data['completed_booking'] =
-          completedBooking!.map((v) => v.toJson()).toList();
+      data['completed_booking'] = completedBooking!.map((v) => v.toJson()).toList();
     }
     if (cancelBooking != null) {
       data['cancel_booking'] = cancelBooking!.map((v) => v.toJson()).toList();
@@ -107,9 +102,8 @@ class ActiveBooking {
     bookingAmount = json['booking_amount'] == null ? 0 : int.parse(json['booking_amount'].toString());
     timeSlot = json['time_slot'];
     activityName = json['activity_name'];
-    serviceProviderInfo = json['service_providerInfo'] != null
-        ? ServiceProviderInfo.fromJson(json['service_providerInfo'])
-        : null;
+    serviceProviderInfo =
+        json['service_providerInfo'] != null ? ServiceProviderInfo.fromJson(json['service_providerInfo']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -177,9 +171,8 @@ class CompletedBooking {
     bookingToDate = json['booking_toDate'];
     bookingAmount = json['booking_amount'] == null ? 0 : int.parse(json['booking_amount'].toString());
     timeSlot = json['time_slot'];
-    serviceProviderInfo = json['service_providerInfo'] != null
-        ? ServiceProviderInfo.fromJson(json['service_providerInfo'])
-        : null;
+    serviceProviderInfo =
+        json['service_providerInfo'] != null ? ServiceProviderInfo.fromJson(json['service_providerInfo']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -226,9 +219,8 @@ class CancelBooking {
     bookingToDate = json['booking_toDate'];
     bookingAmount = json['booking_amount'] == null ? 0 : int.parse(json['booking_amount'].toString());
     timeSlot = json['time_slot'];
-    serviceProviderInfo = json['service_providerInfo'] != null
-        ? ServiceProviderInfo.fromJson(json['service_providerInfo'])
-        : null;
+    serviceProviderInfo =
+        json['service_providerInfo'] != null ? ServiceProviderInfo.fromJson(json['service_providerInfo']) : null;
   }
 
   Map<String, dynamic> toJson() {

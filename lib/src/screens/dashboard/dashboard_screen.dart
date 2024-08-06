@@ -3,7 +3,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:talat/src/utils/base_server.dart';
 import 'package:talat/src/app_routes/app_routes.dart';
 import 'package:talat/src/network/netwrok_manager_controller.dart';
 import 'package:talat/src/screens/activite/activity_detail/activity_detail_controller.dart';
@@ -220,7 +219,7 @@ class DashBoard extends StatelessWidget {
 
   Widget popularItemsListView() {
     return Obx(() {
-      print(controller.favShowLoader.value);
+      debugPrint('${controller.favShowLoader.value}');
       return ListView.builder(
           itemCount: controller.popularActivityItemList.length >= 5 ? 5 : controller.popularActivityItemList.length,
           scrollDirection: Axis.horizontal,
@@ -343,9 +342,7 @@ class DashBoard extends StatelessWidget {
                               child: GestureDetector(
                                 onTap: () {
                                   if (imageUrl.advertisementType == "Extra advertisement") {
-                                    // ExtraActivityDetailBinding()
-                                    //     .dependencies();
-                                    print(imageUrl.extraAdvertisementData);
+                                    debugPrint('${imageUrl.extraAdvertisementData}');
                                     extraAdvertisementData.value = imageUrl.extraAdvertisementData!;
 
                                     Get.toNamed(AppRouteNameConstant.extraActivityScreen);

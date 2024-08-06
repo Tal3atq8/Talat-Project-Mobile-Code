@@ -27,8 +27,7 @@ class _MoreAboutState extends State<MoreAbout> {
   void initState() {
     super.initState();
     socialIconList.add(SocialIconModel(
-        iconPath: ImageConstant.instagramIcon,
-        socialLink: generalSetting?.result?.first.instagramLink ?? ''));
+        iconPath: ImageConstant.instagramIcon, socialLink: generalSetting?.result?.first.instagramLink ?? ''));
     // socialIconList.add(SocialIconModel(
     //     iconPath: ImageConstant.faceBookIcon,
     //     socialLink: generalSetting?.result?.first.facebookLink ?? ''));
@@ -39,8 +38,7 @@ class _MoreAboutState extends State<MoreAbout> {
     //     iconPath: ImageConstant.youTubeIcon,
     //     socialLink: generalSetting?.result?.first.youtubeLink ?? ''));
     socialIconList.add(SocialIconModel(
-        iconPath: ImageConstant.whatsAppIcon,
-        socialLink: generalSetting?.result?.first.whatsappLink ?? ''));
+        iconPath: ImageConstant.whatsAppIcon, socialLink: generalSetting?.result?.first.whatsappLink ?? ''));
   }
 
   @override
@@ -53,26 +51,19 @@ class _MoreAboutState extends State<MoreAbout> {
       body: Column(
         children: [
           cmsItemListTile('aboutus', () {
-            Get.toNamed(AppRouteNameConstant.cmsScreen,
-                arguments: CmsType.aboutus);
+            Get.toNamed(AppRouteNameConstant.cmsScreen, arguments: CmsType.aboutus);
           }),
-          Divider(
-              thickness: 1.5, height: 1, color: ColorConstant.lightGrayColor),
+          Divider(thickness: 1.5, height: 1, color: ColorConstant.lightGrayColor),
           cmsItemListTile('terms_conditions', () {
-            Get.toNamed(AppRouteNameConstant.cmsScreen,
-                arguments: CmsType.termsandcondition);
+            Get.toNamed(AppRouteNameConstant.cmsScreen, arguments: CmsType.termsandcondition);
           }),
-          Divider(
-              thickness: 1.5, height: 1, color: ColorConstant.lightGrayColor),
+          Divider(thickness: 1.5, height: 1, color: ColorConstant.lightGrayColor),
           cmsItemListTile('privacy_poilicy', () {
-            Get.toNamed(AppRouteNameConstant.cmsScreen,
-                arguments: CmsType.privacypolicy);
+            Get.toNamed(AppRouteNameConstant.cmsScreen, arguments: CmsType.privacypolicy);
           }),
-          Divider(
-              thickness: 1.5, height: 1, color: ColorConstant.lightGrayColor),
+          Divider(thickness: 1.5, height: 1, color: ColorConstant.lightGrayColor),
           cmsItemListTile('refund_policy', () {
-            Get.toNamed(AppRouteNameConstant.cmsScreen,
-                arguments: CmsType.refundpolicy);
+            Get.toNamed(AppRouteNameConstant.cmsScreen, arguments: CmsType.refundpolicy);
           }),
           const Expanded(child: SizedBox(height: 10)),
           Text(
@@ -95,11 +86,9 @@ class _MoreAboutState extends State<MoreAbout> {
                         padding: const EdgeInsets.symmetric(horizontal: 4.0),
                         child: InkWell(
                             onTap: () {
-                              Logger.handleUrlOpen(
-                                  socialIconList[index].socialLink);
+                              Logger.handleUrlOpen(socialIconList[index].socialLink);
                             },
-                            child: (socialIconList[index].iconPath ==
-                                    ImageConstant.twitterIconNew)
+                            child: (socialIconList[index].iconPath == ImageConstant.twitterIconNew)
                                 ? SvgPicture.asset(
                                     ImageConstant.twitterIconNew,
                                     width: 21,
@@ -127,7 +116,7 @@ class _MoreAboutState extends State<MoreAbout> {
       title: Row(
         children: [
           Text(
-            toLabelValue(title ?? '').toString() ?? '',
+            toLabelValue(title).toString(),
             overflow: TextOverflow.clip,
             textAlign: TextAlign.left,
             style: txtStyleNormalBlack14(),

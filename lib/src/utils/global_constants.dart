@@ -7,12 +7,8 @@ import '../models/get_category_activity_detail_model.dart';
 import '../models/label_model.dart';
 import '../models/user_deati_model.dart';
 
-// String? languageCodes = "1";
 String? language = "1";
-//String languageCode=  await SharedPref.getString(PreferenceConstants.laguagecode);
-// Future languageCode() async {
-//   languageCodes = await SharedPref.getString(PreferenceConstants.laguagecode);
-// }
+
 GeneralSettingModel? generalSetting;
 
 RxList<LabelResult> labelResult = <LabelResult>[].obs;
@@ -39,7 +35,5 @@ RxString serviceProviderNumber = "".obs;
 RxString isNotLoggedIn = "".obs;
 LatLng? showLocation;
 Rx<ExtraAdvertisementData> extraAdvertisementData = ExtraAdvertisementData().obs;
-// Rx<ActivityDetailItemList> activityDetailItemList =
-//     ActivityDetailItemList().obs;
 Rx<ActivityDetailItem> activityDetailItem = ActivityDetailItem().obs;
 Rx<UserDetailModel> userDetailModel = UserDetailModel().obs;

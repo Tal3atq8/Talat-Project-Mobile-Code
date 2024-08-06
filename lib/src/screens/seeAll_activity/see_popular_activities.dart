@@ -28,99 +28,69 @@ class SeeAllPopularActivities extends StatelessWidget {
       body: Obx(() => Stack(
             children: [
               IgnorePointer(
-                  ignoring: dashboardController.showPopularItemsLoader.value
-                      ? true
-                      : false,
-                  child: (dashboardController
-                          .popularActivityItemList.isNotEmpty)
+                  ignoring: dashboardController.showPopularItemsLoader.value ? true : false,
+                  child: (dashboardController.popularActivityItemList.isNotEmpty)
                       ? Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 8),
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                           child: SmartRefresher(
                             enablePullUp: true,
                             enablePullDown: true,
-                            controller:
-                                dashboardController.popularRefreshController,
+                            controller: dashboardController.popularRefreshController,
                             header: MaterialClassicHeader(
                               backgroundColor: ColorConstant.appThemeColor,
                               color: ColorConstant.whiteBackgroundColor,
                             ),
                             footer: customFooterSmartRefresh(),
                             onLoading: () {
-                              dashboardController.popularPage.value =
-                                  dashboardController.popularPage.value + 1;
+                              dashboardController.popularPage.value = dashboardController.popularPage.value + 1;
                               dashboardController.popularLimit.value = 5;
                               dashboardController.getPopularActivityList();
                             },
                             onRefresh: () {
                               dashboardController.popularPage.value = 1;
                               dashboardController.popularLimit.value = 5;
-                              dashboardController.getPopularActivityList(
-                                  isRefresh: true);
+                              dashboardController.getPopularActivityList(isRefresh: true);
                             },
                             child: ListView.builder(
                               // physics: const BouncingScrollPhysics(),
-                              itemCount: dashboardController
-                                  .popularActivityItemList.length,
+                              itemCount: dashboardController.popularActivityItemList.length,
                               itemBuilder: (context, index) {
-                                var popularListData = dashboardController
-                                    .popularActivityItemList[index];
+                                var popularListData = dashboardController.popularActivityItemList[index];
                                 return Obx(() {
                                   return Padding(
                                     padding: const EdgeInsets.only(bottom: 8),
                                     child: ActivityItemWidget(
                                       onBannerTap: () {
-                                        providerID.value =
-                                            popularListData.providerId ?? '';
+                                        providerID.value = popularListData.providerId ?? '';
                                         itemID.value = popularListData.id ?? '';
                                         ActivityDetailBinding().dependencies();
 
-                                        Get.find<ActivityDetailController>()
-                                            .categoryActivityDetail();
+                                        Get.find<ActivityDetailController>().categoryActivityDetail();
 
                                         dashboardController.update();
                                         Get.toNamed(
-                                          AppRouteNameConstant
-                                              .activityDetailScreen,
+                                          AppRouteNameConstant.activityDetailScreen,
                                         );
                                       },
-                                      isIconDisplay: (dashboardController
-                                                  .name?.isNotEmpty ==
-                                              true &&
+                                      isIconDisplay: (dashboardController.name?.isNotEmpty == true &&
                                           dashboardController.name != null),
-                                      favShowLoader:
-                                          dashboardController.favShowLoader,
+                                      favShowLoader: dashboardController.favShowLoader,
                                       onFavIconTap: () {
-                                        dashboardController
-                                            .selectedIndex.value = index;
+                                        dashboardController.selectedIndex.value = index;
 
-                                        (!dashboardController
-                                                .popularActivityItemListFav
-                                                .contains(popularListData.id))
-                                            ? dashboardController
-                                                .addFavouriteItem(
-                                                    popularListData.id)
-                                            : dashboardController
-                                                .deleteFavouriteItem(
-                                                    popularListData.id);
+                                        (!dashboardController.popularActivityItemListFav.contains(popularListData.id))
+                                            ? dashboardController.addFavouriteItem(popularListData.id)
+                                            : dashboardController.deleteFavouriteItem(popularListData.id);
                                       },
-                                      isNotFav: !dashboardController
-                                          .popularActivityItemListFav
-                                          .contains(popularListData.id),
-                                      itemImageUrl:
-                                          popularListData.itemImage ?? '',
-                                      serviceProviderImageUrl:
-                                          popularListData.serviceProviderImage,
-                                      serviceProviderName:
-                                          popularListData.activityName,
-                                      serviceProviderAddress: popularListData
-                                          .providerName
-                                          .toString(),
-                                      serviceProviderDistance:
-                                          popularListData.distance.toString(),
+                                      isNotFav:
+                                          !dashboardController.popularActivityItemListFav.contains(popularListData.id),
+                                      itemImageUrl: popularListData.itemImage ?? '',
+                                      serviceProviderImageUrl: popularListData.serviceProviderImage,
+                                      serviceProviderName: popularListData.activityName,
+                                      serviceProviderAddress: popularListData.providerName.toString(),
+                                      serviceProviderDistance: popularListData.distance.toString(),
                                       isCurrentIndex: index,
-                                      isSelectedIndex:
-                                          dashboardController.selectedIndex,
+                                      isSelectedIndex: dashboardController.selectedIndex,
                                     ),
                                   );
                                 });

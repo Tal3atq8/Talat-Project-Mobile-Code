@@ -38,8 +38,7 @@ class _MapScreenState extends State<MapScreen> {
 
   BitmapDescriptor? pinLocationIcon;
 
-  final Completer<BitmapDescriptor> iconCompleter =
-      Completer<BitmapDescriptor>();
+  final Completer<BitmapDescriptor> iconCompleter = Completer<BitmapDescriptor>();
 
   Marker? marker;
 
@@ -56,8 +55,7 @@ class _MapScreenState extends State<MapScreen> {
   @override
   void initState() {
     addMarkers();
-    places =
-        GoogleMapsPlaces(apiKey: 'AIzaSyDFEDH0OFN1aYV2n2QQ1zIbC8J6t9mngPI');
+    places = GoogleMapsPlaces(apiKey: 'AIzaSyDFEDH0OFN1aYV2n2QQ1zIbC8J6t9mngPI');
 
     pinLocationIcon;
     _suggestions;
@@ -71,8 +69,7 @@ class _MapScreenState extends State<MapScreen> {
 
   void setCustomMapPin() async {
     pinLocationIcon = await BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(devicePixelRatio: 2.5),
-        ImageConstant.dashBoardTalatIcon);
+        const ImageConfiguration(devicePixelRatio: 2.5), ImageConstant.dashBoardTalatIcon);
   }
 
   //
@@ -95,13 +92,10 @@ class _MapScreenState extends State<MapScreen> {
                 _handlePressButton(context);
               },
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Container(
                   height: 48,
-                  decoration: BoxDecoration(
-                      color: ColorConstant.whiteColor,
-                      borderRadius: BorderRadius.circular(8)),
+                  decoration: BoxDecoration(color: ColorConstant.whiteColor, borderRadius: BorderRadius.circular(8)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -130,12 +124,8 @@ class _MapScreenState extends State<MapScreen> {
                         decoration: BoxDecoration(
                             color: ColorConstant.appThemeColor,
                             borderRadius: language == "1"
-                                ? const BorderRadius.only(
-                                    topRight: Radius.circular(8),
-                                    bottomRight: Radius.circular(8))
-                                : const BorderRadius.only(
-                                    topLeft: Radius.circular(8),
-                                    bottomLeft: Radius.circular(8))),
+                                ? const BorderRadius.only(topRight: Radius.circular(8), bottomRight: Radius.circular(8))
+                                : const BorderRadius.only(topLeft: Radius.circular(8), bottomLeft: Radius.circular(8))),
                         child: Icon(
                           Icons.search,
                           size: 25,
@@ -151,8 +141,7 @@ class _MapScreenState extends State<MapScreen> {
               padding: const EdgeInsets.only(top: 98.0, right: 18),
               child: _zoomplusfunction(),
             ),
-            Obx(() => (controller.mapResponseResult.value.providerName !=
-                        null &&
+            Obx(() => (controller.mapResponseResult.value.providerName != null &&
                     controller.mapResponseResult.value.providerName!.isNotEmpty)
                 ? Positioned(
                     bottom: 70,
@@ -160,15 +149,12 @@ class _MapScreenState extends State<MapScreen> {
                     right: 16,
                     child: GestureDetector(
                       onTap: () {
-                        providerID.value =
-                            controller.mapResponseResult.value.providerId ?? '';
-                        itemID.value =
-                            controller.mapResponseResult.value.id ?? '';
+                        providerID.value = controller.mapResponseResult.value.providerId ?? '';
+                        itemID.value = controller.mapResponseResult.value.id ?? '';
                         // providerID.value =
                         //     popularListData?.providerId ?? '';
                         ActivityDetailBinding().dependencies();
-                        Get.find<ActivityDetailController>()
-                            .categoryActivityDetail();
+                        Get.find<ActivityDetailController>().categoryActivityDetail();
 
                         Get.toNamed(
                           AppRouteNameConstant.activityDetailScreen,
@@ -187,13 +173,10 @@ class _MapScreenState extends State<MapScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             ClipRRect(
-                              borderRadius: const BorderRadius.only(
-                                  topRight: Radius.circular(12),
-                                  topLeft: Radius.circular(12)),
+                              borderRadius:
+                                  const BorderRadius.only(topRight: Radius.circular(12), topLeft: Radius.circular(12)),
                               child: CachedNetworkImage(
-                                imageUrl: controller
-                                        .mapResponseResult.value.main_image ??
-                                    '',
+                                imageUrl: controller.mapResponseResult.value.main_image ?? '',
                                 fit: BoxFit.cover,
                                 height: 148,
                                 width: Get.width,
@@ -207,38 +190,24 @@ class _MapScreenState extends State<MapScreen> {
                             ),
                             //
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 4),
-                              child: Text(
-                                  controller.mapResponseResult.value
-                                          .activity_name ??
-                                      "",
+                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                              child: Text(controller.mapResponseResult.value.activity_name ?? "",
                                   style: const TextStyle(
                                     fontSize: 16,
                                   )),
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 4),
-                              child: Text(
-                                  controller.mapResponseResult.value
-                                          .providerName ??
-                                      "",
+                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                              child: Text(controller.mapResponseResult.value.providerName ?? "",
                                   style: const TextStyle(
                                     fontSize: 14,
                                   )),
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 4),
+                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(controller
-                                          .mapResponseResult.value.distance ??
-                                      "")
-                                ],
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [Text(controller.mapResponseResult.value.distance ?? "")],
                               ),
                             ),
                             const SizedBox(
@@ -288,8 +257,7 @@ class _MapScreenState extends State<MapScreen> {
           initialCameraPosition: CameraPosition(
               target: (userLat.value == "")
                   ? const LatLng(29.3117, 47.9774)
-                  : LatLng(double.parse(userLat.value),
-                      double.parse(userLong.value)),
+                  : LatLng(double.parse(userLat.value), double.parse(userLong.value)),
               zoom: 16),
           onTap: (argument) {
             myMapController.selectedId = '';
@@ -344,11 +312,11 @@ class _MapScreenState extends State<MapScreen> {
       );
 
       if (p != null) {
-        // print(p);
+        // debugPrint(p);
         displayPrediction(p);
       }
     } catch (e) {
-      // print(e);
+      // debugPrint(e);
     }
   }
 
@@ -362,13 +330,12 @@ class _MapScreenState extends State<MapScreen> {
         apiKey: kGoogleApiKey,
         apiHeaders: await const GoogleApiHeaders().getHeaders(),
       );
-      // print(_places);
-      PlacesDetailsResponse detail =
-          await _places.getDetailsByPlaceId(p.placeId!);
+      // debugPrint(_places);
+      PlacesDetailsResponse detail = await _places.getDetailsByPlaceId(p.placeId!);
       final lat = detail.result?.geometry?.location.lat;
       final lng = detail.result?.geometry?.location.lng;
-      // print(lat);
-      // print(lng);
+      // debugPrint(lat);
+      // debugPrint(lng);
       userLat.value = lat.toString();
       userLong.value = lng.toString();
       myMapController.getSearchMap();
@@ -395,8 +362,7 @@ class _MapScreenState extends State<MapScreen> {
 
     myMapController.markers.add(Marker(
       markerId: const MarkerId('My location'),
-      position:
-          LatLng(double.parse(userLat.value), double.parse(userLong.value)),
+      position: LatLng(double.parse(userLat.value), double.parse(userLong.value)),
       icon: BitmapDescriptor.defaultMarker,
       onTap: () {
         // isVisible = true;
@@ -405,31 +371,22 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   Future<void> addMarkerIcon() async {
-    final Uint8List markerIcon = await getBytesFromAsset(
-        'assets/map_icons/MicrosoftTeams-image.png', 100);
-    final Uint8List markerIconRed = await getBytesFromAsset(
-        'assets/map_icons/MicrosoftTeams-image_red.png', 100);
-    if (myMapController.mapResponse.value.result != null &&
-        myMapController.mapResponse.value.result!.isNotEmpty) {
+    final Uint8List markerIcon = await getBytesFromAsset('assets/map_icons/MicrosoftTeams-image.png', 100);
+    final Uint8List markerIconRed = await getBytesFromAsset('assets/map_icons/MicrosoftTeams-image_red.png', 100);
+    if (myMapController.mapResponse.value.result != null && myMapController.mapResponse.value.result!.isNotEmpty) {
       BitmapDescriptor markerBitMap = BitmapDescriptor.fromBytes(markerIcon);
-      BitmapDescriptor markerBitMapRed =
-          BitmapDescriptor.fromBytes(markerIconRed);
-      for (int i = 0;
-          i < myMapController.mapResponse.value.result!.length;
-          i++) {
+      BitmapDescriptor markerBitMapRed = BitmapDescriptor.fromBytes(markerIconRed);
+      for (int i = 0; i < myMapController.mapResponse.value.result!.length; i++) {
         var result = myMapController.mapResponse.value.result?[i];
         myMapController.markers.add(
           Marker(
             visible: true,
             markerId: MarkerId("${result?.id}"),
-            position: LatLng(double.parse(result?.latitude ?? '0.0'),
-                double.parse(result?.longitude ?? '0.0')),
+            position: LatLng(double.parse(result?.latitude ?? '0.0'), double.parse(result?.longitude ?? '0.0')),
             infoWindow: InfoWindow(title: "${result?.activity_name}"),
-            icon: myMapController.selectedId == result?.id
-                ? markerBitMapRed
-                : markerBitMap,
+            icon: myMapController.selectedId == result?.id ? markerBitMapRed : markerBitMap,
             onTap: () {
-              // print(result?.id);
+              // debugPrint(result?.id);
               myMapController.selectedId = result?.id;
               myMapController.mapResponseResult.value = result!;
               myMapController.selectedMapResponseResult.value = result;
@@ -444,17 +401,13 @@ class _MapScreenState extends State<MapScreen> {
 
   Future<Uint8List> getBytesFromAsset(String path, int width) async {
     ByteData data = await rootBundle.load(path);
-    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
-        targetWidth: width);
+    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(), targetWidth: width);
     ui.FrameInfo fi = await codec.getNextFrame();
-    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
-        .buffer
-        .asUint8List();
+    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
   }
 
   Future<void> gotoLocation(double lat, double long) async {
-    final GoogleMapController _controller =
-        await myMapController.markerController.future;
+    final GoogleMapController _controller = await myMapController.markerController.future;
     _controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
       target: LatLng(lat, long),
       zoom: 16,

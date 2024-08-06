@@ -81,31 +81,22 @@ class Otp extends GetWidget<OtpController> {
                       Padding(
                         padding: const EdgeInsets.all(18.0),
                         child: Text(toLabelValue(ConstantStrings.weHaveText),
-                            style: TextStyle(
-                                color: ColorConstant.whiteColor,
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold)),
+                            style:
+                                TextStyle(color: ColorConstant.whiteColor, fontSize: 24, fontWeight: FontWeight.bold)),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 16.0, right: 16),
-                        child: Text(
-                            toLabelValue(ConstantStrings.pleaseEnterOtpText),
-                            style: TextStyle(
-                                color: ColorConstant.whiteColor,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w100)),
+                        child: Text(toLabelValue(ConstantStrings.pleaseEnterOtpText),
+                            style:
+                                TextStyle(color: ColorConstant.whiteColor, fontSize: 14, fontWeight: FontWeight.w100)),
                       ),
                       Obx(() {
-                        print(controller.isLoading.value);
+                        debugPrint('${controller.isLoading.value}');
                         return Padding(
-                          padding: const EdgeInsets.only(
-                              left: 16.0, top: 4, right: 16),
-                          child: Text(
-                              '${ConstantStrings.countryCodeKuwait}  ${controller.phoneNo}',
+                          padding: const EdgeInsets.only(left: 16.0, top: 4, right: 16),
+                          child: Text('${ConstantStrings.countryCodeKuwait}  ${controller.phoneNo}',
                               style: TextStyle(
-                                  color: ColorConstant.whiteColor,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w300)),
+                                  color: ColorConstant.whiteColor, fontSize: 16, fontWeight: FontWeight.w300)),
                         );
                       }),
                       Obx(
@@ -122,13 +113,10 @@ class Otp extends GetWidget<OtpController> {
                             enableInteractiveSelection: true,
                             controller: controller.otpController,
                             keyboardType: TextInputType.number,
-                            currentCode: controller.start.value == 0
-                                ? null
-                                : controller.hintOtp.value,
+                            currentCode: controller.start.value == 0 ? null : controller.hintOtp.value,
                             decoration: UnderlineDecoration(
                               textStyle: const TextStyle(color: Colors.white),
-                              colorBuilder:
-                                  FixedColorBuilder(ColorConstant.whiteColor),
+                              colorBuilder: FixedColorBuilder(ColorConstant.whiteColor),
                             ),
                             codeLength: 6,
                             onCodeChanged: (code) {
@@ -150,9 +138,7 @@ class Otp extends GetWidget<OtpController> {
                                       text:
                                           '${strDigits(Duration(seconds: controller.start.value).inMinutes.remainder(60))}:${strDigits(Duration(seconds: controller.start.value).inSeconds.remainder(60))}',
                                       style: TextStyle(
-                                          color: ColorConstant.whiteColor,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w300)),
+                                          color: ColorConstant.whiteColor, fontSize: 14, fontWeight: FontWeight.w300)),
                                 ],
                               ),
                             ),
@@ -165,9 +151,7 @@ class Otp extends GetWidget<OtpController> {
                           child: Center(
                             child: GestureDetector(
                               onTap: () {
-                                controller.start.value == 0
-                                    ? controller.onReSendOtpTap()
-                                    : null;
+                                controller.start.value == 0 ? controller.onReSendOtpTap() : null;
 
                                 if (controller.start.value == 0) {
                                   controller.start.value = 120;
@@ -179,24 +163,18 @@ class Otp extends GetWidget<OtpController> {
                                 text: TextSpan(
                                   children: [
                                     TextSpan(
-                                        text: toLabelValue(
-                                            ConstantsLabelKeys.didnt_get_code),
+                                        text: toLabelValue(ConstantsLabelKeys.didnt_get_code),
                                         style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w300)),
+                                            color: Colors.white, fontSize: 14, fontWeight: FontWeight.w300)),
                                     TextSpan(
-                                        text:
-                                            ' ${toLabelValue(ConstantStrings.tryAgainText)}',
+                                        text: ' ${toLabelValue(ConstantStrings.tryAgainText)}',
                                         style: TextStyle(
                                             color: controller.start.value == 0
                                                 ? ColorConstant.whiteColor
                                                 : ColorConstant.grayBorderColor,
                                             fontSize: 14,
                                             fontWeight:
-                                                controller.start.value == 0
-                                                    ? FontWeight.bold
-                                                    : FontWeight.w300)),
+                                                controller.start.value == 0 ? FontWeight.bold : FontWeight.w300)),
                                   ],
                                 ),
                               ),
@@ -219,21 +197,14 @@ class Otp extends GetWidget<OtpController> {
                       )
                     : ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                              ColorConstant.whiteColor),
+                          backgroundColor: MaterialStateProperty.all(ColorConstant.whiteColor),
                           elevation: MaterialStateProperty.all(0),
                           shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0))),
-                          padding: MaterialStateProperty.all(
-                              const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10)),
-                          textStyle: MaterialStateProperty.all(TextStyle(
-                              fontSize: 16,
-                              color: ColorConstant.appThemeColor,
-                              fontWeight: FontWeight.bold)),
-                          overlayColor:
-                              MaterialStateProperty.resolveWith<Color?>(
+                              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))),
+                          padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
+                          textStyle: MaterialStateProperty.all(
+                              TextStyle(fontSize: 16, color: ColorConstant.appThemeColor, fontWeight: FontWeight.bold)),
+                          overlayColor: MaterialStateProperty.resolveWith<Color?>(
                             (Set<MaterialState> states) {
                               if (states.contains(MaterialState.pressed)) {
                                 return Colors.blue[100]; //<-- SEE HERE
@@ -248,12 +219,8 @@ class Otp extends GetWidget<OtpController> {
                           controller.onOtpTap();
                         },
                         child: Text(
-                          toLabelValue(ConstantsLabelKeys.nextButton)
-                              .toString()
-                              .toUpperCase(),
-                          style: TextStyle(
-                              color: ColorConstant.appThemeColor,
-                              fontWeight: FontWeight.bold),
+                          toLabelValue(ConstantsLabelKeys.nextButton).toString().toUpperCase(),
+                          style: TextStyle(color: ColorConstant.appThemeColor, fontWeight: FontWeight.bold),
                         ),
                       ),
               );

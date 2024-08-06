@@ -23,30 +23,20 @@ import 'package:talat/src/widgets/changeLanguage/localization.dart';
 import 'src/utils/preference/preference_keys.dart';
 import 'src/utils/preference/preferences.dart';
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
-// final networkController = Get.find<GetXNetworkManager>();
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 final label = LabelModel().obs;
 String? token;
 String? userGuideCompleted;
 
 RemoteMessage? backgroundMessage;
 
-// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-//   await Firebase.initializeApp();
-//   print('Handling a background message ${message.messageId}');
-//   print('Notification Message: ${message.data}');
-//   NotificationService.showNotifications(message);
-// }
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await determinePosition();
   await notificationPermission();
 
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  // labelAPi();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
   language = await SharedPref.getString(PreferenceConstants.laguagecode);
   if (language!.isEmpty) {
     language = '1';
@@ -54,30 +44,20 @@ void main() async {
 
   userLatLong();
   await Firebase.initializeApp();
-  // NotificationService.initialize();
 
   FirebaseMessaging messaging = FirebaseMessaging.instance;
   backgroundMessage = await messaging.getInitialMessage();
-
-  // final position = await Geolocator.getCurrentPosition(
-  //   desiredAccuracy: LocationAccuracy.high,
-  // );
-  // LocationPermission permission;
-  // permission = await Geolocator.requestPermission();
-  // final latitude = position.latitude;
-  // final longitude = position.longitude;
-  // print("my lof ${position.latitude}");
 
   await PushNotificationService().setupInteractedMessage();
   Future.delayed(
     const Duration(seconds: 2),
     () async {
       String? fcmToken = await messaging.getToken();
-      print(SharedPref.getString(PreferenceConstants.laguagecode));
+      debugPrint(await SharedPref.getString(PreferenceConstants.laguagecode));
 
       if (fcmToken != null) {
-        // Use the FCM token as needed
-        print('FCM Token: $fcmToken');
+
+        debugPrint('FCM Token: $fcmToken');
         firebaseToken.value = fcmToken;
         await SharedPref.setString(PreferenceConstants.FCM_TOKEN, fcmToken);
       }
@@ -85,12 +65,9 @@ void main() async {
   );
 
   token = await SharedPref.getString(PreferenceConstants.token);
-  userGuideCompleted =
-      await SharedPref.getString(PreferenceConstants.userGuideCompleted);
-  SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(statusBarBrightness: Brightness.light));
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  userGuideCompleted = await SharedPref.getString(PreferenceConstants.userGuideCompleted);
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(statusBarBrightness: Brightness.light));
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
@@ -100,28 +77,22 @@ void main() async {
   const fatalError = true;
   FlutterError.onError = (errorDetails) {
     if (fatalError) {
-      // If you want to record a "fatal" exception
       FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
       // ignore: dead_code
     } else {
-      // If you want to record a "non-fatal" exception
       FirebaseCrashlytics.instance.recordFlutterError(errorDetails);
     }
   };
-  // Async exceptions
   PlatformDispatcher.instance.onError = (error, stack) {
     if (fatalError) {
-      // If you want to record a "fatal" exception
       FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
       // ignore: dead_code
     } else {
-      // If you want to record a "non-fatal" exception
       FirebaseCrashlytics.instance.recordError(error, stack);
     }
     return true;
   };
 
-  // runApp(const MyApp());
   runApp(GetMaterialApp(
     builder: (context, child) {
       return MediaQuery(
@@ -131,10 +102,8 @@ void main() async {
     },
     debugShowCheckedModeBanner: false,
     translations: WorldLanguage(),
-    locale:
-        language == "1" ? const Locale('en', 'US') : const Locale('ar', 'AR'),
-    fallbackLocale:
-        language == "1" ? const Locale('en', 'US') : const Locale('ar', 'AR'),
+    locale: language == "1" ? const Locale('en', 'US') : const Locale('ar', 'AR'),
+    fallbackLocale: language == "1" ? const Locale('en', 'US') : const Locale('ar', 'AR'),
     title: 'Talat',
     theme: ThemeData(
       fontFamily: GoogleFonts.lato().fontFamily,
@@ -151,7 +120,7 @@ void main() async {
       ),
     ),
     initialRoute: AppRouteNameConstant.splashScreen,
-    // initialBinding: NetworkBinding(),
+
     getPages: appRoutes(),
   ));
 }
@@ -178,7 +147,7 @@ Future<void> notificationPermission() async {
 
     if (androidInfo.version.sdkInt >= 31) {
       statusess = await [Permission.notification].request();
-      print('$statusess');
+      debugPrint('$statusess');
     }
   }
 }
@@ -206,17 +175,12 @@ class MyApp extends StatelessWidget {
           },
           debugShowCheckedModeBanner: false,
           translations: WorldLanguage(),
-          locale: language == "1"
-              ? const Locale('en', 'US')
-              : const Locale('ar', 'AR'),
-          fallbackLocale: language == "1"
-              ? const Locale('en', 'US')
-              : const Locale('ar', 'AR'),
+          locale: language == "1" ? const Locale('en', 'US') : const Locale('ar', 'AR'),
+          fallbackLocale: language == "1" ? const Locale('en', 'US') : const Locale('ar', 'AR'),
           title: 'Talat',
           theme: ThemeData(
             fontFamily: GoogleFonts.lato().fontFamily,
-            buttonTheme:
-                const ButtonThemeData(textTheme: ButtonTextTheme.normal),
+            buttonTheme: const ButtonThemeData(textTheme: ButtonTextTheme.normal),
             textButtonTheme: TextButtonThemeData(
                 style: ButtonStyle(
                     textStyle: MaterialStatePropertyAll(TextStyle(
@@ -229,7 +193,6 @@ class MyApp extends StatelessWidget {
             ),
           ),
           initialRoute: AppRouteNameConstant.splashScreen,
-          // initialBinding: NetworkBinding(),
           getPages: appRoutes(),
         ),
       ),
@@ -238,10 +201,9 @@ class MyApp extends StatelessWidget {
 }
 
 Future<void> labelAPi() async {
-  if (SharedPref.getString(PreferenceConstants.laguagecode) != null &&
-      SharedPref.getString(PreferenceConstants.laguagecode) != "") {
+  if (SharedPref.getString(PreferenceConstants.laguagecode) != "") {
     language = await SharedPref.getString(PreferenceConstants.laguagecode);
-    print(language);
+    debugPrint(language);
     if (language == "") {
       language = "1";
     }
@@ -252,19 +214,11 @@ Future<void> labelAPi() async {
     if (response.data['code'] == "1") {
       label.value = LabelModel.fromJson(response.data);
 
-      //laguagecode= await SharedPref.setString(PreferenceConstants.laguagecode,"1");
       labelResult.value = label.value.result!;
-      // print(label.value);
-      //globals.labelResult.addAll(labelResult);
-
-      //LabelResponse labelresponse = await LabelRepository().fetchlabel();
-      //globals.labelResult.addAll(response.data!);
 
       WorldLanguage().addLabelKeyToModel();
     } else {
-      print(response.data);
-
-      // CommonWidgets().showToastMessage("");
+      debugPrint(response.data);
     }
   });
 }

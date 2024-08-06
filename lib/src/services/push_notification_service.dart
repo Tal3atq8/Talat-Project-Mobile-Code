@@ -12,7 +12,7 @@ import '../screens/my_booking/my_booking_detail/my_booking_detail_controller.dar
 import '../utils/global_constants.dart';
 
 void onDidReceiveNotificationResponse(NotificationResponse notificationResponse) async {
-  print(
+  debugPrint(
       '========================= NotificationResponse.payload ${notificationResponse.payload} ======================== ');
   if (bookingID.value != null && bookingID.value != '' && bookingID.value != 'null') {
     BookingDetailBinding().dependencies();
@@ -56,11 +56,11 @@ class PushNotificationService {
     );
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      print('User granted permission');
+      debugPrint('User granted permission');
     } else if (settings.authorizationStatus == AuthorizationStatus.provisional) {
-      print('User granted provisional permission');
+      debugPrint('User granted provisional permission');
     } else {
-      print('User declined or has not accepted permission');
+      debugPrint('User declined or has not accepted permission');
     }
   }
 
@@ -99,7 +99,7 @@ class PushNotificationService {
 
     FirebaseMessaging.onMessage.listen((RemoteMessage? message) {
       backgroundMessage = message;
-      print("================= Notification message ${message?.data} =================");
+      debugPrint("================= Notification message ${message?.data} =================");
 
       final RemoteNotification? notification = message!.notification;
       final AndroidNotification? android = message.notification?.android;
@@ -128,7 +128,7 @@ class PushNotificationService {
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
       // Get.toNamed(NOTIFICATIONS_ROUTE);
-      print("================= Notification onMessageOpenedApp  ${message.data} =================");
+      debugPrint("================= Notification onMessageOpenedApp  ${message.data} =================");
       if (message.data['booking_id'] != null &&
           message.data['booking_id'] != 'null' &&
           message.data['booking_id'] != '') {

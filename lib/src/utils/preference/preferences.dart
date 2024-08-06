@@ -1,5 +1,5 @@
-import 'package:talat/src/utils/preference/preference_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:talat/src/utils/preference/preference_keys.dart';
 
 class SharedPref {
   static Future setBool(String key, value) async {
@@ -19,8 +19,7 @@ class SharedPref {
 
   static Future<List<String>> getListString(String recentSearchesKey) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String> myList =
-        prefs.getStringList(PreferenceConstants.recentSearchesKey) ?? [];
+    List<String> myList = prefs.getStringList(PreferenceConstants.recentSearchesKey) ?? [];
     return myList;
   }
 

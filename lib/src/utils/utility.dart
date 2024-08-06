@@ -20,8 +20,7 @@ String toLabelValue(String key) {
   }
   if (str.isEmpty) {
     for (var element in globals.labelResult) {
-      if (element.key.toString().removeAllWhitespace ==
-          'something_went_wrong') {
+      if (element.key.toString().removeAllWhitespace == 'something_went_wrong') {
         if (globals.language == "1") {
           str = element.valueEn ?? '';
         } else {
@@ -40,11 +39,7 @@ class Logger {
       List<String>? arrButton,
       bool barrierDismissible = true,
       AlertWidgetButtonActionCallback? callback}) {
-    Widget alertDialog = AlertWidget(
-        title: title,
-        message: message,
-        buttonOption: arrButton,
-        onCompletion: callback);
+    Widget alertDialog = AlertWidget(title: title, message: message, buttonOption: arrButton, onCompletion: callback);
 
     if (!barrierDismissible) {
       alertDialog = WillPopScope(
@@ -65,15 +60,9 @@ class Logger {
         );
 
         await launch(callLaunchUri.toString());
-        // if (await canLaunch(data)) {
-        //   await launch(callLaunchUri.toString());
-        // } else {
-        //   Logger().e('Could not launch ${callLaunchUri.toString()}');
-        // }
       }
     } on Exception catch (e) {
-      // Logger().e("Exception :: ${e.toString()}");
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 
@@ -86,32 +75,15 @@ class Logger {
         );
 
         await launch(emailLaunchUri.toString());
-        // if (await canLaunch(data)) {
-        //   await launch(callLaunchUri.toString());
-        // } else {
-        //   Logger().e('Could not launch ${callLaunchUri.toString()}');
-        // }
       }
     } on Exception catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 
   static Future handleUrlOpen(dynamic data) async {
     try {
       if (data is String) {
-        // final Uri emailLaunchUri = Uri(
-        //   scheme: 'http',
-        //   path: '$data',
-        // );
-        //
-        // await launch(emailLaunchUri.toString());
-        // // if (await canLaunch(data)) {
-        // //   await launch(callLaunchUri.toString());
-        // // } else {
-        // //   Logger().e('Could not launch ${callLaunchUri.toString()}');
-        // // }
-
         if (!await launchUrl(
           Uri.parse(data),
           mode: LaunchMode.externalApplication,
@@ -120,7 +92,7 @@ class Logger {
         }
       }
     } on Exception catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
       // Logger().e("Exception :: ${e.toString()}");
     }
   }
@@ -132,27 +104,19 @@ extension DateTimeExtension on DateTime {
     final difference = date2.difference(this);
 
     if ((difference.inDays / 7).floor() >= 1) {
-      return (numericDates)
-          ? '1 ${toLabelValue("week_ago")}'
-          : toLabelValue("last_week");
+      return (numericDates) ? '1 ${toLabelValue("week_ago")}' : toLabelValue("last_week");
     } else if (difference.inDays >= 2) {
       return '${difference.inDays} ${toLabelValue("days_ago")}';
     } else if (difference.inDays >= 1) {
-      return (numericDates)
-          ? '1 ${toLabelValue("day_ago")}'
-          : toLabelValue("yesterday");
+      return (numericDates) ? '1 ${toLabelValue("day_ago")}' : toLabelValue("yesterday");
     } else if (difference.inHours >= 2) {
       return '${difference.inHours} ${toLabelValue("hours_ago")}';
     } else if (difference.inHours >= 1) {
-      return (numericDates)
-          ? '1 ${toLabelValue("hour_ago")}'
-          : toLabelValue("an_hour_ago");
+      return (numericDates) ? '1 ${toLabelValue("hour_ago")}' : toLabelValue("an_hour_ago");
     } else if (difference.inMinutes >= 2) {
       return '${difference.inMinutes} ${toLabelValue("minutes_ago")}';
     } else if (difference.inMinutes >= 1) {
-      return (numericDates)
-          ? '1 ${toLabelValue("minute_ago")}'
-          : toLabelValue("a_minute_ago");
+      return (numericDates) ? '1 ${toLabelValue("minute_ago")}' : toLabelValue("a_minute_ago");
     } else if (difference.inSeconds >= 3) {
       return '${difference.inSeconds} ${toLabelValue("seconds_ago")}';
     } else {

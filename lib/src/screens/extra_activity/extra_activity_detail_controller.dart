@@ -13,8 +13,7 @@ import 'package:talat/src/widgets/progress_dialog.dart';
 import '../../app_routes/app_routes.dart';
 import '../../utils/global_constants.dart';
 
-class ExtraActivityDetailController extends GetxController
-    with GetSingleTickerProviderStateMixin {
+class ExtraActivityDetailController extends GetxController with GetSingleTickerProviderStateMixin {
   TextEditingController inductionController = TextEditingController();
 
   RxBool showLoader = false.obs;
@@ -88,42 +87,31 @@ class ExtraActivityDetailController extends GetxController
         ConstantStrings.languageId: language ?? "1",
       }).then((response) async {
         if (response.data['code'] == 200) {
-          activityDetailModel.value =
-              ActivityDetailModel.fromJson(response.data);
-          tabcontroller = TabController(
-              vsync: this,
-              length:
-                  activityDetailModel.value.result?.categories?.length ?? 0);
+          activityDetailModel.value = ActivityDetailModel.fromJson(response.data);
+          tabcontroller = TabController(vsync: this, length: activityDetailModel.value.result?.categories?.length ?? 0);
 
           myTabs = List.generate(
               activityDetailModel.value.result?.categories?.length ?? 0,
               (index) => Tab(
-                    text: activityDetailModel
-                        .value.result?.categories?[index].name,
+                    text: activityDetailModel.value.result?.categories?[index].name,
                   ));
 
-          isChecked!.value = List.generate(
-              activityDetailModel
-                      .value.result?.categories?.first.item?.length ??
-                  0,
-              (index) => false);
-          print("My Tabs=>>>>>>>>>>>>${myTabs.length}");
+          isChecked!.value =
+              List.generate(activityDetailModel.value.result?.categories?.first.item?.length ?? 0, (index) => false);
+          debugPrint("My Tabs=>>>>>>>>>>>>${myTabs.length}");
         } else if (response.data["code"] == "-7") {
           // Get.back();
           CommonWidgets().showToastMessage('user_login_other_device');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
           Get.offAllNamed(AppRouteNameConstant.tabScreen);
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
-        } else if (response.data["code"] == "-1" &&
-            response.data["message"] == "inactive_account") {
+        } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
           CommonWidgets().showToastMessage('inactive_account');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -131,12 +119,10 @@ class ExtraActivityDetailController extends GetxController
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
           showLoader(false);
-        } else if (response.data["code"] == "-4" &&
-            response.data["message"] == "delete_account") {
+        } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
           showLoader.value = false;
           CommonWidgets().showToastMessage(response.data["message"]);
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -158,8 +144,7 @@ class ExtraActivityDetailController extends GetxController
     update();
   }
 
-  void bookingSucces(String ammount, String selectedUsername, String itmeid,
-      String categoryitemid) async {
+  void bookingSucces(String ammount, String selectedUsername, String itmeid, String categoryitemid) async {
     showLoader.value = true;
     try {
       await TalatService().bookingConfirmApi({
@@ -176,25 +161,22 @@ class ExtraActivityDetailController extends GetxController
         ConstantStrings.bookingStartDate: "21-06-2023",
         ConstantStrings.bookingEndDate: "22-06-2023",
         ConstantStrings.bookingTimeKey: "10:00",
-        ConstantStrings.instructionKey: inductionController.text ?? "",
+        ConstantStrings.instructionKey: inductionController.text ,
       }).then((response) async {
         if (response.data['code'] == 200) {
         } else if (response.data["code"] == "-7") {
           // Get.back();
           CommonWidgets().showToastMessage('user_login_other_device');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
           Get.offAllNamed(AppRouteNameConstant.tabScreen);
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
-        } else if (response.data["code"] == "-1" &&
-            response.data["message"] == "inactive_account") {
+        } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
           CommonWidgets().showToastMessage('inactive_account');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -202,12 +184,10 @@ class ExtraActivityDetailController extends GetxController
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
           showLoader(false);
-        } else if (response.data["code"] == "-4" &&
-            response.data["message"] == "delete_account") {
+        } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
           showLoader.value = false;
           CommonWidgets().showToastMessage(response.data["message"]);
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);

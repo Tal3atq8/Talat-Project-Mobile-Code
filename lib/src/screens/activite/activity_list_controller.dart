@@ -93,8 +93,7 @@ class ActivityListController extends GetxController {
 
   /// Activity list api calling
   Future<void> fetchActivityItemList({bool? isRefresh}) async {
-    String errorMsg = "";
-    if (isRefresh == null || (isRefresh != null && !isRefresh)) {
+    if (isRefresh == null || (!isRefresh)) {
       myshowLoader.value = true;
     }
     try {

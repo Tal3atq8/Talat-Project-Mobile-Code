@@ -54,14 +54,12 @@ class ActivityList extends StatelessWidget {
                 color: ColorConstant.appThemeColor,
               ))
             : (controller.categoryItem.value.result?.itemList?.data != null &&
-                    controller
-                        .categoryItem.value.result!.itemList!.data!.isNotEmpty)
+                    controller.categoryItem.value.result!.itemList!.data!.isNotEmpty)
                 ? Obx(() {
                     return Stack(
                       children: [
                         IgnorePointer(
-                          ignoring:
-                              controller.myshowLoader.value ? true : false,
+                          ignoring: controller.myshowLoader.value ? true : false,
                           child: SmartRefresher(
                             header: MaterialClassicHeader(
                               backgroundColor: ColorConstant.appThemeColor,
@@ -73,65 +71,41 @@ class ActivityList extends StatelessWidget {
                             // footer: ,
                             controller: controller.activityRefreshController,
                             child: ListView.builder(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 18),
-                                itemCount: controller.categoryItem.value.result
-                                    ?.itemList?.data?.length,
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+                                itemCount: controller.categoryItem.value.result?.itemList?.data?.length,
                                 shrinkWrap: true,
                                 physics: const BouncingScrollPhysics(),
                                 itemBuilder: (context, index) {
-                                  var favoriteListData = controller.categoryItem
-                                      .value.result?.itemList?.data?[index];
+                                  var favoriteListData = controller.categoryItem.value.result?.itemList?.data?[index];
                                   return ActivityItemWidget(
                                     onBannerTap: () {
-                                      activityDetailItem.value =
-                                          ActivityDetailItem();
+                                      activityDetailItem.value = ActivityDetailItem();
                                       ActivityDetailBinding().dependencies();
-                                      Get.find<ActivityDetailController>()
-                                          .selectItemIndexId
-                                          .value = "";
-                                      Get.find<ActivityDetailController>()
-                                          .isOpenBottomSheet
-                                          .value = false;
+                                      Get.find<ActivityDetailController>().selectItemIndexId.value = "";
+                                      Get.find<ActivityDetailController>().isOpenBottomSheet.value = false;
 
-                                      if (favoriteListData?.serviceProviderId !=
-                                          null) {
-                                        providerID.value = favoriteListData!
-                                            .serviceProviderId
-                                            .toString();
+                                      if (favoriteListData?.serviceProviderId != null) {
+                                        providerID.value = favoriteListData!.serviceProviderId.toString();
                                       }
-                                      itemID.value =
-                                          favoriteListData?.id.toString() ?? "";
-                                      Get.find<ActivityDetailController>()
-                                          .categoryActivityDetail();
-                                      Get.toNamed(AppRouteNameConstant
-                                          .activityDetailScreen);
+                                      itemID.value = favoriteListData?.id.toString() ?? "";
+                                      Get.find<ActivityDetailController>().categoryActivityDetail();
+                                      Get.toNamed(AppRouteNameConstant.activityDetailScreen);
                                     },
-                                    isIconDisplay:
-                                        (controller.name?.isNotEmpty == true &&
-                                            controller.name != null),
+                                    isIconDisplay: (controller.name?.isNotEmpty == true && controller.name != null),
                                     favShowLoader: controller.favLoader,
                                     onFavIconTap: () {
                                       controller.isSelected.value = index;
                                       favoriteListData?.isFav == 0
-                                          ? controller.addFavouriteItem(
-                                              favoriteListData?.id.toString())
-                                          : controller.deleteFavouriteItem(
-                                              favoriteListData?.id.toString());
+                                          ? controller.addFavouriteItem(favoriteListData?.id.toString())
+                                          : controller.deleteFavouriteItem(favoriteListData?.id.toString());
                                     },
                                     isNotFav: favoriteListData?.isFav == 0,
-                                    itemImageUrl:
-                                        favoriteListData?.main_image ?? '',
-                                    serviceProviderImageUrl:
-                                        favoriteListData?.serviceProviderImage,
-                                    serviceProviderName:
-                                        favoriteListData?.categoryName,
-                                    serviceProviderAddress:
-                                        favoriteListData?.serviceProviderName,
-                                    serviceProviderDistance: (userLat.value ==
-                                            "")
-                                        ? ""
-                                        : favoriteListData?.categoryDistance,
+                                    itemImageUrl: favoriteListData?.main_image ?? '',
+                                    serviceProviderImageUrl: favoriteListData?.serviceProviderImage,
+                                    serviceProviderName: favoriteListData?.categoryName,
+                                    serviceProviderAddress: favoriteListData?.serviceProviderName,
+                                    serviceProviderDistance:
+                                        (userLat.value == "") ? "" : favoriteListData?.categoryDistance,
                                     isCurrentIndex: index,
                                     isSelectedIndex: controller.isSelected,
                                   );
@@ -147,11 +121,7 @@ class ActivityList extends StatelessWidget {
                       ],
                     );
                   })
-                : Center(
-                    child: SizedBox(
-                        width: Get.width,
-                        height: Get.height * 0.5,
-                        child: const CommonNoDataFound())),
+                : Center(child: SizedBox(width: Get.width, height: Get.height * 0.5, child: const CommonNoDataFound())),
       ),
     );
   }

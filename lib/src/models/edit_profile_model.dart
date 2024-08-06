@@ -55,8 +55,7 @@ class Result {
     data['user_id'] = this.userId;
     data['token'] = this.token;
     if (this.selectedServies != null) {
-      data['selected_servies'] =
-          this.selectedServies!.map((v) => v.toJson()).toList();
+      data['selected_servies'] = this.selectedServies!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -82,12 +81,12 @@ class SelectedServies {
 }
 
 class User {
-  dynamic? id;
-  dynamic? userType;
+  dynamic id;
+  dynamic userType;
   String? name;
   String? email;
   String? phoneCode;
-  dynamic? phone;
+  dynamic phone;
   String? profilePhoto;
   String? countryImageUrl;
   String? dateOfBirth;

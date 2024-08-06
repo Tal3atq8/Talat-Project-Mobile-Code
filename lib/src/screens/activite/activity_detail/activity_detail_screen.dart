@@ -132,7 +132,7 @@ class ActivityDetailScreen extends StatelessWidget {
                                 }
                               }
                             }
-                            print(categoryID.value);
+                            debugPrint(categoryID.value);
                             providerID.value = controller
                                     .categoryActivityDetailModel.value.result?.serviceProviderInfo?.serviceProviderId
                                     .toString() ??

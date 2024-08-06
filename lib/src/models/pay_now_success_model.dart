@@ -23,8 +23,8 @@ class PayNowSuccessModel {
 
 class Result {
   final String paymentUrl;
-  dynamic? total_amount;
-  dynamic? commissonPer;
+  dynamic total_amount;
+  dynamic commissonPer;
 
   Result({required this.paymentUrl, this.total_amount, this.commissonPer});
 

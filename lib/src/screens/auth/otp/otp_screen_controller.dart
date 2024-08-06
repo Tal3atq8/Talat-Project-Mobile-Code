@@ -54,7 +54,7 @@ class OtpController extends GetxController {
   }
 
   void resend() {
-    print(timer.value);
+    debugPrint('${timer.value}');
   }
 
   startTimer() {
@@ -74,7 +74,7 @@ class OtpController extends GetxController {
 
   void listenOtp() async {
     SmsAutoFill().listenForCode();
-    print("OTP Listen is called");
+    debugPrint("OTP Listen is called");
   }
 
   ///Otp Api Calling
@@ -89,7 +89,7 @@ class OtpController extends GetxController {
           ConstantStrings.userIdKey: userId,
           ConstantStrings.deviceTokenKey: token,
         }).then((response) async {
-          print(response);
+          debugPrint('$response');
           if (response.data["code"] == "1") {
             await SharedPref.removeSharedPref(PreferenceConstants.token);
             DashboardBinding().dependencies();
@@ -97,10 +97,8 @@ class OtpController extends GetxController {
             Get.find<DashboardController>().popularActivityItems();
             Get.find<DashboardController>().update();
             var userDetail = UserDetailModel.fromJson(response.data);
-            await SharedPref.setString(
-                PreferenceConstants.token, userDetail.result?[0].token);
-            await SharedPref.setString(PreferenceConstants.isMobileVerifiedKey,
-                userDetail.result?[0].isMobileVerified);
+            await SharedPref.setString(PreferenceConstants.token, userDetail.result?[0].token);
+            await SharedPref.setString(PreferenceConstants.isMobileVerifiedKey, userDetail.result?[0].isMobileVerified);
             timer.value?.cancel();
 
             if (userDetail.result?[0].name!.isNotEmpty == true) {
@@ -117,8 +115,7 @@ class OtpController extends GetxController {
                 Get.offAndToNamed(AppRouteNameConstant.registrationScreen);
               }
             }
-          } else if (response.data["code"] == "-4" &&
-              response.data["message"] == "delete_account") {
+          } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
             CommonWidgets().showToastMessage("${response.data["message"]}");
           }
         }).catchError((error) {
@@ -153,7 +150,7 @@ class OtpController extends GetxController {
         ConstantStrings.userIdKey: userId,
         ConstantStrings.deviceTokenKey: token,
       }).then((response) async {
-        print(response.data['message']);
+        debugPrint(response.data['message']);
         if (response.data["code"] == "1") {
           var resendModel = ResendOtpModel.fromJson(response.data);
 

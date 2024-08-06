@@ -43,8 +43,7 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.only(
-                  left: 78.0, right: 78, bottom: 40, top: Get.height * 0.22),
+              padding: EdgeInsets.only(left: 78.0, right: 78, bottom: 40, top: Get.height * 0.22),
               child: Image.asset(ImageConstant.myBookingEmptyImage),
             ),
             Text(
@@ -67,42 +66,29 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text('${toLabelValue("your_booking_from")} ',
-                                textAlign: TextAlign.center,
-                                style: txtStyleNormalBlack14()),
+                                textAlign: TextAlign.center, style: txtStyleNormalBlack14()),
                             Directionality(
                               textDirection: TextDirection.ltr,
-                              child: Text(
-                                  formatter.format(
-                                      DateTime.parse(selectedStartDate.value)),
-                                  textAlign: TextAlign.center,
-                                  style: txtStyleNormalBlack14()),
+                              child: Text(formatter.format(DateTime.parse(selectedStartDate.value)),
+                                  textAlign: TextAlign.center, style: txtStyleNormalBlack14()),
                             ),
                             Text(' ${toLabelValue("to_date_label")} ',
-                                textAlign: TextAlign.center,
-                                style: txtStyleNormalBlack14()),
+                                textAlign: TextAlign.center, style: txtStyleNormalBlack14()),
                             Directionality(
                               textDirection: TextDirection.ltr,
-                              child: Text(
-                                  formatter.format(
-                                      DateTime.parse(selectedEndDate.value)),
-                                  textAlign: TextAlign.center,
-                                  style: txtStyleNormalBlack14()),
+                              child: Text(formatter.format(DateTime.parse(selectedEndDate.value)),
+                                  textAlign: TextAlign.center, style: txtStyleNormalBlack14()),
                             ),
                           ],
                         ),
-                        Text(
-                            "\n${"${toLabelValue("with_label")}" " ${serviceProviderName.value}"}.",
-                            textAlign: TextAlign.center,
-                            style: txtStyleNormalBlack14()),
+                        Text("\n${"${toLabelValue("with_label")}" " ${serviceProviderName.value}"}.",
+                            textAlign: TextAlign.center, style: txtStyleNormalBlack14()),
                       ],
                     ),
-                  if (selectedEndDate.value == null &&
-                      selectedEndDate.value == "")
+                  if (selectedEndDate.value == null && selectedEndDate.value == "")
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Text(
-                          formatter
-                              .format(DateTime.parse(selectedStartDate.value)),
+                      child: Text(formatter.format(DateTime.parse(selectedStartDate.value)),
                           style: txtStyleNormalBlack14()),
                     ),
                 ],
@@ -114,26 +100,20 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       backgroundColor: ColorConstant.appThemeColor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 80, vertical: 16),
-                      textStyle: const TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold)),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                      padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 16),
+                      textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   onPressed: () {
                     // Get.toNamed(AppRouteNameConstant.myBookingScreen);
                     BookingDetailBinding().dependencies();
-                    bookingID.value =
-                        bookingSuccessModel?.result?.bookingId.toString() ?? '';
+                    bookingID.value = bookingSuccessModel?.result?.bookingId.toString() ?? '';
                     Get.find<BookingDetailController>().bookingDetail();
 
-                    Get.offAndToNamed(AppRouteNameConstant.confirmBookingScreen,
-                        arguments: bookingID.value);
+                    Get.offAndToNamed(AppRouteNameConstant.confirmBookingScreen, arguments: bookingID.value);
                   },
                   child: Text(
                     toLabelValue(ConstantStrings.checkDetailText),
-                    style: const TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.w600),
+                    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
                   ),
                 ),
               ),

@@ -21,9 +21,7 @@ class UpayDialogs extends StatefulWidget {
     String message,
   )? OnFailure;
 
-  UpayDialogs(
-      {Key? key, this.data, this.OnFailure, this.OnSuccess, this.weblink})
-      : super(key: key);
+  UpayDialogs({Key? key, this.data, this.OnFailure, this.OnSuccess, this.weblink}) : super(key: key);
 
   @override
   _UpayDialogsState createState() => _UpayDialogsState();
@@ -43,7 +41,7 @@ class _UpayDialogsState extends State<UpayDialogs> {
 
     if (request.url.contains(failureUrl)) {
       var data = Uri.dataFromString(request.url);
-// print(data.queryParametersAll);
+// debugPrint(data.queryParametersAll);
       Map val = data.queryParametersAll;
       Fluttertoast.showToast(
               msg: "Something Went Wrong!\nTry Again Later",
@@ -53,14 +51,13 @@ class _UpayDialogsState extends State<UpayDialogs> {
               backgroundColor: Colors.black,
               textColor: Colors.white,
               fontSize: 16.0)
-          .then(
-              (value) => arguments['OnFailure'](false, val, "Payment Failed"));
+          .then((value) => arguments['OnFailure'](false, val, "Payment Failed"));
 
       return NavigationDecision.prevent;
     }
     if (request.url.startsWith(successUrl)) {
       var data = Uri.dataFromString(request.url);
-// print(data.queryParametersAll);
+// debugPrint(data.queryParametersAll);
       Map val = data.queryParametersAll;
       Fluttertoast.showToast(
               msg: "Payment Completed Successfully",

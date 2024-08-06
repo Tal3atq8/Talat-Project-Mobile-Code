@@ -57,27 +57,19 @@ class PartnerRegistration extends GetWidget<PartnerRegistrationController> {
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Text(toLabelValue('welcome'),
-                          style: TextStyle(
-                              color: ColorConstant.whiteColor,
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold)),
+                          style: TextStyle(color: ColorConstant.whiteColor, fontSize: 24, fontWeight: FontWeight.bold)),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                       child: Text(toLabelValue('reach_new_customer'),
-                          style: TextStyle(
-                              color: ColorConstant.whiteColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w300)),
+                          style: TextStyle(color: ColorConstant.whiteColor, fontSize: 12, fontWeight: FontWeight.w300)),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsets.only(left: 18.0, top: 20, right: 18),
+                      padding: const EdgeInsets.only(left: 18.0, top: 20, right: 18),
                       child: CustomTextFormField(
                         width: double.infinity,
                         inputFormatters: [
-                          FilteringTextInputFormatter.allow(
-                              RegExp("[a-zA-Z' ']")),
+                          FilteringTextInputFormatter.allow(RegExp("[a-zA-Z' ']")),
                           FilteringTextInputFormatter.deny(RegExp("  "))
                         ],
                         controller: controller.providerNameController,
@@ -109,8 +101,7 @@ class PartnerRegistration extends GetWidget<PartnerRegistrationController> {
                         ),
                         onChanged: (value) {},
                         validator: (value) {
-                          if (value == null ||
-                              (!isValidEmail(value, isRequired: true))) {
+                          if (value == null || (!isValidEmail(value, isRequired: true))) {
                             return toLabelValue("enter_valid_email");
                           }
                           return null;
@@ -130,28 +121,23 @@ class PartnerRegistration extends GetWidget<PartnerRegistrationController> {
                           width: Get.width * 0.3,
                           child: Padding(
                             padding: const EdgeInsets.only(bottom: 4),
-                            child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  const SizedBox(
-                                    width: 12,
-                                  ),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(4),
-                                    child: SvgPicture.asset(
-                                        "assets/icons/kuwait2.svg",
-                                        height: 26,
-                                        width: 20,
-                                        fit: BoxFit.cover),
-                                  ),
-                                  const SizedBox(
-                                    width: 12,
-                                  ),
-                                  Text(
-                                    ConstantStrings.countryCodeKuwait,
-                                    style: txtStyleNormalBlack14(),
-                                  )
-                                ]),
+                            child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(4),
+                                child: SvgPicture.asset("assets/icons/kuwait2.svg",
+                                    height: 26, width: 20, fit: BoxFit.cover),
+                              ),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              Text(
+                                ConstantStrings.countryCodeKuwait,
+                                style: txtStyleNormalBlack14(),
+                              )
+                            ]),
                           ),
                         ),
                         width: double.infinity,
@@ -163,34 +149,27 @@ class PartnerRegistration extends GetWidget<PartnerRegistrationController> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsets.only(left: 18.0, top: 0, right: 18),
+                      padding: const EdgeInsets.only(left: 18.0, top: 0, right: 18),
                       child: CustomTextFormField(
                         onTapEvent: () async {
-                          await Future.delayed(
-                              const Duration(milliseconds: 600));
-                          RenderObject? object =
-                              globalKey.currentContext?.findRenderObject();
+                          await Future.delayed(const Duration(milliseconds: 600));
+                          RenderObject? object = globalKey.currentContext?.findRenderObject();
                           if (object != null) {
                             object.showOnScreen();
                           }
                         },
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(120)
-                        ],
+                        inputFormatters: [LengthLimitingTextInputFormatter(120)],
                         width: double.infinity,
                         controller: controller.businessController,
                         errorStyle: TextStyle(color: ColorConstant.whiteColor),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return toLabelValue(
-                                ConstantsLabelKeys.enter_description);
+                            return toLabelValue(ConstantsLabelKeys.enter_description);
                           }
                           return null;
                         },
                         maxLines: 6,
-                        hintText: toLabelValue(
-                            ConstantsLabelKeys.somethimg_about_business),
+                        hintText: toLabelValue(ConstantsLabelKeys.somethimg_about_business),
                         textInputType: TextInputType.text,
                         margin: getMargin(
                           top: 10,
@@ -199,23 +178,18 @@ class PartnerRegistration extends GetWidget<PartnerRegistrationController> {
                     ),
                     Padding(
                       key: globalKey,
-                      padding: const EdgeInsets.only(
-                          left: 18.0, top: 40, right: 18, bottom: 40),
+                      padding: const EdgeInsets.only(left: 18.0, top: 40, right: 18, bottom: 40),
                       child: ElevatedButton(
                         style: ButtonStyle(
                           elevation: MaterialStateProperty.all(0),
-                          minimumSize: MaterialStateProperty.all(
-                              const Size.fromHeight(50)),
-                          backgroundColor: MaterialStateProperty.all(
-                              ColorConstant.whiteColor),
-                          textStyle: MaterialStateProperty.all(const TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold)),
+                          minimumSize: MaterialStateProperty.all(const Size.fromHeight(50)),
+                          backgroundColor: MaterialStateProperty.all(ColorConstant.whiteColor),
+                          textStyle:
+                              MaterialStateProperty.all(const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                           shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
+                            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                           ),
-                          overlayColor:
-                              MaterialStateProperty.resolveWith<Color?>(
+                          overlayColor: MaterialStateProperty.resolveWith<Color?>(
                             (Set<MaterialState> states) {
                               if (states.contains(MaterialState.pressed)) {
                                 return Colors.blue[100]; //<-- SEE HERE
@@ -229,8 +203,7 @@ class PartnerRegistration extends GetWidget<PartnerRegistrationController> {
                           controller.onSignupTap();
                         },
                         child: Text(
-                          toLabelValue(ConstantsLabelKeys.submitText)
-                              .toString(),
+                          toLabelValue(ConstantsLabelKeys.submitText).toString(),
                           style: TextStyle(
                               fontFamily: GoogleFonts.lato().fontFamily,
                               color: ColorConstant.appThemeColor,

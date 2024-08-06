@@ -20,8 +20,7 @@ import '../dashboard/tabBar/tabbar_binding.dart';
 class ServiceProviderController extends GetxController {
   RxList<ReviewModel> reviewListItems = RxList<ReviewModel>();
   RxList<ReviewListModel> moreReviewListItems = RxList<ReviewListModel>();
-  Rx<ServiceProviderActivityListResponse> providerActivityList =
-      ServiceProviderActivityListResponse().obs;
+  Rx<ServiceProviderActivityListResponse> providerActivityList = ServiceProviderActivityListResponse().obs;
   final moreReviewListItem = ReviewListModel().obs;
   RxInt current = 0.obs;
   RxBool showLoader = false.obs;
@@ -30,16 +29,14 @@ class ServiceProviderController extends GetxController {
   String? token;
   String? userId;
   Rx<ProviderDetailModel> providerDetailModel = ProviderDetailModel().obs;
-  Rx<ServiceProviderListResponseModel> serviceProviderListResult =
-      ServiceProviderListResponseModel().obs;
+  Rx<ServiceProviderListResponseModel> serviceProviderListResult = ServiceProviderListResponseModel().obs;
   RxInt servicesProviderId = 0.obs;
   RxInt limit = 10.obs;
   RxInt page = 1.obs;
   RxInt selectedIndex = 1.obs;
   final CarouselController slideControllers = CarouselController();
 
-  RefreshController refreshController =
-      RefreshController(initialRefresh: false);
+  RefreshController refreshController = RefreshController(initialRefresh: false);
 
   @override
   void onInit() async {
@@ -61,31 +58,26 @@ class ServiceProviderController extends GetxController {
     try {
       await TalatService().serviceProviderApi({
         ConstantStrings.providerKey: providerID.value,
-        ConstantStrings.longitudeKey:
-            userLong.value != "" ? userLong.value : "0.0",
+        ConstantStrings.longitudeKey: userLong.value != "" ? userLong.value : "0.0",
         ConstantStrings.latitudKey: userLat.value != "" ? userLat.value : "0.0",
         ConstantStrings.languageId: language
       }).then((response) async {
         if (response.data['code'] == 200) {
-          providerDetailModel.value =
-              ProviderDetailModel.fromJson(response.data);
+          providerDetailModel.value = ProviderDetailModel.fromJson(response.data);
           showLoader.value = false;
         } else if (response.data["code"] == "-7") {
           // Get.back();
           CommonWidgets().showToastMessage('user_login_other_device');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
           Get.offAllNamed(AppRouteNameConstant.tabScreen);
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
-        } else if (response.data["code"] == "-1" &&
-            response.data["message"] == "inactive_account") {
+        } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
           CommonWidgets().showToastMessage('inactive_account');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -93,12 +85,10 @@ class ServiceProviderController extends GetxController {
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
           showLoader(false);
-        } else if (response.data["code"] == "-4" &&
-            response.data["message"] == "delete_account") {
+        } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
           showLoader.value = false;
           CommonWidgets().showToastMessage(response.data["message"]);
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -129,21 +119,19 @@ class ServiceProviderController extends GetxController {
     }
     await TalatService().serviceProviderList({
       "category_id": activityID.value,
-      ConstantStrings.longitudeKey:
-          userLong.value != "" ? userLong.value : "0.0",
+      ConstantStrings.longitudeKey: userLong.value != "" ? userLong.value : "0.0",
       ConstantStrings.latitudKey: userLat.value != "" ? userLat.value : "0.0",
       "limit": limit.value,
       "page": page.value,
     }).then((value) {
-      print(value.data);
+      debugPrint(value.data);
       showLoader.value = false;
-      serviceProviderListResult.value =
-          ServiceProviderListResponseModel.fromJson(value.data);
+      serviceProviderListResult.value = ServiceProviderListResponseModel.fromJson(value.data);
     });
   }
 
   void serviceProviderActivityList({bool? isRefresh}) async {
-    if (isRefresh == null || (isRefresh != null && !isRefresh)) {
+    if (isRefresh == null || (!isRefresh)) {
       showProviderActivityLoader.value = true;
     }
     try {
@@ -157,14 +145,12 @@ class ServiceProviderController extends GetxController {
         "device_type": "1",
         "service_provider_id": providerID.value,
         "language_id": language ?? "1",
-        ConstantStrings.longitudeKey:
-            userLong.value != "" ? userLong.value : "0.0",
+        ConstantStrings.longitudeKey: userLong.value != "" ? userLong.value : "0.0",
         ConstantStrings.latitudKey: userLat.value != "" ? userLat.value : "0.0",
         "limit": limit.value,
       }).then((response) async {
         if (response.data['code'] == 200) {
-          providerActivityList.value =
-              ServiceProviderActivityListResponse.fromJson(response.data);
+          providerActivityList.value = ServiceProviderActivityListResponse.fromJson(response.data);
           // providerDetailModel.value =
           //     ProviderDetailModel.fromJson(response.data);
           showProviderActivityLoader.value = false;
@@ -173,19 +159,16 @@ class ServiceProviderController extends GetxController {
         } else if (response.data["code"] == "-7") {
           // Get.back();
           CommonWidgets().showToastMessage('user_login_other_device');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
           Get.offAllNamed(AppRouteNameConstant.tabScreen);
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
-        } else if (response.data["code"] == "-1" &&
-            response.data["message"] == "inactive_account") {
+        } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
           CommonWidgets().showToastMessage('inactive_account');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -194,12 +177,10 @@ class ServiceProviderController extends GetxController {
           update();
           showProviderActivityLoader(false);
           favShowLoader(false);
-        } else if (response.data["code"] == "-4" &&
-            response.data["message"] == "delete_account") {
+        } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
           showLoader.value = false;
           CommonWidgets().showToastMessage(response.data["message"]);
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -250,8 +231,7 @@ class ServiceProviderController extends GetxController {
         } else if (response.data["code"] == "-7") {
           // Get.back();
           CommonWidgets().showToastMessage('user_login_other_device');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -259,11 +239,9 @@ class ServiceProviderController extends GetxController {
           Get.offAllNamed(AppRouteNameConstant.tabScreen);
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
-        } else if (response.data["code"] == "-1" &&
-            response.data["message"] == "inactive_account") {
+        } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
           CommonWidgets().showToastMessage('inactive_account');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -271,12 +249,10 @@ class ServiceProviderController extends GetxController {
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
           showLoader(false);
-        } else if (response.data["code"] == "-4" &&
-            response.data["message"] == "delete_account") {
+        } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
           showLoader.value = false;
           CommonWidgets().showToastMessage(response.data["message"]);
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -319,8 +295,7 @@ class ServiceProviderController extends GetxController {
         } else if (response.data["code"] == "-7") {
           // Get.back();
           CommonWidgets().showToastMessage('user_login_other_device');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -328,11 +303,9 @@ class ServiceProviderController extends GetxController {
           Get.offAllNamed(AppRouteNameConstant.tabScreen);
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
-        } else if (response.data["code"] == "-1" &&
-            response.data["message"] == "inactive_account") {
+        } else if (response.data["code"] == "-1" && response.data["message"] == "inactive_account") {
           CommonWidgets().showToastMessage('inactive_account');
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);
@@ -340,12 +313,10 @@ class ServiceProviderController extends GetxController {
           // await SharedPref.setString(PreferenceConstants.laguagecode, '1');
           update();
           showLoader(false);
-        } else if (response.data["code"] == "-4" &&
-            response.data["message"] == "delete_account") {
+        } else if (response.data["code"] == "-4" && response.data["message"] == "delete_account") {
           showLoader.value = false;
           CommonWidgets().showToastMessage(response.data["message"]);
-          language =
-              await SharedPref.getString(PreferenceConstants.laguagecode);
+          language = await SharedPref.getString(PreferenceConstants.laguagecode);
 
           await SharedPref.clearSharedPref();
           await SharedPref.setString(PreferenceConstants.laguagecode, language);

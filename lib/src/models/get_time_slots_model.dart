@@ -1,11 +1,10 @@
 class GetTimeSlotsResponseModel {
   String? message;
   bool? status;
-  dynamic? code;
+  dynamic code;
   List<Result>? result;
 
-  GetTimeSlotsResponseModel(
-      {this.message, this.status, this.code, this.result});
+  GetTimeSlotsResponseModel({this.message, this.status, this.code, this.result});
 
   GetTimeSlotsResponseModel.fromJson(Map<String, dynamic> json) {
     message = json['message'];

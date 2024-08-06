@@ -28,8 +28,7 @@ class TabBar extends StatelessWidget {
         child: Obx(
           () => Scaffold(
             backgroundColor: Colors.white,
-            body: tabController
-                .buildOffstageNavigator(tabController.currentIndex.value),
+            body: tabController.buildOffstageNavigator(tabController.currentIndex.value),
             bottomNavigationBar: BottomNavigationBar(
               backgroundColor: ColorConstant.whiteColor,
               selectedItemColor: ColorConstant.appThemeColor,
@@ -89,10 +88,8 @@ class TabBar extends StatelessWidget {
                   label: toLabelValue(ConstantsLabelKeys.saved).toString(),
                 ),
                 BottomNavigationBarItem(
-                  icon: ImageIcon(
-                      AssetImage(ImageConstant.dashBoardNotificationIcon)),
-                  label:
-                      toLabelValue(ConstantsLabelKeys.notifications).toString(),
+                  icon: ImageIcon(AssetImage(ImageConstant.dashBoardNotificationIcon)),
+                  label: toLabelValue(ConstantsLabelKeys.notifications).toString(),
                 ),
                 BottomNavigationBarItem(
                   icon: Image.asset(ImageConstant.dashBoardProfileIcon,

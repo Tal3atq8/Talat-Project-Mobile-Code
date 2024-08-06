@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:talat/src/utils/global_constants.dart' as globals;
 
@@ -13,16 +14,16 @@ class WorldLanguage extends Translations {
       ar.addAll(a);
     }
 
-    print(eng);
-    print(ar);
+    debugPrint('$eng');
+    debugPrint('$ar');
   }
 
   @override
   Map<String, Map<String, String>> get keys => {
-    'en_US': eng,
+        'en_US': eng,
 
-    'ar_AR': ar,
+        'ar_AR': ar,
 
-    //add more language here
-  };
+        //add more language here
+      };
 }

@@ -30,12 +30,9 @@ class ForgotPasswordController extends GetxController {
     if (errorMessage == "") {
       showLoader.value = true;
       try {
-        await TalatService().forgotPassword({
-          ConstantStrings.emailKey: emailController.text
-        }).then((response) async {
-          print(response.data);
-          if (response.data['code'].toString() == "200" &&
-              response.data['status'] == true) {
+        await TalatService().forgotPassword({ConstantStrings.emailKey: emailController.text}).then((response) async {
+          debugPrint(response.data);
+          if (response.data['code'].toString() == "200" && response.data['status'] == true) {
             CommonWidgets().showToastMessage(response.data["message"]);
             Get.back();
           } else {

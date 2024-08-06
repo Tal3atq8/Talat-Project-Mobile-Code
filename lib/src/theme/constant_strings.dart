@@ -1,18 +1,10 @@
 class ConstantStrings {
   static void updateBaseUrl(String newUrl) {
     baseUrl = newUrl;
-    // baseUrl = "$prefixUrl/api/v1/";
   }
-  // static String baseUrl = "https://admin.talat.live/api/v1/";
 
   static String prefixUrl = "https://admin.talat.live";
-  // static String prefixUrl = "https://talat.dev.vrinsoft.in";
-  // static String prefixUrl = "https://beta.talat.live";
-  // static String prefixUrl = "https://admin.talat.live";
-  // static String prefixUrl = "http://192.168.1.69:8000";
-
   static String baseUrl = "$prefixUrl/api/v1/";
-  // static String baseUrl = "http://192.168.1.68:8000/api/v1/";
 
   /// App const format
   static String countryCodeKuwait = "+965";
